@@ -46,102 +46,124 @@ export default function EarlyAccess() {
   const sports = ["Baseball", "Football", "Basketball", "Soccer", "Track & Field", "Volleyball"];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-400 via-orange-500 via-teal-400 to-blue-600 text-white overflow-x-hidden">
-      <div className="w-full max-w-[640px] mx-auto px-4 py-12 space-y-12">
+    <div className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#0f1f3a] to-[#0a1628] text-white overflow-x-hidden relative">
+      {/* Subtle grid pattern background */}
+      <div className="absolute inset-0 opacity-10" style={{
+        backgroundImage: 'linear-gradient(rgba(0, 217, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 217, 255, 0.1) 1px, transparent 1px)',
+        backgroundSize: '50px 50px'
+      }}></div>
+      
+      <div className="relative w-full max-w-[640px] mx-auto px-4 py-12 space-y-12">
         
-        {/* Parent Company Badge */}
+        {/* ATHLYNX Branding */}
+        <div className="text-center space-y-4">
+          <h1 className="text-6xl md:text-7xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+            ATHLYNX
+          </h1>
+          <p className="text-yellow-400 text-xl md:text-2xl font-bold uppercase tracking-widest">
+            THE ATHLETE'S PLAYBOOK
+          </p>
+          <p className="text-gray-400 text-sm md:text-base">
+            One Platform. Total Control. Unlimited Potential.
+          </p>
+        </div>
+
+        {/* Welcome Badge */}
         <div className="flex justify-center">
-          <div className="inline-flex items-center gap-3 bg-black/40 backdrop-blur-sm border-2 border-yellow-400 rounded-full px-6 py-3">
-            <img src="/dhg-crab-shield.jpeg" alt="DHG" className="w-8 h-8 rounded-full" />
-            <div className="text-left">
-              <p className="text-gray-300 text-xs uppercase tracking-wide">PARENT COMPANY</p>
-              <p className="text-yellow-400 font-bold text-sm">Dozier Holdings Group</p>
-            </div>
-          </div>
-        </div>
-
-        {/* DHG Crab Logo - Large at Top */}
-        <div className="flex justify-center">
-          <div className="relative">
-            <div className="absolute inset-0 bg-cyan-400 blur-3xl opacity-50 animate-pulse"></div>
-            <img 
-              src="/dhg-crab-shield.jpeg" 
-              alt="Dozier Holdings Group" 
-              className="relative w-40 h-40 object-contain drop-shadow-2xl"
-            />
-          </div>
-        </div>
-
-        {/* 3 App Icons Row */}
-        <div className="flex justify-center gap-6">
-          <div className="relative group">
-            <div className="absolute inset-0 bg-white blur-xl opacity-0 group-hover:opacity-50 transition-opacity"></div>
-            <img 
-              src="/nil-portal-n-white.jpeg" 
-              alt="NIL Portal" 
-              className="relative w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
-            />
-          </div>
-          <div className="relative group">
-            <div className="absolute inset-0 bg-blue-500 blur-xl opacity-0 group-hover:opacity-50 transition-opacity"></div>
-            <img 
-              src="/messenger-n-blue.jpeg" 
-              alt="Messenger" 
-              className="relative w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
-            />
-          </div>
-          <div className="relative group">
-            <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
-            <img 
-              src="/diamond-grind-geometric.png" 
-              alt="Diamond Grind" 
-              className="relative w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
-            />
-          </div>
-        </div>
-
-        {/* Welcome Section */}
-        <div className="text-center space-y-2">
-          <div className="inline-block bg-black/30 backdrop-blur-sm border border-cyan-400 rounded-full px-6 py-2">
+          <div className="inline-block bg-gradient-to-r from-cyan-500/20 to-blue-500/20 backdrop-blur-sm border-2 border-cyan-400 rounded-full px-6 py-2">
             <p className="text-cyan-300 text-sm uppercase tracking-wider">WELCOME TO THE FUTURE</p>
           </div>
         </div>
 
-        {/* Main Headline */}
+        {/* ONE APP. EVERYTHING BUILT IN. Section */}
+        <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-xl border-2 border-gray-700 rounded-3xl p-8 space-y-6 shadow-2xl">
+          <p className="text-center text-gray-400 text-sm uppercase tracking-widest mb-6">
+            ONE APP. EVERYTHING BUILT IN.
+          </p>
+          
+          {/* 3 App Icons */}
+          <div className="flex justify-center gap-4 mb-8">
+            <div className="relative group">
+              <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
+              <img 
+                src="/dhg-crab-shield.jpeg" 
+                alt="DHG Crab" 
+                className="relative w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform bg-white/10 p-2"
+              />
+            </div>
+            <div className="relative group">
+              <div className="absolute inset-0 bg-white blur-xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              <img 
+                src="/nil-portal-n-white.jpeg" 
+                alt="NIL Portal" 
+                className="relative w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+            </div>
+            <div className="relative group">
+              <div className="absolute inset-0 bg-blue-500 blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
+              <img 
+                src="/messenger-n-blue.jpeg" 
+                alt="Messenger" 
+                className="relative w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+            </div>
+          </div>
+
+          {/* ATHLYNX Title */}
+          <div className="text-center mb-6">
+            <h2 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-2">
+              ATHLYNX
+            </h2>
+            <p className="text-cyan-400 text-lg">The Athlete's Playbook</p>
+          </div>
+
+          {/* Feature Buttons */}
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { icon: "📱", label: "Social Feed" },
+              { icon: "💬", label: "Messaging" },
+              { icon: "💰", label: "NIL Deals" },
+              { icon: "📊", label: "Analytics" },
+              { icon: "💪", label: "Training" },
+              { icon: "🏆", label: "My Sports" },
+            ].map((feature) => (
+              <button
+                key={feature.label}
+                className="bg-gradient-to-br from-gray-800 to-gray-900 border-2 border-gray-700 hover:border-cyan-400 rounded-xl p-4 text-center transition-all hover:scale-105 group"
+              >
+                <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">{feature.icon}</div>
+                <p className="text-white font-semibold text-sm">{feature.label}</p>
+              </button>
+            ))}
+          </div>
+
+          {/* Platform Badges */}
+          <div className="flex justify-center gap-4 pt-4">
+            <div className="flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2">
+              <span className="text-2xl">🍎</span>
+              <span className="text-gray-300 text-sm font-semibold">iOS</span>
+            </div>
+            <div className="flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2">
+              <span className="text-2xl">🤖</span>
+              <span className="text-gray-300 text-sm font-semibold">Android</span>
+            </div>
+          </div>
+        </div>
+
+        {/* THE COMPLETE ATHLETE ECOSYSTEM */}
         <div className="text-center space-y-4">
-          <h1 className="text-5xl md:text-7xl font-black leading-tight">
-            <span className="text-white">THE</span><br/>
-            <span className="text-white">COMPLETE</span><br/>
-            <span className="text-cyan-300 text-6xl md:text-8xl">ATHLETE</span><br/>
+          <h2 className="text-4xl md:text-5xl font-black leading-tight">
+            <span className="text-white">THE COMPLETE</span><br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 text-5xl md:text-6xl">ATHLETE</span><br/>
             <span className="text-white">ECOSYSTEM</span>
-          </h1>
-          <p className="text-gray-200 text-lg max-w-md mx-auto">
-            Three powerful apps. One revolutionary platform. Social, messaging, NIL deals, training, analytics - all unified.
+          </h2>
+          <p className="text-gray-400 text-base max-w-lg mx-auto leading-relaxed">
+            Three powerful apps. One revolutionary platform. Manage NIL deals, training data, professional connections, and private messaging—all in one place.
           </p>
         </div>
 
-        {/* Feature Cards */}
-        <div className="grid grid-cols-2 gap-4">
-          {[
-            { icon: "📱", label: "Social Feed", color: "from-pink-500 to-red-500" },
-            { icon: "💬", label: "Messaging", color: "from-blue-500 to-cyan-500" },
-            { icon: "💰", label: "NIL Deals", color: "from-green-500 to-emerald-500" },
-            { icon: "💪", label: "Training", color: "from-orange-500 to-yellow-500" },
-            { icon: "📊", label: "Analytics", color: "from-purple-500 to-pink-500" },
-            { icon: "🏆", label: "15+ Sports", color: "from-yellow-500 to-orange-500" },
-          ].map((feature) => (
-            <div
-              key={feature.label}
-              className={`bg-gradient-to-br ${feature.color} bg-opacity-20 backdrop-blur-sm border-2 border-white/30 rounded-2xl p-4 text-center hover:scale-105 transition-transform cursor-pointer`}
-            >
-              <div className="text-4xl mb-2">{feature.icon}</div>
-              <p className="text-white font-bold text-sm">{feature.label}</p>
-            </div>
-          ))}
-        </div>
-
         {/* VIP Early Access Section */}
-        <div className="bg-black/40 backdrop-blur-md border-2 border-yellow-400 rounded-3xl p-8 space-y-6 shadow-2xl">
+        <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl border-2 border-yellow-500 rounded-3xl p-8 space-y-6 shadow-2xl">
           
           {/* VIP Badge */}
           <div className="text-center">
@@ -155,7 +177,7 @@ export default function EarlyAccess() {
 
           {/* Countdown Timer */}
           <div className="space-y-4">
-            <p className="text-center text-gray-300 text-sm uppercase tracking-wide">LAUNCHING IN</p>
+            <p className="text-center text-gray-400 text-sm uppercase tracking-wide">LAUNCHING IN</p>
             <div className="flex justify-center gap-3">
               {[
                 { value: timeLeft.days, label: "DAYS" },
@@ -165,14 +187,14 @@ export default function EarlyAccess() {
               ].map(({ value, label }) => (
                 <div
                   key={label}
-                  className="bg-black/60 border-2 border-yellow-400 rounded-xl px-4 py-3 min-w-[70px] text-center"
+                  className="bg-gradient-to-br from-gray-800 to-gray-900 border-2 border-cyan-400 rounded-xl px-4 py-3 min-w-[70px] text-center"
                 >
-                  <div className="text-yellow-400 text-3xl font-bold">{String(value).padStart(2, "0")}</div>
-                  <div className="text-gray-400 text-xs mt-1">{label}</div>
+                  <div className="text-cyan-400 text-3xl font-bold">{String(value).padStart(2, "0")}</div>
+                  <div className="text-gray-500 text-xs mt-1">{label}</div>
                 </div>
               ))}
             </div>
-            <p className="text-center text-cyan-300 text-base font-semibold">FEBRUARY 1, 2026</p>
+            <p className="text-center text-cyan-400 text-base font-semibold">FEBRUARY 1, 2026</p>
           </div>
 
           {/* Founding Member Section */}
@@ -188,7 +210,7 @@ export default function EarlyAccess() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Email */}
             <div>
-              <label className="block text-gray-300 text-xs uppercase tracking-wide mb-2">
+              <label className="block text-gray-400 text-xs uppercase tracking-wide mb-2">
                 EMAIL ADDRESS <span className="text-red-400">*</span>
               </label>
               <input
@@ -197,13 +219,13 @@ export default function EarlyAccess() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
-                className="w-full bg-black/60 border-2 border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 outline-none transition"
+                className="w-full bg-gray-900 border-2 border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 outline-none transition"
               />
             </div>
 
             {/* Phone */}
             <div>
-              <label className="block text-gray-300 text-xs uppercase tracking-wide mb-2">
+              <label className="block text-gray-400 text-xs uppercase tracking-wide mb-2">
                 PHONE (OPTIONAL)
               </label>
               <input
@@ -211,13 +233,13 @@ export default function EarlyAccess() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="Phone (Optional)"
-                className="w-full bg-black/60 border-2 border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 outline-none transition"
+                className="w-full bg-gray-900 border-2 border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 outline-none transition"
               />
             </div>
 
             {/* Role Selection */}
             <div>
-              <label className="block text-gray-300 text-xs uppercase tracking-wide mb-2">
+              <label className="block text-gray-400 text-xs uppercase tracking-wide mb-2">
                 I AM A
               </label>
               <div className="flex flex-wrap gap-2">
@@ -229,7 +251,7 @@ export default function EarlyAccess() {
                     className={`px-4 py-2 rounded-lg text-sm font-semibold transition ${
                       role === r
                         ? "bg-cyan-400 border-2 border-cyan-400 text-black"
-                        : "bg-black/60 border-2 border-gray-600 text-gray-300 hover:border-cyan-400 hover:text-cyan-400"
+                        : "bg-gray-900 border-2 border-gray-700 text-gray-400 hover:border-cyan-400 hover:text-cyan-400"
                     }`}
                   >
                     {r}
@@ -240,7 +262,7 @@ export default function EarlyAccess() {
 
             {/* Sport Selection */}
             <div>
-              <label className="block text-gray-300 text-xs uppercase tracking-wide mb-2">
+              <label className="block text-gray-400 text-xs uppercase tracking-wide mb-2">
                 MY SPORT
               </label>
               <div className="flex flex-wrap gap-2">
@@ -252,7 +274,7 @@ export default function EarlyAccess() {
                     className={`px-4 py-2 rounded-lg text-sm font-semibold transition ${
                       sport === s
                         ? "bg-cyan-400 border-2 border-cyan-400 text-black"
-                        : "bg-black/60 border-2 border-gray-600 text-gray-300 hover:border-cyan-400 hover:text-cyan-400"
+                        : "bg-gray-900 border-2 border-gray-700 text-gray-400 hover:border-cyan-400 hover:text-cyan-400"
                     }`}
                   >
                     {s}
@@ -273,11 +295,26 @@ export default function EarlyAccess() {
           {/* Preview Link */}
           <div className="text-center">
             <Link href="/home">
-              <a className="inline-block text-cyan-300 hover:text-cyan-100 hover:underline text-sm font-semibold">
+              <a className="inline-block text-cyan-400 hover:text-cyan-300 hover:underline text-sm font-semibold">
                 Preview the App →
               </a>
             </Link>
           </div>
+        </div>
+
+        {/* Feature Checkmarks */}
+        <div className="flex flex-wrap justify-center gap-4 text-sm">
+          {[
+            "✅ Social Network",
+            "✅ NIL Deals",
+            "✅ Messaging",
+            "✅ Analytics",
+            "✅ Compliance"
+          ].map((feature) => (
+            <div key={feature} className="text-gray-400 font-medium">
+              {feature}
+            </div>
+          ))}
         </div>
 
         {/* Bottom Spacing */}
