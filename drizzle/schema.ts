@@ -934,3 +934,21 @@ export const fcaDailyVerses = mysqlTable("fca_daily_verses", {
 
 export type FcaDailyVerse = typeof fcaDailyVerses.$inferSelect;
 export type InsertFcaDailyVerse = typeof fcaDailyVerses.$inferInsert;
+
+
+/**
+ * Verification codes for 2FA and email verification
+ * Used for secure authentication and account verification
+ */
+export const verificationCodes = mysqlTable("verification_codes", {
+  id: int("id").autoincrement().primaryKey(),
+  email: varchar("email", { length: 320 }).notNull(),
+  code: varchar("code", { length: 10 }).notNull(),
+  type: mysqlEnum("type", ["2fa", "email_verify", "password_reset"]).notNull(),
+  expiresAt: timestamp("expiresAt").notNull(),
+  used: mysqlEnum("used", ["yes", "no"]).default("no").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type VerificationCode = typeof verificationCodes.$inferSelect;
+export type InsertVerificationCode = typeof verificationCodes.$inferInsert;

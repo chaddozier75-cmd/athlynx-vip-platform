@@ -1,0 +1,8 @@
+{
+  "query": "SELECT id, email, role, primary_sport, access_code, status, created_at FROM vip_members ORDER BY id DESC LIMIT 3;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute SELECT id, email, role, primary_sport, access_code, status, created_at FROM vip_members ORDER BY id DESC LIMIT 3;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'primary_sport' in 'field list'"
+  ]
+}

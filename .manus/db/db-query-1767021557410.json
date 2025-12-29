@@ -1,0 +1,43 @@
+{
+  "query": "SELECT * FROM vip_members ORDER BY id DESC LIMIT 3;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute SELECT * FROM vip_members ORDER BY id DESC LIMIT 3;",
+  "rows": [
+    {
+      "id": "120011",
+      "email": "finaltest@athlynx.ai",
+      "phone": "NULL",
+      "role": "Coach",
+      "sport": "Football",
+      "accessCode": "O2CKS0NMRX",
+      "status": "pending",
+      "signupDate": "2025-12-29 15:18:35",
+      "approvedDate": "NULL"
+    },
+    {
+      "id": "120010",
+      "email": "test-nophone-1767020957566@athlynx.test",
+      "phone": "NULL",
+      "role": "Brand",
+      "sport": "Soccer",
+      "accessCode": "QU7KQHIQGNL",
+      "status": "pending",
+      "signupDate": "2025-12-29 15:09:17",
+      "approvedDate": "NULL"
+    },
+    {
+      "id": "120008",
+      "email": "test-1767020948266@athlynx.test",
+      "phone": "+1234567890",
+      "role": "Athlete",
+      "sport": "Baseball",
+      "accessCode": "AFVBM1OUOGS",
+      "status": "pending",
+      "signupDate": "2025-12-29 15:09:08",
+      "approvedDate": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\tphone\trole\tsport\taccessCode\tstatus\tsignupDate\tapprovedDate\n120011\tfinaltest@athlynx.ai\tNULL\tCoach\tFootball\tO2CKS0NMRX\tpending\t2025-12-29 15:18:35\tNULL\n120010\ttest-nophone-1767020957566@athlynx.test\tNULL\tBrand\tSoccer\tQU7KQHIQGNL\tpending\t2025-12-29 15:09:17\tNULL\n120008\ttest-1767020948266@athlynx.test\t+1234567890\tAthlete\tBaseball\tAFVBM1OUOGS\tpending\t2025-12-29 15:09:08\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 54
+}

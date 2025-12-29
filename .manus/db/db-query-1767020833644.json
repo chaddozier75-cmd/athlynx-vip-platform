@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `verification_codes` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `email` varchar(320) NOT NULL,\n  `code` varchar(10) NOT NULL,\n  `type` enum('2fa','email_verify','password_reset') NOT NULL,\n  `expiresAt` timestamp NOT NULL,\n  `used` enum('yes','no') NOT NULL DEFAULT 'no',\n  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  CONSTRAINT `verification_codes_id` PRIMARY KEY(`id`)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute CREATE TABLE IF NOT EXISTS `verification_codes` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `email` varchar(320) NOT NULL,\n  `code` varchar(10) NOT NULL,\n  `type` enum('2fa','email_verify','password_reset') NOT NULL,\n  `expiresAt` timestamp NOT NULL,\n  `used` enum('yes','no') NOT NULL DEFAULT 'no',\n  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  CONSTRAINT `verification_codes_id` PRIMARY KEY(`id`)\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 202
+}

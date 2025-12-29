@@ -118,6 +118,27 @@ function Router() {
       <Route path={"/hunt-pro"} component={() => <ComingSoon title="Hunt Pro" description="Hunting spots, harvest tracking, license management, and gear marketplace. Hunt smarter." icon="🦌" />} />
       <Route path={"/hunting"} component={() => <ComingSoon title="Hunt Pro" description="Hunting spots, harvest tracking, license management, and gear marketplace. Hunt smarter." icon="🦌" />} />
       
+      <Route path={"/ice-breakers"} component={() => <ComingSoon title="Ice Breakers" description="Hockey recruiting, showcase events, and NHL draft prep. Own the ice." icon="🏒" />} />
+      <Route path={"/hockey"} component={() => <ComingSoon title="Ice Breakers" description="Hockey recruiting, showcase events, and NHL draft prep. Own the ice." icon="🏒" />} />
+      
+      <Route path={"/net-setters"} component={() => <ComingSoon title="Net Setters" description="Volleyball recruiting, beach and indoor rankings, and club connections. Rise above the net." icon="🏐" />} />
+      <Route path={"/volleyball"} component={() => <ComingSoon title="Net Setters" description="Volleyball recruiting, beach and indoor rankings, and club connections. Rise above the net." icon="🏐" />} />
+      
+      <Route path={"/track-elite"} component={() => <ComingSoon title="Track Elite" description="Track & field recruiting, meet results, and Olympic pathway. Chase greatness." icon="🏃" />} />
+      <Route path={"/track"} component={() => <ComingSoon title="Track Elite" description="Track & field recruiting, meet results, and Olympic pathway. Chase greatness." icon="🏃" />} />
+      
+      <Route path={"/swim-surge"} component={() => <ComingSoon title="Swim Surge" description="Swimming recruiting, time tracking, and championship prep. Make waves." icon="🏊" />} />
+      <Route path={"/swimming"} component={() => <ComingSoon title="Swim Surge" description="Swimming recruiting, time tracking, and championship prep. Make waves." icon="🏊" />} />
+      
+      <Route path={"/mat-warriors"} component={() => <ComingSoon title="Mat Warriors" description="Wrestling recruiting, tournament brackets, and weight management. Dominate the mat." icon="🤼" />} />
+      <Route path={"/wrestling"} component={() => <ComingSoon title="Mat Warriors" description="Wrestling recruiting, tournament brackets, and weight management. Dominate the mat." icon="🤼" />} />
+      
+      <Route path={"/court-kings"} component={() => <ComingSoon title="Court Kings" description="Tennis recruiting, rankings, and tournament play. Rule the court." icon="🎾" />} />
+      <Route path={"/tennis"} component={() => <ComingSoon title="Court Kings" description="Tennis recruiting, rankings, and tournament play. Rule the court." icon="🎾" />} />
+      
+      <Route path={"/lacrosse-legends"} component={() => <ComingSoon title="Lacrosse Legends" description="Lacrosse recruiting, club connections, and showcase events. Write your legacy." icon="🥍" />} />
+      <Route path={"/lacrosse"} component={() => <ComingSoon title="Lacrosse Legends" description="Lacrosse recruiting, club connections, and showcase events. Write your legacy." icon="🥍" />} />
+      
       {/* Legacy Coming Soon */}
       <Route path={"/messenger"} component={() => <ComingSoon title="Messenger" description="Real-time messaging platform for athletes, coaches, and brands. Connect, collaborate, and communicate seamlessly." icon="💬" />} />
       

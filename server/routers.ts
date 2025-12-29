@@ -6,6 +6,7 @@ import { z } from "zod";
 import { vipMembers } from "../drizzle/schema";
 import { getDb } from "./db";
 import { notifyOwner } from "./_core/notification";
+import { sendVIPConfirmationEmail } from "./email";
 import { createSubscriptionCheckout, createCreditCheckout, getCheckoutSession } from "./stripe/checkout";
 import { SUBSCRIPTION_TIERS, AI_CREDIT_PACKS } from "./stripe/products";
 import { getUserCredits, getCreditTransactions, getCreditUsageHistory, generateTrainingPlan, CREDIT_COSTS } from "./ai-credits";
@@ -63,10 +64,12 @@ export const appRouter = router({
           status: "pending",
         });
 
-        // Notify owner
-        await notifyOwner({
-          title: "🏆 New VIP Member Signup!",
-          content: `Email: ${input.email}\nRole: ${input.role}\nSport: ${input.sport}\nAccess Code: ${accessCode}`,
+        // Send VIP confirmation email with AI-generated content
+        await sendVIPConfirmationEmail({
+          email: input.email,
+          role: input.role,
+          sport: input.sport,
+          accessCode,
         });
 
         return {

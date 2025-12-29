@@ -31,7 +31,7 @@ describe("VIP Signup Flow", () => {
     expect(result.accessCode.length).toBeGreaterThanOrEqual(10);
     expect(result.accessCode.length).toBeLessThanOrEqual(12);
     expect(result.accessCode).toMatch(/^[A-Z0-9]+$/);
-  });
+  }, 30000); // 30s timeout for LLM email generation
 
   it("should save VIP member data to database", async () => {
     const db = await getDb();
@@ -116,5 +116,5 @@ describe("VIP Signup Flow", () => {
       .limit(1);
 
     expect(members[0].phone).toBeNull();
-  });
+  }, 30000); // 30s timeout for LLM email generation
 });

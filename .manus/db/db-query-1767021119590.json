@@ -1,0 +1,16 @@
+{
+  "query": "SELECT COUNT(*) as total_signups, \n       SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending,\n       SUM(CASE WHEN status = 'approved' THEN 1 ELSE 0 END) as approved,\n       SUM(CASE WHEN status = 'active' THEN 1 ELSE 0 END) as active\nFROM vip_members;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute SELECT COUNT(*) as total_signups, \n       SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending,\n       SUM(CASE WHEN status = 'approved' THEN 1 ELSE 0 END) as approved,\n       SUM(CASE WHEN status = 'active' THEN 1 ELSE 0 END) as active\nFROM vip_members;",
+  "rows": [
+    {
+      "total_signups": "18",
+      "pending": "18",
+      "approved": "0",
+      "active": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_signups\tpending\tapproved\tactive\n18\t18\t0\t0\n",
+  "stderr": "",
+  "execution_time_ms": 58
+}
