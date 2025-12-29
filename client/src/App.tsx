@@ -12,6 +12,7 @@ import NILMarketplace from "./pages/NILMarketplace";
 import Messages from "./pages/Messages";
 import FounderStory from "./pages/FounderStory";
 import ComingSoon from "./pages/ComingSoon";
+import NILPortal from "./pages/NILPortal";
 
 function Router() {
   return (
@@ -25,7 +26,7 @@ function Router() {
       <Route path={"/founder-story"} component={FounderStory} />
       <Route path={"/messenger"} component={() => <ComingSoon title="Messenger" description="Real-time messaging platform for athletes, coaches, and brands. Connect, collaborate, and communicate seamlessly." icon="💬" />} />
       <Route path={"/diamond-grind"} component={() => <ComingSoon title="Diamond Grind" description="Elite baseball training platform with drills, analytics, and performance tracking. Grind your way to greatness." icon="💎" />} />
-      <Route path={"/nil-portal"} component={() => <ComingSoon title="NIL Portal" description="Complete NIL marketplace connecting athletes with brands for endorsement deals, sponsorships, and partnerships." icon="💰" />} />
+      <Route path={"/nil-portal"} component={NILPortal} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>

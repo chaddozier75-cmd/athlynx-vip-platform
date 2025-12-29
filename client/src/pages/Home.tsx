@@ -1,329 +1,205 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Trophy, Users, TrendingUp, MessageCircle, Calendar, DollarSign, ArrowRight, Star, Target, Zap } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Home() {
-  const features = [
+  const apps = [
     {
-      icon: <Trophy className="h-8 w-8 text-primary" />,
-      title: "The Athlete Playbook",
-      description: "Boost your recruiting presence and media profile with our comprehensive tools designed to elevate your athletic career."
+      name: "NIL Portal",
+      icon: "/nil-portal-n-white.jpeg",
+      description: "Manage deals, training data, and professional connections",
+      link: "/nil-portal",
+      gradient: "from-blue-500 to-cyan-500",
     },
     {
-      icon: <TrendingUp className="h-8 w-8 text-primary" />,
-      title: "Transfer Portal",
-      description: "Navigate your path from smaller schools to top programs. Get better, transfer up, and increase your NIL value."
+      name: "Messenger",
+      icon: "/messenger-n-blue.jpeg",
+      description: "Real-time communication with coaches, scouts, and teammates",
+      link: "/messenger",
+      gradient: "from-purple-500 to-pink-500",
     },
     {
-      icon: <DollarSign className="h-8 w-8 text-primary" />,
-      title: "NIL Opportunities",
-      description: "Discover and manage endorsement deals. Connect with brands looking for athletes like you."
+      name: "Diamond Grind",
+      icon: "/diamond-grind-geometric.png",
+      description: "Training programs, analytics, and performance tracking",
+      link: "/diamond-grind",
+      gradient: "from-orange-500 to-yellow-500",
     },
-    {
-      icon: <MessageCircle className="h-8 w-8 text-primary" />,
-      title: "Athlete Network",
-      description: "Connect with athletes globally. Share schedules, compare recruiting efforts, and build your network."
-    },
-    {
-      icon: <Calendar className="h-8 w-8 text-primary" />,
-      title: "Events & Camps",
-      description: "Track camps, showcases, and recruiting events. Never miss an opportunity to be seen."
-    },
-    {
-      icon: <Users className="h-8 w-8 text-primary" />,
-      title: "Professional Connections",
-      description: "Connect with coaches, scouts, and recruiters. Build relationships that advance your career."
-    }
   ];
 
-  const stats = [
-    { number: "10K+", label: "Active Athletes" },
-    { number: "$5M+", label: "NIL Deals Facilitated" },
-    { number: "500+", label: "Partner Schools" },
-    { number: "24/7", label: "Platform Access" }
+  const features = [
+    { icon: "📱", title: "Social Feed", desc: "Share highlights, connect with fans" },
+    { icon: "💬", title: "Messaging", desc: "Direct communication platform" },
+    { icon: "💰", title: "NIL Deals", desc: "Brand partnerships & sponsorships" },
+    { icon: "💪", title: "Training", desc: "Personalized workout programs" },
+    { icon: "📊", title: "Analytics", desc: "Performance tracking & insights" },
+    { icon: "🏆", title: "15+ Sports", desc: "Multi-sport support" },
+    { icon: "🎓", title: "Recruiting", desc: "College connections & commitments" },
+    { icon: "🛒", title: "Store", desc: "Gear, apparel & equipment" },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-      {/* Header */}
-      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Trophy className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold">Athlynx</span>
+    <div className="min-h-screen bg-gradient-to-br from-yellow-400 via-orange-500 via-teal-400 to-blue-600 text-white">
+      <div className="w-full max-w-[1200px] mx-auto px-4 py-12 space-y-16">
+        
+        {/* Header with DHG Branding */}
+        <div className="text-center space-y-6">
+          <div className="flex justify-center">
+            <div className="inline-flex items-center gap-3 bg-black/40 backdrop-blur-sm border-2 border-yellow-400 rounded-full px-6 py-3">
+              <img src="/dhg-crab-shield.jpeg" alt="DHG" className="w-8 h-8 rounded-full" />
+              <div className="text-left">
+                <p className="text-gray-300 text-xs uppercase tracking-wide">PARENT COMPANY</p>
+                <p className="text-yellow-400 font-bold text-sm">Dozier Holdings Group</p>
+              </div>
+            </div>
           </div>
-          <nav className="hidden md:flex items-center gap-6">
-            <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
-              Home
-            </Link>
-            <Link href="/playbook" className="text-sm font-medium hover:text-primary transition-colors">
-              Athlete Playbook
-            </Link>
-            <Link href="/transfer-portal" className="text-sm font-medium hover:text-primary transition-colors">
-              Transfer Portal
-            </Link>
-            <Link href="/nil-marketplace" className="text-sm font-medium hover:text-primary transition-colors">
-              NIL Marketplace
-            </Link>
-            <Link href="/messages" className="text-sm font-medium hover:text-primary transition-colors">
-              Messages
-            </Link>
-            <Link href="/founder-story" className="text-sm font-medium hover:text-primary transition-colors">
-              Founder Story
-            </Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="sm">Log In</Button>
-            <Button size="sm">Sign Up Free</Button>
-          </div>
-        </div>
-      </header>
 
-      {/* Hero Section */}
-      <section className="container py-24 md:py-32 space-y-8">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
-            <Star className="h-4 w-4" />
-            The All-in-One Platform for Student Athletes
+          <div className="flex justify-center">
+            <img 
+              src="/dhg-crab-shield.jpeg" 
+              alt="Dozier Holdings Group" 
+              className="w-32 h-32 object-contain drop-shadow-2xl animate-pulse"
+            />
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-            Your Athletic Career,{" "}
-            <span className="text-primary">Amplified</span>
+
+          <h1 className="text-5xl md:text-7xl font-black leading-tight">
+            <span className="text-white">THE #1 SPORTS PLATFORM</span>
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-            From recruiting to NIL deals, from training to transfers - Athlynx is your complete platform 
-            for managing and advancing your athletic career. Connect, compete, and capitalize on your talent.
+          <p className="text-xl text-gray-200 max-w-2xl mx-auto">
+            Like Facebook, Instagram, TikTok, X & LinkedIn combined for athletes
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-            <Button size="lg" className="text-lg px-8">
-              Get Started Free <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8">
-              Watch Demo
-            </Button>
+        </div>
+
+        {/* Flagship Product Section */}
+        <div className="bg-black/40 backdrop-blur-md border-2 border-cyan-400 rounded-3xl p-8 space-y-6">
+          <div className="flex justify-center">
+            <div className="bg-cyan-400 text-black px-6 py-2 rounded-full font-bold uppercase text-sm">
+              FLAGSHIP PRODUCT
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-6">
+            {apps.map((app) => (
+              <div key={app.name} className="relative group">
+                <div className="absolute inset-0 bg-white blur-xl opacity-0 group-hover:opacity-50 transition-opacity"></div>
+                <img 
+                  src={app.icon} 
+                  alt={app.name} 
+                  className="relative w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+                />
+              </div>
+            ))}
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-black text-center text-white">
+            ATHLYNX
+          </h2>
+          <p className="text-2xl text-center text-cyan-300 font-bold">
+            The Athlete's Playbook
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {apps.map((app) => (
+              <Link key={app.name} href={app.link}>
+                <a className={`block bg-gradient-to-br ${app.gradient} bg-opacity-20 backdrop-blur-sm border-2 border-white/30 rounded-2xl p-6 hover:scale-105 transition-transform cursor-pointer`}>
+                  <div className="flex items-center gap-4 mb-3">
+                    <img src={app.icon} alt={app.name} className="w-12 h-12 rounded-xl" />
+                    <h3 className="text-xl font-bold text-white">{app.name}</h3>
+                  </div>
+                  <p className="text-gray-200 text-sm">{app.description}</p>
+                </a>
+              </Link>
+            ))}
+          </div>
+
+          <p className="text-center text-gray-300 text-sm max-w-2xl mx-auto">
+            Three powerful apps. One revolutionary platform. Social, messaging, NIL deals, training, analytics - all unified.
+          </p>
+
+          <div className="flex justify-center gap-4">
+            <Link href="/nil-portal">
+              <a className="bg-black/60 border-2 border-cyan-400 text-cyan-400 px-6 py-3 rounded-xl font-bold hover:bg-cyan-400 hover:text-black transition">
+                📱 Social Feed
+              </a>
+            </Link>
+            <Link href="/messenger">
+              <a className="bg-black/60 border-2 border-pink-400 text-pink-400 px-6 py-3 rounded-xl font-bold hover:bg-pink-400 hover:text-black transition">
+                💬 Messenger
+              </a>
+            </Link>
+            <Link href="/diamond-grind">
+              <a className="bg-black/60 border-2 border-orange-400 text-orange-400 px-6 py-3 rounded-xl font-bold hover:bg-orange-400 hover:text-black transition">
+                💪 Diamond Grind
+              </a>
+            </Link>
           </div>
         </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="border-y bg-muted/30 py-12">
-        <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {stats.map((stat, index) => (
-              <div key={index} className="space-y-2">
-                <div className="text-4xl md:text-5xl font-bold text-primary">{stat.number}</div>
-                <div className="text-sm md:text-base text-muted-foreground">{stat.label}</div>
+        {/* All Features Grid */}
+        <div className="space-y-6">
+          <h2 className="text-3xl md:text-4xl font-black text-center text-white">
+            ONE APP. EVERYTHING BUILT IN.
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {features.map((feature) => (
+              <div
+                key={feature.title}
+                className="bg-black/40 backdrop-blur-sm border-2 border-white/30 rounded-2xl p-6 text-center hover:scale-105 hover:border-cyan-400 transition-all cursor-pointer"
+              >
+                <div className="text-5xl mb-3">{feature.icon}</div>
+                <h3 className="text-white font-bold text-lg mb-2">{feature.title}</h3>
+                <p className="text-gray-300 text-xs">{feature.desc}</p>
               </div>
             ))}
           </div>
         </div>
-      </section>
 
-      {/* Features Section */}
-      <section className="container py-24 space-y-12">
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold">Everything You Need to Succeed</h2>
-          <p className="text-xl text-muted-foreground">
-            Athlynx brings together all the tools, connections, and opportunities you need 
-            in one powerful platform.
+        {/* Quick Links */}
+        <div className="grid md:grid-cols-3 gap-6">
+          <Link href="/founder-story">
+            <a className="block bg-black/40 backdrop-blur-sm border-2 border-orange-400 rounded-2xl p-6 hover:scale-105 transition-transform">
+              <div className="text-4xl mb-3">🦀</div>
+              <h3 className="text-xl font-bold text-white mb-2">Founder's Story</h3>
+              <p className="text-gray-300 text-sm">Learn about Chad A. Dozier and the DHG mission</p>
+            </a>
+          </Link>
+
+          <Link href="/store">
+            <a className="block bg-black/40 backdrop-blur-sm border-2 border-green-400 rounded-2xl p-6 hover:scale-105 transition-transform">
+              <div className="text-4xl mb-3">🛒</div>
+              <h3 className="text-xl font-bold text-white mb-2">Store</h3>
+              <p className="text-gray-300 text-sm">Gear, apparel, equipment for all sports</p>
+            </a>
+          </Link>
+
+          <Link href="/recruiting">
+            <a className="block bg-black/40 backdrop-blur-sm border-2 border-purple-400 rounded-2xl p-6 hover:scale-105 transition-transform">
+              <div className="text-4xl mb-3">🎓</div>
+              <h3 className="text-xl font-bold text-white mb-2">Recruiting</h3>
+              <p className="text-gray-300 text-sm">College connections and commitments</p>
+            </a>
+          </Link>
+        </div>
+
+        {/* CTA Section */}
+        <div className="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-3xl p-12 text-center space-y-6">
+          <h2 className="text-4xl md:text-5xl font-black text-black">
+            JOIN THE REVOLUTION
+          </h2>
+          <p className="text-xl text-black/80 max-w-2xl mx-auto">
+            10,000 founding member spots. 6 months free VIP access. Launch February 1, 2026.
           </p>
+          <Link href="/">
+            <a className="inline-block bg-black text-white px-8 py-4 rounded-xl font-black text-lg uppercase hover:scale-105 transition-transform">
+              🏆 Get VIP Access
+            </a>
+          </Link>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <Card key={index} className="border-2 hover:border-primary hover:shadow-lg transition-all">
-              <CardHeader>
-                <div className="mb-4">{feature.icon}</div>
-                <CardTitle className="text-2xl">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
 
-      {/* The Athlete Playbook CTA */}
-      <section className="container py-24">
-        <Card className="border-2 border-primary bg-gradient-to-br from-primary/5 to-primary/10">
-          <CardHeader className="text-center space-y-4 pb-8">
-            <div className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium mx-auto">
-              <Target className="h-4 w-4" />
-              Featured Resource
-            </div>
-            <CardTitle className="text-4xl">The Athlete Playbook</CardTitle>
-            <CardDescription className="text-lg max-w-2xl mx-auto">
-              Your complete guide to maximizing recruiting visibility, building your media presence, 
-              and connecting with athletes worldwide. Learn the strategies that top recruits use to stand out.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-col sm:flex-row gap-4 justify-center pb-8">
-            <Button size="lg" asChild>
-              <Link href="/playbook">
-                Explore the Playbook <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline">
-              Download PDF Guide
-            </Button>
-          </CardContent>
-        </Card>
-      </section>
-
-      {/* Transfer Portal Section */}
-      <section className="bg-muted/30 py-24">
-        <div className="container">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
-                <Zap className="h-4 w-4" />
-                Level Up Your Career
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold">Navigate the Transfer Portal with Confidence</h2>
-              <p className="text-lg text-muted-foreground">
-                Whether you're at a smaller school looking to move up or exploring better opportunities, 
-                Athlynx guides you through every step of the transfer process. Get better, transfer smarter, 
-                and increase your NIL value along the way.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <div className="bg-primary text-primary-foreground rounded-full p-1 mt-1">
-                    <ArrowRight className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <strong>Track Your Progress:</strong> Monitor your athletic development and academic standing
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="bg-primary text-primary-foreground rounded-full p-1 mt-1">
-                    <ArrowRight className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <strong>Find Better Fits:</strong> Discover schools that match your talent and ambitions
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="bg-primary text-primary-foreground rounded-full p-1 mt-1">
-                    <ArrowRight className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <strong>Maximize NIL Value:</strong> Higher visibility = better endorsement opportunities
-                  </div>
-                </li>
-              </ul>
-              <Button size="lg" asChild>
-                <Link href="/transfer-portal">
-                  Explore Transfer Portal <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-            <div className="relative">
-              <Card className="border-2">
-                <CardContent className="p-8 space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="bg-primary/10 p-3 rounded-full">
-                      <TrendingUp className="h-8 w-8 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold">3.2x</div>
-                      <div className="text-sm text-muted-foreground">Avg. NIL Value Increase</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="bg-primary/10 p-3 rounded-full">
-                      <Users className="h-8 w-8 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold">2,500+</div>
-                      <div className="text-sm text-muted-foreground">Successful Transfers</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="bg-primary/10 p-3 rounded-full">
-                      <Target className="h-8 w-8 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold">87%</div>
-                      <div className="text-sm text-muted-foreground">Find Better Fit</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+        {/* Footer */}
+        <div className="text-center text-gray-300 text-sm space-y-2">
+          <p>Powered by Dozier Holdings Group</p>
+          <p>© 2025 Athlynx. All rights reserved.</p>
         </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="container py-24">
-        <div className="bg-primary text-primary-foreground rounded-2xl p-12 text-center space-y-6">
-          <h2 className="text-4xl md:text-5xl font-bold">Ready to Take Control of Your Athletic Future?</h2>
-          <p className="text-xl opacity-90 max-w-2xl mx-auto">
-            Join thousands of athletes who are already using Athlynx to manage their careers, 
-            connect with opportunities, and maximize their potential.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button size="lg" variant="secondary" className="text-lg px-8">
-              Create Free Account <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 bg-transparent text-primary-foreground border-primary-foreground hover:bg-primary-foreground/10">
-              Schedule Demo
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t bg-muted/30 py-12">
-        <div className="container">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <Trophy className="h-6 w-6 text-primary" />
-                <span className="font-bold text-lg">Athlynx</span>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                The all-in-one platform for student athletes to manage their careers and maximize their potential.
-              </p>
-              <p className="text-xs text-muted-foreground">
-                nilportals.com | nilportal.ai
-              </p>
-            </div>
-            <div className="space-y-4">
-              <h3 className="font-semibold">Platform</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/playbook" className="hover:text-primary transition-colors">Athlete Playbook</Link></li>
-                <li><Link href="/transfer-portal" className="hover:text-primary transition-colors">Transfer Portal</Link></li>
-                <li><Link href="/nil-marketplace" className="hover:text-primary transition-colors">NIL Marketplace</Link></li>
-                <li><Link href="/messages" className="hover:text-primary transition-colors">Messages</Link></li>
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <h3 className="font-semibold">Company</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/about" className="hover:text-primary transition-colors">About Us</Link></li>
-                <li><Link href="/team" className="hover:text-primary transition-colors">Our Team</Link></li>
-                <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <h3 className="font-semibold">Contact</h3>
-              <p className="text-sm text-muted-foreground">
-                Dozier Holdings Group<br />
-                19039 CLOYANNA LN<br />
-                HUMBLE, TX 77346-2746
-              </p>
-              <p className="text-sm text-muted-foreground">
-                cdozier@dozierholdingsgroup.com
-              </p>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-            <p>&copy; 2024 Dozier Holdings Group. All rights reserved. | Founded by Chad A. Dozier & Glenn Tse</p>
-          </div>
-        </div>
-      </footer>
+      </div>
     </div>
   );
 }
