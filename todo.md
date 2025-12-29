@@ -1820,3 +1820,22 @@
   - 4 Sports Equipment
 - [x] Updated Store.tsx to fetch from database with fallback to static
 - [x] All 59 tests passing
+
+
+---
+
+## INVESTOR DECK PAGE - December 29, 2025
+
+### Investor Deck Page (/investor-deck)
+- [x] Create InvestorDeck.tsx page component
+- [x] Hero section with DHG logo and "Investment Opportunity"
+- [x] Company Overview section (DHG ecosystem)
+- [x] Market Opportunity section ($180M Fuel Bots, sports tech market)
+- [x] Product Portfolio section (ATHLYNX, Softmor, Fuel Bots)
+- [x] Strategic Partnerships section (ICC, Yovole - high level)
+- [x] Revenue Model section (subscriptions, hardware, licensing)
+- [x] Implementation Roadmap section (Q1 2026 - 2027)
+- [x] Leadership Team section (Chad, Glenn)
+- [x] Investment Ask / Contact section
+- [x] Add route to App.tsx
+- [x] Add to navigation (DHG Ecosystem section)

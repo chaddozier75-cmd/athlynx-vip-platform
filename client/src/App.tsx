@@ -41,6 +41,7 @@ import Team from "./pages/Team";
 import ProjectChecklist from "./pages/ProjectChecklist";
 import FuelBots from "./pages/FuelBots";
 import PartnerPortal from "./pages/PartnerPortal";
+import InvestorDeck from "./pages/InvestorDeck";
 import UnifiedNav from "./components/UnifiedNav";
 import { BrandingHeader } from "./components/BrandingHeader";
 
@@ -191,6 +192,10 @@ function Router() {
       {/* Partner Portal */}
       <Route path={"/partner-portal"} component={PartnerPortal} />
       <Route path={"/partners"} component={PartnerPortal} />
+      
+      {/* Investor Deck */}
+      <Route path={"/investor-deck"} component={InvestorDeck} />
+      <Route path={"/pitch-deck"} component={InvestorDeck} />
       
       {/* Legacy Coming Soon */}
       <Route path={"/messenger"} component={() => <ComingSoon title="Messenger" description="Real-time messaging platform for athletes, coaches, and brands. Connect, collaborate, and communicate seamlessly." icon="💬" />} />

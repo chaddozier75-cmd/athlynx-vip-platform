@@ -47,6 +47,8 @@ const navItems = [
       { name: "DHG Corporate", href: "/dhg", icon: "🦀" },
       { name: "Softmor Inc", href: "/softmor", icon: "🧠" },
       { name: "Investor Hub", href: "/investor-hub", icon: "💎" },
+      { name: "Investor Deck", href: "/investor-deck", icon: "📊" },
+      { name: "Partner Portal", href: "/partner-portal", icon: "🤝" },
     ]
   },
   {
