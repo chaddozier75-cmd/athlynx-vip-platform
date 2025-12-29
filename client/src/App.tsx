@@ -26,6 +26,7 @@ import DiamondGrind from "./pages/DiamondGrind";
 import Apps from "./pages/Apps";
 import Dashboard from "./pages/Dashboard";
 import AITrainingBot from "./pages/AITrainingBot";
+import SigningDay from "./pages/SigningDay";
 
 function Router() {
   return (
@@ -46,6 +47,9 @@ function Router() {
       {/* Empire Features - Tiered Services */}
       <Route path={"/pricing"} component={Pricing} />
       <Route path={"/ai-credits"} component={Pricing} />
+      
+      {/* National Signing Day */}
+      <Route path={"/signing-day"} component={SigningDay} />
       
       {/* User Dashboard */}
       <Route path={"/dashboard"} component={Dashboard} />

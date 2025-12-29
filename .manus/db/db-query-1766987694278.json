@@ -1,0 +1,13 @@
+{
+  "query": "\nSELECT TABLE_NAME \nFROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE \nWHERE REFERENCED_TABLE_NAME = 'athlete_profiles';\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute \nSELECT TABLE_NAME \nFROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE \nWHERE REFERENCED_TABLE_NAME = 'athlete_profiles';\n",
+  "rows": [
+    {
+      "TABLE_NAME": "videos"
+    }
+  ],
+  "messages": [],
+  "stdout": "TABLE_NAME\nvideos\n",
+  "stderr": "",
+  "execution_time_ms": 55
+}

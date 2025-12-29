@@ -328,3 +328,115 @@ export const employeeAccessLogs = mysqlTable("employee_access_logs", {
 
 export type EmployeeAccessLog = typeof employeeAccessLogs.$inferSelect;
 export type InsertEmployeeAccessLog = typeof employeeAccessLogs.$inferInsert;
+
+
+/**
+ * ============================================
+ * NATIONAL SIGNING DAY PLATFORM
+ * ============================================
+ */
+
+/**
+ * Signing Day Events - Major signing day events by sport
+ */
+export const signingDayEvents = mysqlTable("signing_day_events", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  sport: varchar("sport", { length: 100 }).notNull(),
+  eventDate: timestamp("eventDate").notNull(),
+  description: text("description"),
+  streamUrl: varchar("streamUrl", { length: 500 }),
+  status: mysqlEnum("status", ["upcoming", "live", "completed"]).default("upcoming").notNull(),
+  viewerCount: int("viewerCount").default(0).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type SigningDayEvent = typeof signingDayEvents.$inferSelect;
+export type InsertSigningDayEvent = typeof signingDayEvents.$inferInsert;
+
+/**
+ * Athlete Commitments - Track college commitments and announcements
+ */
+export const athleteCommitments = mysqlTable("athlete_commitments", {
+  id: int("id").autoincrement().primaryKey(),
+  athleteId: int("athleteId").notNull().references(() => users.id),
+  eventId: int("eventId").references(() => signingDayEvents.id),
+  collegeName: varchar("collegeName", { length: 255 }).notNull(),
+  collegeLogoUrl: varchar("collegeLogoUrl", { length: 500 }),
+  sport: varchar("sport", { length: 100 }).notNull(),
+  position: varchar("position", { length: 100 }),
+  announcementDate: timestamp("announcementDate"),
+  finalistSchools: json("finalistSchools"), // Array of school names
+  streamUrl: varchar("streamUrl", { length: 500 }),
+  highlightReelUrl: varchar("highlightReelUrl", { length: 500 }),
+  pressReleaseText: text("pressReleaseText"),
+  status: mysqlEnum("status", ["pending", "announced", "signed"]).default("pending").notNull(),
+  viewCount: int("viewCount").default(0).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type AthleteCommitment = typeof athleteCommitments.$inferSelect;
+export type InsertAthleteCommitment = typeof athleteCommitments.$inferInsert;
+
+/**
+ * Signing Day Streams - Live stream sessions for commitments
+ */
+export const signingDayStreams = mysqlTable("signing_day_streams", {
+  id: int("id").autoincrement().primaryKey(),
+  commitmentId: int("commitmentId").notNull().references(() => athleteCommitments.id),
+  streamKey: varchar("streamKey", { length: 255 }).notNull(),
+  streamUrl: varchar("streamUrl", { length: 500 }).notNull(),
+  playbackUrl: varchar("playbackUrl", { length: 500 }),
+  status: mysqlEnum("status", ["scheduled", "live", "ended", "archived"]).default("scheduled").notNull(),
+  startTime: timestamp("startTime"),
+  endTime: timestamp("endTime"),
+  peakViewers: int("peakViewers").default(0).notNull(),
+  totalViews: int("totalViews").default(0).notNull(),
+  chatEnabled: mysqlEnum("chatEnabled", ["yes", "no"]).default("yes").notNull(),
+  recordingUrl: varchar("recordingUrl", { length: 500 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type SigningDayStream = typeof signingDayStreams.$inferSelect;
+export type InsertSigningDayStream = typeof signingDayStreams.$inferInsert;
+
+/**
+ * Stream Chat - Live chat messages during signing day streams
+ */
+export const streamChat = mysqlTable("stream_chat", {
+  id: int("id").autoincrement().primaryKey(),
+  streamId: int("streamId").notNull().references(() => signingDayStreams.id),
+  userId: int("userId").notNull().references(() => users.id),
+  username: varchar("username", { length: 255 }).notNull(),
+  message: text("message").notNull(),
+  timestamp: timestamp("timestamp").defaultNow().notNull(),
+  isModerated: mysqlEnum("isModerated", ["yes", "no"]).default("no").notNull(),
+});
+
+export type StreamChatMessage = typeof streamChat.$inferSelect;
+export type InsertStreamChatMessage = typeof streamChat.$inferInsert;
+
+/**
+ * College Database - All colleges/universities for commitments
+ */
+export const collegeDatabase = mysqlTable("college_database", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  logoUrl: varchar("logoUrl", { length: 500 }),
+  primaryColor: varchar("primaryColor", { length: 7 }), // Hex color
+  secondaryColor: varchar("secondaryColor", { length: 7 }),
+  mascot: varchar("mascot", { length: 100 }),
+  fightSongUrl: varchar("fightSongUrl", { length: 500 }),
+  division: varchar("division", { length: 50 }), // D1, D2, D3, NAIA, JUCO
+  conference: varchar("conference", { length: 100 }),
+  location: varchar("location", { length: 255 }),
+  website: varchar("website", { length: 500 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type College = typeof collegeDatabase.$inferSelect;
+export type InsertCollege = typeof collegeDatabase.$inferInsert;
