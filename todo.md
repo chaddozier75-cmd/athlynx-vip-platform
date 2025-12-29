@@ -1205,31 +1205,31 @@
 ### Inspired by Joel Osteen's Lakewood Church Model
 
 ### Database Schema
-- [ ] Create fca_devotionals table (daily devotionals)
-- [ ] Create fca_podcasts table (podcast episodes)
-- [ ] Create fca_blog_posts table (faith + sports blog)
-- [ ] Create fca_prayer_requests table (prayer wall)
-- [ ] Create fca_testimonies table (athlete faith stories)
-- [ ] Create fca_comments table (community engagement)
-- [ ] Create fca_verses table (daily scripture)
+- [x] Create fca_devotionals table (daily devotionals)
+- [x] Create fca_podcasts table (podcast episodes)
+- [x] Create fca_blog_posts table (faith + sports blog)
+- [x] Create fca_prayer_requests table (prayer wall)
+- [x] Create fca_testimonies table (athlete faith stories)
+- [x] Create fca_comments table (community engagement)
+- [x] Create fca_daily_verses table (daily scripture)
 
 ### FCA Page Features
-- [ ] Daily Devotional section (morning inspiration)
-- [ ] Podcast player ("Faith & The Field" with Chad A. Dozier)
-- [ ] Blog section (faith-based sports stories)
-- [ ] Prayer Wall (athletes post prayer requests)
-- [ ] Community comments (engage with Founder Chad)
-- [ ] Verse of the Day (scripture for athletes)
-- [ ] Testimony section (athletes share faith stories)
-- [ ] Subscribe to daily devotionals (email/push)
+- [x] Daily Devotional section (morning inspiration)
+- [x] Podcast player ("Faith & The Field" with Chad A. Dozier)
+- [x] Blog section (faith-based sports stories)
+- [x] Prayer Wall (athletes post prayer requests)
+- [x] Community comments (engage with Founder Chad)
+- [x] Verse of the Day (scripture for athletes)
+- [x] Testimony section (athletes share faith stories)
+- [x] Subscribe to daily devotionals (email/push)
 
 ### FCA Backend API
-- [ ] Create tRPC procedures for devotionals CRUD
-- [ ] Create tRPC procedures for podcasts CRUD
-- [ ] Create tRPC procedures for blog posts CRUD
-- [ ] Create tRPC procedures for prayer requests CRUD
-- [ ] Create tRPC procedures for testimonies CRUD
-- [ ] Create tRPC procedures for comments CRUD
+- [x] Create tRPC procedures for devotionals CRUD
+- [x] Create tRPC procedures for podcasts CRUD
+- [x] Create tRPC procedures for blog posts CRUD
+- [x] Create tRPC procedures for prayer requests CRUD
+- [x] Create tRPC procedures for testimonies CRUD
+- [x] Create tRPC procedures for comments CRUD
 - [ ] Implement daily devotional email system
 - [ ] Implement prayer request notifications
 

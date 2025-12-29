@@ -28,6 +28,7 @@ import Dashboard from "./pages/Dashboard";
 import AITrainingBot from "./pages/AITrainingBot";
 import SigningDay from "./pages/SigningDay";
 import TransferPortalIntelligence from "./pages/TransferPortalIntelligence";
+import Faith from "./pages/Faith";
 
 function Router() {
   return (
@@ -45,6 +46,7 @@ function Router() {
       <Route path={"/nil-portal"} component={NILPortal} />
       <Route path={"/messages"} component={Messages} />
       <Route path={"/founder-story"} component={FounderStory} />
+      <Route path={"/faith"} component={Faith} />
       
       {/* Empire Features - Tiered Services */}
       <Route path={"/pricing"} component={Pricing} />
