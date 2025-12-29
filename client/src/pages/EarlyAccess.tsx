@@ -70,13 +70,7 @@ export default function EarlyAccess() {
   const roles = ["Athlete", "Parent", "Coach", "Brand"];
   const sports = ["Baseball", "Football", "Basketball", "Soccer", "Track & Field", "Volleyball"];
   
-  const quickLinks = [
-    { icon: "/faith-cross-icon.png", label: "Faith", path: "/faith", isImage: false, text: "✟" },
-    { icon: "/transfer-portal-icon.png", label: "Transfer Portal", path: "/transfer-portal-intelligence", isImage: false, text: "TP" },
-    { icon: "/nil-portal-app-icon.jpeg", label: "NIL Portal", path: "/nil-portal", isImage: true },
-    { icon: "/military-icon.png", label: "Military Division", path: "/military-division", isImage: false, text: "MIL" },
-    { icon: "/dhg-crab-shield-logo.jpeg", label: "Our Story", path: "/founder-story", isImage: true },
-  ];
+
 
   return (
     <div className="min-h-screen relative text-white overflow-x-hidden">
@@ -321,23 +315,7 @@ export default function EarlyAccess() {
           </button>
         </div>
 
-        {/* Quick Navigation Links */}
-        <div className="grid grid-cols-2 gap-3">
-          {quickLinks.map((link) => (
-            <button
-              key={link.label}
-              onClick={() => setLocation(link.path)}
-              className="bg-slate-800/60 backdrop-blur-sm border-2 border-cyan-500/40 hover:border-cyan-400 rounded-xl p-4 text-center transition-all hover:scale-105 group shadow-lg"
-            >
-              {link.isImage ? (
-                <img src={link.icon} alt={link.label} className="w-10 h-10 mx-auto mb-2 rounded-lg group-hover:scale-110 transition-transform" />
-              ) : (
-                <div className="w-10 h-10 mx-auto mb-2 rounded-lg bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center text-cyan-400 font-bold text-sm group-hover:scale-110 transition-transform">{link.text}</div>
-              )}
-              <p className="text-white font-bold text-sm">{link.label}</p>
-            </button>
-          ))}
-        </div>
+
 
         {/* Feature Checkmarks - Blue Theme */}
         <div className="flex flex-wrap justify-center gap-3 text-sm">
