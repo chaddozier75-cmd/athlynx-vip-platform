@@ -161,7 +161,8 @@ export async function generateTrainingPlan(
     ],
   });
 
-  const result = response.choices[0]?.message?.content || "Failed to generate training plan";
+  const content = response.choices[0]?.message?.content;
+  const result = typeof content === 'string' ? content : "Failed to generate training plan";
 
   // Deduct credits and log usage
   await deductCredits(userId, cost, "training_plan", result.substring(0, 500), {

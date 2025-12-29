@@ -54,7 +54,8 @@ Format as HTML with proper styling. Use a modern, athletic theme with the primar
       ],
     });
 
-    const htmlContent = response.choices[0]?.message?.content || "";
+    const content = response.choices[0]?.message?.content;
+    const htmlContent = typeof content === 'string' ? content : '';
 
     // Generate plain text version
     const textContent = htmlContent
