@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Trophy, Users, TrendingUp, MessageCircle, Calendar, DollarSign, ArrowRight, Star, Target, Zap, Heart, Shield, Music } from "lucide-react";
+import { Trophy, Users, TrendingUp, MessageCircle, Calendar, DollarSign, ArrowRight, Star, Target, Zap } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Home() {
@@ -34,21 +34,6 @@ export default function Home() {
       icon: <Users className="h-8 w-8 text-primary" />,
       title: "Professional Connections",
       description: "Connect with coaches, scouts, and recruiters. Build relationships that advance your career."
-    },
-    {
-      icon: <Heart className="h-8 w-8 text-primary" />,
-      title: "Orthopedic & Medical Services",
-      description: "Access top orthopedic specialists and sports medicine professionals. Keep your body in peak condition with expert care."
-    },
-    {
-      icon: <Shield className="h-8 w-8 text-primary" />,
-      title: "Veterans Support",
-      description: "Special programs and resources for veteran athletes. Transition support, benefits navigation, and community connections."
-    },
-    {
-      icon: <Music className="h-8 w-8 text-primary" />,
-      title: "Music Industry Connections",
-      description: "Bridge your athletic brand with music opportunities. Connect with artists, producers, and entertainment industry professionals."
     }
   ];
 
@@ -64,8 +49,7 @@ export default function Home() {
       {/* Header */}
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
         <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img src="/dhg-crab-logo.png" alt="DHG" className="h-10 w-10" />
+          <div className="flex items-center gap-2">
             <Trophy className="h-8 w-8 text-primary" />
             <span className="text-xl font-bold">Athlynx</span>
           </div>
@@ -155,32 +139,6 @@ export default function Home() {
             </Card>
           ))}
         </div>
-      </section>
-
-      {/* Warriors Playbook CTA */}
-      <section className="container py-24">
-        <Card className="border-2 border-primary bg-gradient-to-br from-purple-500/10 to-blue-500/10">
-          <CardHeader className="text-center space-y-4 pb-8">
-            <div className="flex justify-center mb-4">
-              <img src="/warriors-playbook-logo.png" alt="Warriors Playbook" className="h-24 w-24 object-contain" />
-            </div>
-            <CardTitle className="text-4xl">The Warriors Playbook</CardTitle>
-            <CardDescription className="text-lg max-w-2xl mx-auto">
-              Elite strategies for champions. Your complete guide to dominating on and off the field. 
-              Learn the mindset, tactics, and connections that separate good athletes from great warriors.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-col sm:flex-row gap-4 justify-center pb-8">
-            <Button size="lg" asChild>
-              <Link href="/warriors-playbook">
-                Enter the Warriors Path <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline">
-              Download Warrior Guide
-            </Button>
-          </CardContent>
-        </Card>
       </section>
 
       {/* The Athlete Playbook CTA */}
