@@ -440,3 +440,260 @@ export const collegeDatabase = mysqlTable("college_database", {
 
 export type College = typeof collegeDatabase.$inferSelect;
 export type InsertCollege = typeof collegeDatabase.$inferInsert;
+
+
+/**
+ * ============================================
+ * TRANSFER PORTAL INTELLIGENCE PLATFORM
+ * Data marketplace for schools to find athletes
+ * ============================================
+ */
+
+/**
+ * Transfer Portal Athletes - Complete database of athletes in transfer portal
+ * Scraped from NCAA, On3, 247Sports, Rivals, ESPN
+ */
+export const transferPortalAthletes = mysqlTable("transfer_portal_athletes", {
+  id: int("id").autoincrement().primaryKey(),
+  // Basic Info
+  name: varchar("name", { length: 255 }).notNull(),
+  sport: varchar("sport", { length: 100 }).notNull(),
+  position: varchar("position", { length: 100 }),
+  year: varchar("year", { length: 50 }), // FR, SO, JR, SR, RS-FR, etc.
+  heightInches: int("heightInches"),
+  weightPounds: int("weightPounds"),
+  hometown: varchar("hometown", { length: 255 }),
+  homeState: varchar("homeState", { length: 2 }),
+  highSchool: varchar("highSchool", { length: 255 }),
+  
+  // Current/Previous School
+  previousSchool: varchar("previousSchool", { length: 255 }).notNull(),
+  previousConference: varchar("previousConference", { length: 100 }),
+  previousDivision: varchar("previousDivision", { length: 50 }), // D1, D2, D3, NAIA, JUCO
+  
+  // Portal Status
+  portalEntryDate: date("portalEntryDate").notNull(),
+  portalStatus: mysqlEnum("portalStatus", ["entered", "committed", "withdrawn"]).default("entered").notNull(),
+  newSchool: varchar("newSchool", { length: 255 }),
+  commitmentDate: date("commitmentDate"),
+  expectedDecisionDate: date("expectedDecisionDate"),
+  
+  // Ratings & Rankings
+  on3Rating: decimal("on3Rating", { precision: 5, scale: 2 }),
+  on3Rank: int("on3Rank"),
+  twoFourSevenRating: decimal("twoFourSevenRating", { precision: 5, scale: 4 }),
+  twoFourSevenRank: int("twoFourSevenRank"),
+  rivalsRating: decimal("rivalsRating", { precision: 5, scale: 2 }),
+  rivalsRank: int("rivalsRank"),
+  espnRating: int("espnRating"),
+  espnRank: int("espnRank"),
+  compositeRating: decimal("compositeRating", { precision: 5, scale: 2 }), // Our calculated composite
+  compositeRank: int("compositeRank"),
+  stars: int("stars"), // 2-5 star rating
+  
+  // NIL Data
+  nilValuation: decimal("nilValuation", { precision: 10, scale: 2 }), // From On3
+  nilDeals: int("nilDeals").default(0),
+  estimatedNilEarnings: decimal("estimatedNilEarnings", { precision: 10, scale: 2 }),
+  
+  // Stats & Performance
+  stats: json("stats"), // Sport-specific stats
+  gpa: decimal("gpa", { precision: 3, scale: 2 }),
+  testScores: json("testScores"), // SAT, ACT
+  eligibilityYears: int("eligibilityYears"),
+  
+  // Media
+  profileImageUrl: varchar("profileImageUrl", { length: 500 }),
+  highlightReelUrl: varchar("highlightReelUrl", { length: 500 }),
+  hudlUrl: varchar("hudlUrl", { length: 500 }),
+  
+  // Social Media
+  twitterHandle: varchar("twitterHandle", { length: 100 }),
+  instagramHandle: varchar("instagramHandle", { length: 100 }),
+  tiktokHandle: varchar("tiktokHandle", { length: 100 }),
+  twitterFollowers: int("twitterFollowers"),
+  instagramFollowers: int("instagramFollowers"),
+  tiktokFollowers: int("tiktokFollowers"),
+  
+  // Recruiting Interest
+  interestedSchools: json("interestedSchools"), // Array of school names
+  officialVisits: json("officialVisits"), // Array of visit data
+  offers: json("offers"), // Array of scholarship offers
+  
+  // Data Sources
+  dataSource: json("dataSource"), // Which sites we scraped from
+  lastScraped: timestamp("lastScraped").defaultNow().notNull(),
+  
+  // Metadata
+  verified: mysqlEnum("verified", ["yes", "no"]).default("no").notNull(),
+  featured: mysqlEnum("featured", ["yes", "no"]).default("no").notNull(),
+  premium: mysqlEnum("premium", ["yes", "no"]).default("no").notNull(), // Premium data tier
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type TransferPortalAthlete = typeof transferPortalAthletes.$inferSelect;
+export type InsertTransferPortalAthlete = typeof transferPortalAthletes.$inferInsert;
+
+/**
+ * School Subscriptions - Schools pay for transfer portal data access
+ */
+export const schoolSubscriptions = mysqlTable("school_subscriptions", {
+  id: int("id").autoincrement().primaryKey(),
+  schoolName: varchar("schoolName", { length: 255 }).notNull(),
+  contactName: varchar("contactName", { length: 255 }).notNull(),
+  contactEmail: varchar("contactEmail", { length: 320 }).notNull(),
+  contactPhone: varchar("contactPhone", { length: 20 }),
+  
+  // Subscription Tier
+  tier: mysqlEnum("tier", ["free", "pro", "elite", "enterprise"]).default("free").notNull(),
+  // Free: Basic search, limited results
+  // Pro ($499/month): Advanced search, 100 athlete views/month
+  // Elite ($2,999/month): Unlimited search, real-time alerts, AI matching
+  // Enterprise ($25,000+/year): Custom data feeds, API access, dedicated support
+  
+  // Billing
+  monthlyPrice: decimal("monthlyPrice", { precision: 10, scale: 2 }),
+  billingCycle: mysqlEnum("billingCycle", ["monthly", "annual"]).default("monthly").notNull(),
+  stripeCustomerId: varchar("stripeCustomerId", { length: 255 }),
+  stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 255 }),
+  
+  // Usage Limits
+  athleteViewsLimit: int("athleteViewsLimit"), // null = unlimited
+  athleteViewsUsed: int("athleteViewsUsed").default(0).notNull(),
+  searchesLimit: int("searchesLimit"),
+  searchesUsed: int("searchesUsed").default(0).notNull(),
+  
+  // Features
+  realTimeAlerts: mysqlEnum("realTimeAlerts", ["yes", "no"]).default("no").notNull(),
+  aiMatching: mysqlEnum("aiMatching", ["yes", "no"]).default("no").notNull(),
+  apiAccess: mysqlEnum("apiAccess", ["yes", "no"]).default("no").notNull(),
+  exportData: mysqlEnum("exportData", ["yes", "no"]).default("no").notNull(),
+  
+  // Status
+  status: mysqlEnum("status", ["active", "paused", "cancelled", "trial"]).default("trial").notNull(),
+  trialEndsAt: timestamp("trialEndsAt"),
+  subscriptionStartDate: timestamp("subscriptionStartDate"),
+  subscriptionEndDate: timestamp("subscriptionEndDate"),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type SchoolSubscription = typeof schoolSubscriptions.$inferSelect;
+export type InsertSchoolSubscription = typeof schoolSubscriptions.$inferInsert;
+
+/**
+ * Athlete Views - Track which schools viewed which athletes
+ */
+export const athleteViews = mysqlTable("athlete_views", {
+  id: int("id").autoincrement().primaryKey(),
+  schoolSubscriptionId: int("schoolSubscriptionId").notNull().references(() => schoolSubscriptions.id),
+  athleteId: int("athleteId").notNull().references(() => transferPortalAthletes.id),
+  viewedBy: varchar("viewedBy", { length: 255 }), // Coach/recruiter name
+  viewType: mysqlEnum("viewType", ["profile", "video", "stats", "contact"]).notNull(),
+  viewedAt: timestamp("viewedAt").defaultNow().notNull(),
+});
+
+export type AthleteView = typeof athleteViews.$inferSelect;
+export type InsertAthleteView = typeof athleteViews.$inferInsert;
+
+/**
+ * Transfer Portal Alerts - Real-time alerts for schools
+ */
+export const transferPortalAlerts = mysqlTable("transfer_portal_alerts", {
+  id: int("id").autoincrement().primaryKey(),
+  schoolSubscriptionId: int("schoolSubscriptionId").notNull().references(() => schoolSubscriptions.id),
+  
+  // Alert Criteria
+  sport: varchar("sport", { length: 100 }),
+  positions: json("positions"), // Array of positions
+  minRating: decimal("minRating", { precision: 5, scale: 2 }),
+  maxRating: decimal("maxRating", { precision: 5, scale: 2 }),
+  states: json("states"), // Array of state codes
+  previousDivision: varchar("previousDivision", { length: 50 }),
+  minNilValuation: decimal("minNilValuation", { precision: 10, scale: 2 }),
+  
+  // Alert Settings
+  alertName: varchar("alertName", { length: 255 }).notNull(),
+  alertType: mysqlEnum("alertType", ["email", "sms", "push", "all"]).default("email").notNull(),
+  frequency: mysqlEnum("frequency", ["instant", "daily", "weekly"]).default("instant").notNull(),
+  active: mysqlEnum("active", ["yes", "no"]).default("yes").notNull(),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type TransferPortalAlert = typeof transferPortalAlerts.$inferSelect;
+export type InsertTransferPortalAlert = typeof transferPortalAlerts.$inferInsert;
+
+/**
+ * AI Match Recommendations - AI-powered athlete-school matching
+ */
+export const aiMatchRecommendations = mysqlTable("ai_match_recommendations", {
+  id: int("id").autoincrement().primaryKey(),
+  schoolSubscriptionId: int("schoolSubscriptionId").notNull().references(() => schoolSubscriptions.id),
+  athleteId: int("athleteId").notNull().references(() => transferPortalAthletes.id),
+  
+  // Match Score
+  matchScore: decimal("matchScore", { precision: 5, scale: 2 }).notNull(), // 0-100
+  confidence: mysqlEnum("confidence", ["low", "medium", "high", "very_high"]).notNull(),
+  
+  // Match Reasons
+  matchReasons: json("matchReasons"), // Array of reasons why this is a good match
+  aiAnalysis: text("aiAnalysis"), // Detailed AI-generated analysis
+  
+  // School Needs
+  schoolNeed: varchar("schoolNeed", { length: 255 }), // Position need
+  athleteFit: text("athleteFit"), // Why athlete fits the need
+  
+  // Status
+  status: mysqlEnum("status", ["new", "viewed", "contacted", "passed", "committed"]).default("new").notNull(),
+  feedback: text("feedback"), // School's feedback on recommendation
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type AiMatchRecommendation = typeof aiMatchRecommendations.$inferSelect;
+export type InsertAiMatchRecommendation = typeof aiMatchRecommendations.$inferInsert;
+
+/**
+ * Transfer Portal Analytics - Track portal trends and insights
+ */
+export const transferPortalAnalytics = mysqlTable("transfer_portal_analytics", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  // Time Period
+  date: date("date").notNull(),
+  sport: varchar("sport", { length: 100 }).notNull(),
+  
+  // Portal Activity
+  totalEntered: int("totalEntered").default(0).notNull(),
+  totalCommitted: int("totalCommitted").default(0).notNull(),
+  totalWithdrawn: int("totalWithdrawn").default(0).notNull(),
+  
+  // By Position
+  positionBreakdown: json("positionBreakdown"), // Count by position
+  
+  // By Division
+  divisionBreakdown: json("divisionBreakdown"), // D1, D2, D3, etc.
+  
+  // By Rating
+  avgRating: decimal("avgRating", { precision: 5, scale: 2 }),
+  topRatedAthletes: json("topRatedAthletes"), // Top 10 athletes that day
+  
+  // NIL Insights
+  avgNilValuation: decimal("avgNilValuation", { precision: 10, scale: 2 }),
+  totalNilValue: decimal("totalNilValue", { precision: 12, scale: 2 }),
+  
+  // Trends
+  trendDirection: mysqlEnum("trendDirection", ["up", "down", "stable"]),
+  percentChange: decimal("percentChange", { precision: 5, scale: 2 }),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type TransferPortalAnalytics = typeof transferPortalAnalytics.$inferSelect;
+export type InsertTransferPortalAnalytics = typeof transferPortalAnalytics.$inferInsert;

@@ -27,6 +27,7 @@ import Apps from "./pages/Apps";
 import Dashboard from "./pages/Dashboard";
 import AITrainingBot from "./pages/AITrainingBot";
 import SigningDay from "./pages/SigningDay";
+import TransferPortalIntelligence from "./pages/TransferPortalIntelligence";
 
 function Router() {
   return (
@@ -39,6 +40,7 @@ function Router() {
       {/* Core Platform */}
       <Route path={"/playbook"} component={AthletePlaybook} />
       <Route path={"/transfer-portal"} component={TransferPortal} />
+      <Route path={"/transfer-portal-intelligence"} component={TransferPortalIntelligence} />
       <Route path={"/nil-marketplace"} component={NILMarketplace} />
       <Route path={"/nil-portal"} component={NILPortal} />
       <Route path={"/messages"} component={Messages} />
