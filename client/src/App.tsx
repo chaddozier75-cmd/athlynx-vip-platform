@@ -25,6 +25,7 @@ import Music from "./pages/Music";
 import DiamondGrind from "./pages/DiamondGrind";
 import Apps from "./pages/Apps";
 import Dashboard from "./pages/Dashboard";
+import AITrainingBot from "./pages/AITrainingBot";
 
 function Router() {
   return (
@@ -48,6 +49,9 @@ function Router() {
       
       {/* User Dashboard */}
       <Route path={"/dashboard"} component={Dashboard} />
+      
+      {/* AI Bots */}
+      <Route path={"/ai/training"} component={AITrainingBot} />
       <Route path={"/account"} component={Dashboard} />
       <Route path={"/profile"} component={Dashboard} />
       

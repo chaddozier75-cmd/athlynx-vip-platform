@@ -8,6 +8,7 @@ import { getDb } from "./db";
 import { notifyOwner } from "./_core/notification";
 import { createSubscriptionCheckout, createCreditCheckout, getCheckoutSession } from "./stripe/checkout";
 import { SUBSCRIPTION_TIERS, AI_CREDIT_PACKS } from "./stripe/products";
+import { getUserCredits, getCreditTransactions, getCreditUsageHistory, generateTrainingPlan, CREDIT_COSTS } from "./ai-credits";
 
 export const appRouter = router({
   // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -141,6 +142,47 @@ export const appRouter = router({
           amountTotal: session.amount_total,
           metadata: session.metadata,
         };
+      }),
+  }),
+
+  // AI Credits & Bots
+  aiCredits: router({
+    // Get user's current credit balance
+    getBalance: protectedProcedure.query(async ({ ctx }) => {
+      const credits = await getUserCredits(ctx.user.id);
+      return { credits };
+    }),
+
+    // Get credit transaction history
+    getTransactions: protectedProcedure
+      .input(z.object({ limit: z.number().optional() }))
+      .query(async ({ ctx, input }) => {
+        const transactions = await getCreditTransactions(ctx.user.id, input.limit);
+        return transactions;
+      }),
+
+    // Get credit usage history
+    getUsageHistory: protectedProcedure
+      .input(z.object({ limit: z.number().optional() }))
+      .query(async ({ ctx, input }) => {
+        const usage = await getCreditUsageHistory(ctx.user.id, input.limit);
+        return usage;
+      }),
+
+    // Get credit costs for all actions
+    getCosts: publicProcedure.query(() => {
+      return CREDIT_COSTS;
+    }),
+  }),
+
+  // AI Bots
+  aiBots: router({
+    // Generate training plan
+    generateTrainingPlan: protectedProcedure
+      .input(z.object({ prompt: z.string() }))
+      .mutation(async ({ ctx, input }) => {
+        const result = await generateTrainingPlan(ctx.user.id, input.prompt);
+        return { result };
       }),
   }),
 });

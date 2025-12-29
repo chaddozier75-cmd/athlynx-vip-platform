@@ -739,3 +739,83 @@
 - [x] Stripe checkout session endpoints
 - [x] Stripe webhook handler
 - [x] tRPC routes for payments
+
+
+---
+
+## 🤖 AI CREDIT SYSTEM - MANUS MODEL - December 29, 2024
+
+### Database Schema
+- [ ] Add `ai_credits` field to users table
+- [ ] Create `credit_transactions` table (user_id, amount, type, description, created_at)
+- [ ] Create `credit_usage` table (user_id, action_type, credits_used, result, created_at)
+- [ ] Add indexes for fast credit balance queries
+
+### Credit Costs (Per Action)
+- [ ] Training Plan Generation: 5 credits
+- [ ] Video Analysis: 10 credits
+- [ ] Recruiting Email: 3 credits
+- [ ] Performance Report: 8 credits
+- [ ] AI Chat Session: 1 credit per message
+- [ ] Scouting Report: 15 credits
+- [ ] NIL Deal Analysis: 7 credits
+- [ ] Career Path Planning: 10 credits
+
+### AI Bot Pages
+- [ ] Training AI Bot page with credit cost display
+- [ ] Recruiting AI Bot page with credit cost display
+- [ ] NIL AI Bot page with credit cost display
+- [ ] Video Analysis AI Bot page with credit cost display
+- [ ] Social Media AI Bot page with credit cost display
+- [ ] Career Path AI Bot page with credit cost display
+
+### Credit Purchase Flow
+- [ ] Wire Pricing page credit packs to Stripe
+- [ ] Create tRPC endpoint for credit purchase
+- [ ] Handle Stripe webhook for credit fulfillment
+- [ ] Update user credits in database after purchase
+- [ ] Send confirmation email after credit purchase
+
+### Real-Time Credit Balance
+- [ ] Add credit balance to header on all pages
+- [ ] Show credit cost before AI action
+- [ ] Deduct credits after AI action completes
+- [ ] Show "Insufficient Credits" modal when low
+- [ ] Add "Buy More Credits" quick link
+
+### Credit Usage Tracking
+- [ ] Log every credit transaction
+- [ ] Show usage history in dashboard
+- [ ] Display credit expiration (if applicable)
+- [ ] Add credit usage analytics
+- [ ] Show most-used AI features
+
+### Integration with Manus LLM
+- [ ] Connect AI bots to Manus invokeLLM
+- [ ] Pass user context to AI
+- [ ] Stream AI responses
+- [ ] Handle errors gracefully
+- [ ] Log all AI interactions
+
+
+---
+
+## 🔗 FRONTEND/BACKEND INTEGRATION - December 29, 2025
+
+- [ ] Test AI Training Bot with real Manus LLM
+- [ ] Verify credit deduction on AI usage
+- [ ] Test credit purchase flow with Stripe
+- [ ] Verify credit balance updates in real-time
+- [ ] Test all tRPC endpoints
+
+---
+
+## 🏷️ WHITE-LABEL SPORT APPS - December 29, 2025
+
+- [x] Diamond Grind (Baseball) - Already built
+- [ ] Hoop Empire (Basketball)
+- [ ] Gridiron Nexus (Football)
+- [ ] Pitch Pulse (Soccer)
+- [ ] Reel Masters (Fishing)
+- [ ] Fairway Elite (Golf)
+- [ ] Hunt Pro (Hunting)

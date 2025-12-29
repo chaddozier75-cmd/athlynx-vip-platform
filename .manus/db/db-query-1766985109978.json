@@ -1,0 +1,9 @@
+{
+  "query": "ALTER TABLE users ADD COLUMN aiCredits INT NOT NULL DEFAULT 0 AFTER role;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute ALTER TABLE users ADD COLUMN aiCredits INT NOT NULL DEFAULT 0 AFTER role;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 484
+}

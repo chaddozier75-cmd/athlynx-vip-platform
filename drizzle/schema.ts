@@ -17,6 +17,7 @@ export const users = mysqlTable("users", {
   email: varchar("email", { length: 320 }),
   loginMethod: varchar("loginMethod", { length: 64 }),
   role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
+  aiCredits: int("aiCredits").default(0).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
   lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
@@ -74,3 +75,35 @@ export const vipMembers = mysqlTable("vip_members", {
 
 export type VipMember = typeof vipMembers.$inferSelect;
 export type InsertVipMember = typeof vipMembers.$inferInsert;
+
+/**
+ * Credit transactions table - tracks all credit purchases and grants
+ */
+export const creditTransactions = mysqlTable("credit_transactions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id),
+  amount: int("amount").notNull(), // Positive for purchases, negative for usage
+  type: mysqlEnum("type", ["purchase", "grant", "refund", "bonus"]).notNull(),
+  description: text("description"),
+  stripePaymentId: varchar("stripePaymentId", { length: 255 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type CreditTransaction = typeof creditTransactions.$inferSelect;
+export type InsertCreditTransaction = typeof creditTransactions.$inferInsert;
+
+/**
+ * Credit usage table - tracks AI feature usage and credit deductions
+ */
+export const creditUsage = mysqlTable("credit_usage", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id),
+  actionType: varchar("actionType", { length: 100 }).notNull(), // "training_plan", "video_analysis", etc.
+  creditsUsed: int("creditsUsed").notNull(),
+  result: text("result"), // Store AI response or result summary
+  metadata: text("metadata"), // JSON string for additional data
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type CreditUsage = typeof creditUsage.$inferSelect;
+export type InsertCreditUsage = typeof creditUsage.$inferInsert;
