@@ -95,7 +95,7 @@ export default function EarlyAccess() {
           <div className="relative">
             <div className="absolute inset-0 bg-cyan-400 blur-3xl opacity-30 animate-pulse"></div>
             <img 
-              src="/dhg-crab-shield.jpeg" 
+              src="/images/dhg-crab-shield-new.jpeg" 
               alt="DHG Crab" 
               className="relative w-24 h-24 rounded-full shadow-2xl border-4 border-cyan-400/50"
             />
@@ -117,7 +117,7 @@ export default function EarlyAccess() {
           <div className="relative group">
             <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
             <img 
-              src="/nil-portal-app-icon.jpeg" 
+              src="/images/nil-portal-icon.jpeg" 
               alt="NIL Portal" 
               className="relative w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
             />
@@ -125,7 +125,7 @@ export default function EarlyAccess() {
           <div className="relative group">
             <div className="absolute inset-0 bg-blue-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
             <img 
-              src="/diamond-grind-app-icon.png" 
+              src="/images/diamond-grind-icon.png" 
               alt="Diamond Grind" 
               className="relative w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
             />
@@ -133,7 +133,7 @@ export default function EarlyAccess() {
           <div className="relative group">
             <div className="absolute inset-0 bg-gray-300 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
             <img 
-              src="/nil-messenger-app-icon.jpeg" 
+              src="/images/nil-messenger-icon.jpeg" 
               alt="NIL Messenger" 
               className="relative w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
             />

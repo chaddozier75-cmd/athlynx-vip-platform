@@ -4,19 +4,19 @@ export default function Home() {
   const apps = [
     {
       name: "NIL Portal",
-      icon: "/nil-portal-app-icon.jpeg",
+      icon: "/images/nil-portal-icon.jpeg",
       description: "Manage deals, training data, and professional connections",
       link: "/nil-portal",
     },
     {
       name: "Diamond Grind",
-      icon: "/diamond-grind-app-icon.png",
+      icon: "/images/diamond-grind-icon.png",
       description: "Training programs, analytics, and performance tracking",
       link: "/diamond-grind",
     },
     {
       name: "NIL Messenger",
-      icon: "/nil-messenger-app-icon.jpeg",
+      icon: "/images/nil-messenger-icon.jpeg",
       description: "Real-time communication with coaches, scouts, and teammates",
       link: "/messenger",
     },
@@ -58,7 +58,7 @@ export default function Home() {
             <div className="relative">
               <div className="absolute inset-0 bg-cyan-400 blur-3xl opacity-30 animate-pulse"></div>
               <img 
-                src="/dhg-crab-shield-logo.jpeg" 
+                src="/images/dhg-crab-shield-new.jpeg" 
                 alt="DHG Crab Shield" 
                 className="relative w-28 h-28 rounded-full shadow-2xl border-4 border-cyan-400/50"
               />
@@ -173,7 +173,7 @@ export default function Home() {
         <div className="grid md:grid-cols-3 gap-6">
           <Link href="/founder-story">
             <a className="block bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-400 rounded-2xl p-6 hover:scale-105 transition-transform">
-              <img src="/dhg-crab-shield-logo.jpeg" alt="DHG" className="w-12 h-12 rounded-lg mb-3" />
+              <img src="/images/dhg-crab-shield-new.jpeg" alt="DHG" className="w-12 h-12 rounded-lg mb-3" />
               <h3 className="text-xl font-bold text-white mb-2">Founder's Story</h3>
               <p className="text-gray-400 text-sm">Learn about Chad A. Dozier and the DHG mission</p>
             </a>

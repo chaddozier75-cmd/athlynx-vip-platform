@@ -32,6 +32,7 @@ import Faith from "./pages/Faith";
 import MilitaryDivision from "./pages/MilitaryDivision";
 import ProjectManagement from "./pages/ProjectManagement";
 import MediaShowcase from "./pages/MediaShowcase";
+import UnifiedNav from "./components/UnifiedNav";
 
 function Router() {
   return (
@@ -167,6 +168,7 @@ function App() {
       <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
           <Toaster />
+          <UnifiedNav />
           <Router />
         </TooltipProvider>
       </ThemeProvider>
