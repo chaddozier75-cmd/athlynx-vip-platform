@@ -1525,3 +1525,6 @@
 - [ ] BUG: Faith page (/faith) crashes with "Failed to construct 'URL': Invalid URL" error
 
 - [x] Ensure hamburger menu (UnifiedNav) is present on ALL pages (already global in App.tsx)
+
+- [ ] Remove Todd Neely from all materials - no longer with company
+- [ ] Add Lee Marshall to leadership team

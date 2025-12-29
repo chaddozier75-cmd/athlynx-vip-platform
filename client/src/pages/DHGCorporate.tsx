@@ -117,7 +117,7 @@ const subsidiaries: Subsidiary[] = [
 
 const founders = [
   { name: 'Chad A. Dozier', title: 'Chairman & CEO', role: 'Partner' },
-  { name: 'Todd Neely', title: 'President & Director of Sales', role: 'Partner' },
+  { name: 'Lee Marshall', title: 'President & Director of Sales', role: 'Partner' },
   { name: 'Glenn Tse', title: 'CFO & VP of Business Operations', role: 'Partner' },
   { name: 'Andrew Kustes', title: 'CTO', role: 'Partner' },
   { name: 'Jimmy Boyd', title: 'VP of Real Estate Investments', role: 'Partner' }

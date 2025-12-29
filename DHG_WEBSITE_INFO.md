@@ -2,7 +2,7 @@
 
 ## Executive Leadership Team (from dozierholdingsgroup.com)
 - Chad A. Dozier - Partner, CEO
-- Todd Neely - Partner, President & Director of Sales
+- Lee Marshall - Partner, President & Director of Sales
 - Glenn Tse - Partner, CFO & VP of Business Operations
 - Andrew Kustes - Partner, CTO
 - Jimmy Boyd - Partner, Real Estate Investments
