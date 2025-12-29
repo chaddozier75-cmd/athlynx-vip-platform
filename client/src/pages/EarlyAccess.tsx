@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Link } from "wouter";
 
 export default function EarlyAccess() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [selectedRole, setSelectedRole] = useState<string | null>(null);
-  const [selectedSports, setSelectedSports] = useState<string[]>([]);
+  const [role, setRole] = useState("");
+  const [sport, setSport] = useState("");
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -15,7 +13,7 @@ export default function EarlyAccess() {
     seconds: 0,
   });
 
-  // Countdown to February 1, 2026
+  // Countdown timer to February 1, 2026
   useEffect(() => {
     const targetDate = new Date("2026-02-01T00:00:00").getTime();
 
@@ -23,175 +21,149 @@ export default function EarlyAccess() {
       const now = new Date().getTime();
       const distance = targetDate - now;
 
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000),
-      });
+      if (distance > 0) {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        });
+      }
     };
 
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
-
     return () => clearInterval(interval);
   }, []);
 
-  const roles = ["Athlete", "Parent", "Coach", "Brand"];
-  const sports = ["Baseball", "Football", "Basketball"];
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement signup logic
-    console.log({ email, phone, role: selectedRole, sports: selectedSports });
-    alert("Thank you for signing up! We'll be in touch soon.");
+    // TODO: Connect to database
+    console.log({ email, phone, role, sport });
+    alert("Thank you! You're on the VIP list!");
   };
 
-  const toggleSport = (sport: string) => {
-    setSelectedSports(prev =>
-      prev.includes(sport)
-        ? prev.filter(s => s !== sport)
-        : [...prev, sport]
-    );
-  };
+  const roles = ["Athlete", "Parent", "Coach", "Brand"];
+  const sports = ["Baseball", "Football", "Basketball", "Soccer", "Track & Field", "Volleyball"];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white">
-      {/* App Icons */}
-      <div className="container pt-12 flex justify-center gap-4">
-        <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-xl">
-          <span className="text-3xl font-bold text-blue-600">M</span>
-        </div>
-        <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center shadow-xl">
-          <span className="text-3xl">⚡</span>
-        </div>
-        <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-xl">
-          <span className="text-3xl font-bold text-slate-800">N</span>
-        </div>
-      </div>
-
-      {/* Header */}
-      <div className="container text-center py-8 space-y-2">
-        <p className="text-cyan-400 text-sm font-medium tracking-wider uppercase">
-          The Future of Athlete Success
-        </p>
-        <h1 className="text-6xl font-bold tracking-tight">ATHLYNX</h1>
-        <p className="text-cyan-400 text-lg tracking-wide">THE ATHLETE'S PLAYBOOK</p>
-      </div>
-
-      {/* VIP Badge */}
-      <div className="container flex justify-center mb-8">
-        <div className="bg-gradient-to-r from-blue-500 to-cyan-400 px-8 py-4 rounded-full shadow-2xl">
-          <p className="text-white font-bold text-lg">
-            🏆 VIP EARLY ACCESS<br />
-            <span className="text-sm font-normal">6 MONTHS FREE</span>
-          </p>
-        </div>
-      </div>
-
-      {/* Countdown */}
-      <div className="container text-center mb-8">
-        <p className="text-cyan-400 text-sm font-medium mb-4 tracking-wider uppercase">
-          Launching In
-        </p>
-        <div className="flex justify-center gap-4">
-          {[
-            { label: "DAYS", value: timeLeft.days },
-            { label: "HRS", value: timeLeft.hours },
-            { label: "MIN", value: timeLeft.minutes },
-            { label: "SEC", value: timeLeft.seconds },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="bg-slate-800/50 backdrop-blur-sm rounded-lg p-4 min-w-[80px] border border-cyan-500/20"
-            >
-              <div className="text-4xl font-bold text-cyan-400">{item.value}</div>
-              <div className="text-xs text-gray-400 mt-1">{item.label}</div>
-            </div>
-          ))}
-        </div>
-        <p className="text-gray-400 text-sm mt-4">FEBRUARY 1, 2026</p>
-      </div>
-
-      {/* Founding Member Spots */}
-      <div className="container max-w-2xl mb-8">
-        <div className="bg-gradient-to-r from-red-900/30 to-purple-900/30 rounded-2xl p-6 border border-red-500/30">
-          <div className="text-center space-y-3">
-            <p className="text-yellow-400 font-bold text-lg">
-              🔥 FOUNDING MEMBER SPOTS
-            </p>
-            <p className="text-red-400 font-bold text-2xl">
-              LIMITED TO 10,000
-            </p>
-            <div className="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
-              <div className="bg-gradient-to-r from-blue-500 to-cyan-400 h-full w-[25%] rounded-full"></div>
-            </div>
+    <div className="min-h-screen bg-[#0A1628] text-white flex items-center justify-center p-4">
+      <div className="w-full max-w-[640px] mx-auto text-center space-y-8">
+        
+        {/* App Icons */}
+        <div className="flex justify-center gap-4 pt-8">
+          <div className="w-20 h-20 bg-white rounded-2xl shadow-lg overflow-hidden">
+            <img src="/messenger-icon-2.png" alt="Messenger" className="w-full h-full object-cover" />
+          </div>
+          <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-2xl shadow-lg flex items-center justify-center">
+            <img src="/diamond-grind-icon-3.png" alt="Diamond Grind" className="w-full h-full object-cover" />
+          </div>
+          <div className="w-20 h-20 bg-white rounded-2xl shadow-lg overflow-hidden">
+            <img src="/nil-portal-icon.png" alt="NIL Portal" className="w-full h-full object-cover" />
           </div>
         </div>
-      </div>
 
-      {/* Signup Form */}
-      <div className="container max-w-2xl pb-20">
-        <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Header */}
+        <div className="space-y-2">
+          <p className="text-[#00D9FF] text-sm font-medium tracking-[0.2em] uppercase">
+            THE FUTURE OF ATHLETE SUCCESS
+          </p>
+          <h1 className="text-7xl md:text-8xl font-bold tracking-wide">
+            ATHLYNX
+          </h1>
+          <p className="text-[#00D9FF] text-xl font-medium">
+            THE ATHLETE'S PLAYBOOK
+          </p>
+        </div>
+
+        {/* VIP Badge */}
+        <div className="inline-block bg-gradient-to-r from-[#3B82F6] to-[#60A5FA] rounded-full px-12 py-5 shadow-lg">
+          <p className="text-white font-bold text-lg">
+            🏆 VIP EARLY ACCESS<br />
+            <span className="text-2xl">6 MONTHS FREE</span>
+          </p>
+        </div>
+
+        {/* Countdown Timer */}
+        <div className="space-y-4">
+          <p className="text-gray-400 text-sm uppercase tracking-wide">LAUNCHING IN</p>
+          <div className="flex justify-center gap-3">
+            {[
+              { value: timeLeft.days, label: "DAYS" },
+              { value: timeLeft.hours, label: "HRS" },
+              { value: timeLeft.minutes, label: "MIN" },
+              { value: timeLeft.seconds, label: "SEC" },
+            ].map(({ value, label }) => (
+              <div
+                key={label}
+                className="bg-[rgba(30,58,138,0.5)] border border-[#3B82F6] rounded-xl px-6 py-4 min-w-[80px]"
+              >
+                <div className="text-[#00D9FF] text-4xl font-bold">{String(value).padStart(2, "0")}</div>
+                <div className="text-gray-400 text-xs mt-1">{label}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-gray-300 text-base mt-4">FEBRUARY 1, 2026</p>
+        </div>
+
+        {/* Founding Member Section */}
+        <div className="bg-[rgba(15,23,42,0.6)] border border-[#334155] rounded-2xl p-6 space-y-3">
+          <p className="text-white font-semibold">🔥 FOUNDING MEMBER SPOTS</p>
+          <p className="text-[#FF6B6B] font-bold text-xl">LIMITED TO 10,000</p>
+          <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+            <div className="bg-gradient-to-r from-[#FF6B6B] to-[#FF8E8E] h-full w-[35%]"></div>
+          </div>
+        </div>
+
+        {/* Signup Form */}
+        <form onSubmit={handleSubmit} className="space-y-5 text-left">
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium mb-2 text-gray-300">
-              <span className="inline-flex items-center gap-2">
-                EMAIL ADDRESS *
-                <span className="bg-orange-500 text-white text-xs px-2 py-0.5 rounded">1</span>
-              </span>
+            <label className="block text-gray-400 text-xs uppercase tracking-wide mb-2">
+              EMAIL ADDRESS <span className="text-[#FF6B6B]">*</span>
             </label>
-            <Input
+            <input
               type="email"
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
-              required
-              className="bg-slate-800/50 border-2 border-slate-700 focus:border-orange-500 text-white placeholder:text-gray-500 h-12"
+              className="w-full bg-[rgba(15,23,42,0.8)] border border-[#334155] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-[#00D9FF] focus:ring-2 focus:ring-[#00D9FF]/20 outline-none transition"
             />
           </div>
 
           {/* Phone */}
           <div>
-            <label className="block text-sm font-medium mb-2 text-gray-300">
-              <span className="inline-flex items-center gap-2">
-                PHONE (OPTIONAL)
-                <span className="bg-orange-500 text-white text-xs px-2 py-0.5 rounded">2</span>
-              </span>
+            <label className="block text-gray-400 text-xs uppercase tracking-wide mb-2">
+              PHONE (OPTIONAL)
             </label>
-            <Input
+            <input
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Phone (Optional)"
-              className="bg-slate-800/50 border-2 border-slate-700 focus:border-orange-500 text-white placeholder:text-gray-500 h-12"
+              className="w-full bg-[rgba(15,23,42,0.8)] border border-[#334155] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-[#00D9FF] focus:ring-2 focus:ring-[#00D9FF]/20 outline-none transition"
             />
           </div>
 
           {/* Role Selection */}
           <div>
-            <label className="block text-sm font-medium mb-3 text-gray-300">
-              <span className="inline-flex items-center gap-2">
-                I AM
-                <span className="bg-yellow-500 text-black text-xs px-2 py-0.5 rounded">3</span>
-              </span>
+            <label className="block text-gray-400 text-xs uppercase tracking-wide mb-2">
+              I AM A
             </label>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {roles.map((role, index) => (
+            <div className="flex flex-wrap gap-3">
+              {roles.map((r) => (
                 <button
-                  key={role}
+                  key={r}
                   type="button"
-                  onClick={() => setSelectedRole(role)}
-                  className={`relative px-4 py-3 rounded-lg font-medium transition-all ${
-                    selectedRole === role
-                      ? "bg-cyan-500 text-white"
-                      : "bg-slate-800/50 text-gray-300 hover:bg-slate-700/50"
+                  onClick={() => setRole(r)}
+                  className={`px-5 py-2.5 rounded-lg text-sm font-medium transition ${
+                    role === r
+                      ? "bg-[#00D9FF] border-2 border-[#00D9FF] text-[#0A1628]"
+                      : "bg-transparent border-2 border-[#334155] text-gray-400 hover:border-[#00D9FF] hover:text-[#00D9FF]"
                   }`}
                 >
-                  <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs px-1.5 py-0.5 rounded">
-                    {index + 4}
-                  </span>
-                  {role}
+                  {r}
                 </button>
               ))}
             </div>
@@ -199,45 +171,46 @@ export default function EarlyAccess() {
 
           {/* Sport Selection */}
           <div>
-            <label className="block text-sm font-medium mb-3 text-gray-300">
-              SELECT SPORT(S)
+            <label className="block text-gray-400 text-xs uppercase tracking-wide mb-2">
+              MY SPORT
             </label>
-            <div className="grid grid-cols-3 gap-3">
-              {sports.map((sport) => (
+            <div className="flex flex-wrap gap-3">
+              {sports.map((s) => (
                 <button
-                  key={sport}
+                  key={s}
                   type="button"
-                  onClick={() => toggleSport(sport)}
-                  className={`px-4 py-3 rounded-lg font-medium transition-all ${
-                    selectedSports.includes(sport)
-                      ? "bg-cyan-500 text-white"
-                      : "bg-slate-800/50 text-gray-300 hover:bg-slate-700/50"
+                  onClick={() => setSport(s)}
+                  className={`px-5 py-2.5 rounded-lg text-sm font-medium transition ${
+                    sport === s
+                      ? "bg-[#00D9FF] border-2 border-[#00D9FF] text-[#0A1628]"
+                      : "bg-transparent border-2 border-[#334155] text-gray-400 hover:border-[#00D9FF] hover:text-[#00D9FF]"
                   }`}
                 >
-                  {sport}
+                  {s}
                 </button>
               ))}
             </div>
           </div>
 
           {/* Submit Button */}
-          <Button
+          <button
             type="submit"
-            size="lg"
-            className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold text-lg h-14 shadow-xl shadow-cyan-500/30"
+            id="submitBtn"
+            className="w-full bg-gradient-to-r from-[#FCD34D] to-[#F59E0B] text-black font-bold text-lg uppercase tracking-wide py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition transform"
           >
             🏆 CLAIM MY VIP SPOT
-          </Button>
+          </button>
         </form>
 
         {/* Preview Link */}
-        <div className="text-center mt-8">
-          <Link href="/home">
-            <a className="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center gap-2 transition-colors">
-              Preview the App →
-            </a>
-          </Link>
-        </div>
+        <Link href="/home">
+          <a className="inline-block text-[#00D9FF] hover:underline text-sm">
+            Preview the App →
+          </a>
+        </Link>
+
+        {/* Bottom Spacing */}
+        <div className="h-8"></div>
       </div>
     </div>
   );
