@@ -118,7 +118,7 @@ export default function EarlyAccess() {
           </div>
         </div>
 
-        {/* App Icons Row - NIL Portal, Diamond Grind, Messenger */}
+        {/* App Icons Row - NIL Portal, Diamond Grind, ATHLYNX, Messenger */}
         <div className="flex justify-center gap-3">
           <div className="relative group">
             <div className="absolute inset-0 bg-gray-300 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
@@ -134,6 +134,14 @@ export default function EarlyAccess() {
               src="/diamond-grind-logo.png" 
               alt="Diamond Grind" 
               className="relative w-16 h-16 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+            />
+          </div>
+          <div className="relative group">
+            <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+            <img 
+              src="/athlynx-logo-icon.png" 
+              alt="ATHLYNX" 
+              className="relative w-16 h-16 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform bg-white"
             />
           </div>
           <div className="relative group">
