@@ -1,0 +1,8 @@
+{
+  "query": "DROP TABLE IF EXISTS athlete_profiles;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute DROP TABLE IF EXISTS athlete_profiles;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 3730 (HY000) at line 1: Cannot drop table 'athlete_profiles' referenced by a foreign key constraint 'college_interests_athleteProfileId_athlete_profiles_id_fk' on table 'college_interests'."
+  ]
+}
