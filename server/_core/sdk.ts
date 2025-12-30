@@ -19,7 +19,7 @@ export type SessionPayload = {
 
 class SDKServer {
   constructor() {
-    console.log("[Auth] Standalone JWT authentication initialized");
+    console.log("[OAuth] Manus OAuth initialized with baseURL:", ENV.oAuthServerUrl);
   }
 
   private parseCookies(cookieHeader: string | undefined) {
@@ -107,17 +107,49 @@ class SDKServer {
     }
   }
 
-  // Stub methods for compatibility - OAuth not used in standalone mode
-  async exchangeCodeForToken(code: string, state: string): Promise<any> {
-    throw new Error("OAuth not configured in standalone mode");
+  // Full OAuth implementation for Manus
+  async exchangeCodeForToken(code: string, state: string): Promise<{
+    user: {
+      open_id: string;
+      name: string;
+      email?: string;
+      avatar?: string;
+    };
+  }> {
+    const tokenUrl = `${ENV.oAuthServerUrl}/api/oauth/token`;
+    
+    console.log("[OAuth] Exchanging code for token at:", tokenUrl);
+    
+    const response = await fetch(tokenUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        code,
+        app_id: ENV.appId,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("[OAuth] Token exchange failed:", response.status, errorText);
+      throw new Error(`OAuth token exchange failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("[OAuth] Token exchange successful");
+    return data;
   }
 
   async getUserInfo(accessToken: string): Promise<any> {
-    throw new Error("OAuth not configured in standalone mode");
+    // Not needed for Manus OAuth - user info comes with token exchange
+    return null;
   }
 
   async getUserInfoWithJwt(jwtToken: string): Promise<any> {
-    throw new Error("OAuth not configured in standalone mode");
+    // Not needed for Manus OAuth - user info comes with token exchange
+    return null;
   }
 
   async authenticateRequest(req: Request): Promise<User> {
