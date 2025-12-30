@@ -1566,3 +1566,191 @@ export const dailyAnalyticsSummary = mysqlTable("daily_analytics_summary", {
 export type DailyAnalyticsSummary = typeof dailyAnalyticsSummary.$inferSelect;
 export type InsertDailyAnalyticsSummary = typeof dailyAnalyticsSummary.$inferInsert;
 
+
+
+/**
+ * ============================================
+ * NOTIFICATION SYSTEM
+ * Complete notification infrastructure
+ * ============================================
+ */
+
+/**
+ * Notifications - In-app notifications for users
+ */
+export const notifications = mysqlTable("notifications", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").references(() => users.id), // Null for broadcast notifications
+  type: mysqlEnum("type", [
+    "welcome",
+    "vip_approved",
+    "system_announcement",
+    "custom",
+    "credit_added",
+    "new_feature",
+    "promotion",
+    "reminder",
+    "achievement",
+    "message"
+  ]).notNull(),
+  title: varchar("title", { length: 255 }).notNull(),
+  message: text("message").notNull(),
+  link: varchar("link", { length: 500 }), // Optional link to navigate to
+  imageUrl: varchar("imageUrl", { length: 500 }), // Optional image
+  priority: mysqlEnum("priority", ["low", "normal", "high", "urgent"]).default("normal").notNull(),
+  isRead: mysqlEnum("isRead", ["yes", "no"]).default("no").notNull(),
+  isDismissed: mysqlEnum("isDismissed", ["yes", "no"]).default("no").notNull(),
+  isBroadcast: mysqlEnum("isBroadcast", ["yes", "no"]).default("no").notNull(), // For system-wide announcements
+  expiresAt: timestamp("expiresAt"), // Optional expiration
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  readAt: timestamp("readAt"),
+});
+
+export type Notification = typeof notifications.$inferSelect;
+export type InsertNotification = typeof notifications.$inferInsert;
+
+/**
+ * Email Notifications - Track all email notifications sent
+ */
+export const emailNotifications = mysqlTable("email_notifications", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").references(() => users.id),
+  toEmail: varchar("toEmail", { length: 320 }).notNull(),
+  type: mysqlEnum("type", [
+    "welcome",
+    "vip_confirmation",
+    "vip_approved",
+    "password_reset",
+    "account_update",
+    "newsletter",
+    "promotion",
+    "custom",
+    "system_alert"
+  ]).notNull(),
+  subject: varchar("subject", { length: 255 }).notNull(),
+  body: text("body").notNull(),
+  templateId: varchar("templateId", { length: 100 }), // For template-based emails
+  status: mysqlEnum("status", ["pending", "sent", "delivered", "failed", "bounced"]).default("pending").notNull(),
+  sentAt: timestamp("sentAt"),
+  deliveredAt: timestamp("deliveredAt"),
+  openedAt: timestamp("openedAt"),
+  clickedAt: timestamp("clickedAt"),
+  errorMessage: text("errorMessage"),
+  metadata: json("metadata"), // Additional tracking data
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type EmailNotification = typeof emailNotifications.$inferSelect;
+export type InsertEmailNotification = typeof emailNotifications.$inferInsert;
+
+/**
+ * Push Notification Subscriptions - Store push notification tokens
+ */
+export const pushSubscriptions = mysqlTable("push_subscriptions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id),
+  endpoint: text("endpoint").notNull(), // Push service endpoint
+  p256dhKey: text("p256dhKey").notNull(), // Public key
+  authKey: text("authKey").notNull(), // Auth secret
+  deviceType: mysqlEnum("deviceType", ["web", "ios", "android"]).default("web").notNull(),
+  deviceName: varchar("deviceName", { length: 255 }),
+  isActive: mysqlEnum("isActive", ["yes", "no"]).default("yes").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  lastUsedAt: timestamp("lastUsedAt").defaultNow().notNull(),
+});
+
+export type PushSubscription = typeof pushSubscriptions.$inferSelect;
+export type InsertPushSubscription = typeof pushSubscriptions.$inferInsert;
+
+/**
+ * Push Notifications - Track all push notifications sent
+ */
+export const pushNotifications = mysqlTable("push_notifications", {
+  id: int("id").autoincrement().primaryKey(),
+  subscriptionId: int("subscriptionId").references(() => pushSubscriptions.id),
+  userId: int("userId").references(() => users.id),
+  title: varchar("title", { length: 255 }).notNull(),
+  body: text("body").notNull(),
+  icon: varchar("icon", { length: 500 }),
+  badge: varchar("badge", { length: 500 }),
+  link: varchar("link", { length: 500 }),
+  status: mysqlEnum("status", ["pending", "sent", "delivered", "failed"]).default("pending").notNull(),
+  sentAt: timestamp("sentAt"),
+  deliveredAt: timestamp("deliveredAt"),
+  clickedAt: timestamp("clickedAt"),
+  errorMessage: text("errorMessage"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PushNotificationRecord = typeof pushNotifications.$inferSelect;
+export type InsertPushNotificationRecord = typeof pushNotifications.$inferInsert;
+
+/**
+ * System Announcements - Admin-created announcements for all users
+ */
+export const systemAnnouncements = mysqlTable("system_announcements", {
+  id: int("id").autoincrement().primaryKey(),
+  title: varchar("title", { length: 255 }).notNull(),
+  message: text("message").notNull(),
+  type: mysqlEnum("type", ["info", "warning", "success", "error", "promotion"]).default("info").notNull(),
+  priority: mysqlEnum("priority", ["low", "normal", "high", "urgent"]).default("normal").notNull(),
+  targetAudience: mysqlEnum("targetAudience", ["all", "athletes", "parents", "coaches", "brands", "vip"]).default("all").notNull(),
+  link: varchar("link", { length: 500 }),
+  imageUrl: varchar("imageUrl", { length: 500 }),
+  isActive: mysqlEnum("isActive", ["yes", "no"]).default("yes").notNull(),
+  showBanner: mysqlEnum("showBanner", ["yes", "no"]).default("no").notNull(), // Show as top banner
+  startDate: timestamp("startDate").defaultNow().notNull(),
+  endDate: timestamp("endDate"),
+  createdBy: int("createdBy").references(() => users.id),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type SystemAnnouncement = typeof systemAnnouncements.$inferSelect;
+export type InsertSystemAnnouncement = typeof systemAnnouncements.$inferInsert;
+
+/**
+ * Notification Preferences - User notification settings
+ */
+export const notificationPreferences = mysqlTable("notification_preferences", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id).unique(),
+  emailWelcome: mysqlEnum("emailWelcome", ["yes", "no"]).default("yes").notNull(),
+  emailPromotions: mysqlEnum("emailPromotions", ["yes", "no"]).default("yes").notNull(),
+  emailNewsletter: mysqlEnum("emailNewsletter", ["yes", "no"]).default("yes").notNull(),
+  emailSystemAlerts: mysqlEnum("emailSystemAlerts", ["yes", "no"]).default("yes").notNull(),
+  emailAccountUpdates: mysqlEnum("emailAccountUpdates", ["yes", "no"]).default("yes").notNull(),
+  pushEnabled: mysqlEnum("pushEnabled", ["yes", "no"]).default("yes").notNull(),
+  pushPromotions: mysqlEnum("pushPromotions", ["yes", "no"]).default("yes").notNull(),
+  pushSystemAlerts: mysqlEnum("pushSystemAlerts", ["yes", "no"]).default("yes").notNull(),
+  pushMessages: mysqlEnum("pushMessages", ["yes", "no"]).default("yes").notNull(),
+  inAppEnabled: mysqlEnum("inAppEnabled", ["yes", "no"]).default("yes").notNull(),
+  quietHoursStart: varchar("quietHoursStart", { length: 5 }), // "22:00"
+  quietHoursEnd: varchar("quietHoursEnd", { length: 5 }), // "08:00"
+  timezone: varchar("timezone", { length: 50 }).default("America/Chicago"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type NotificationPreference = typeof notificationPreferences.$inferSelect;
+export type InsertNotificationPreference = typeof notificationPreferences.$inferInsert;
+
+/**
+ * Email Templates - Reusable email templates
+ */
+export const emailTemplates = mysqlTable("email_templates", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 100 }).notNull().unique(),
+  subject: varchar("subject", { length: 255 }).notNull(),
+  htmlBody: text("htmlBody").notNull(),
+  textBody: text("textBody"),
+  variables: json("variables"), // Array of variable names like ["name", "accessCode"]
+  category: mysqlEnum("category", ["welcome", "transactional", "marketing", "system"]).default("transactional").notNull(),
+  isActive: mysqlEnum("isActive", ["yes", "no"]).default("yes").notNull(),
+  createdBy: int("createdBy").references(() => users.id),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type EmailTemplate = typeof emailTemplates.$inferSelect;
+export type InsertEmailTemplate = typeof emailTemplates.$inferInsert;

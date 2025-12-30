@@ -9,7 +9,7 @@ import { notifyOwner } from "./_core/notification";
 import { sendVIPConfirmationEmail } from "./email";
 import { createSubscriptionCheckout, createCreditCheckout, getCheckoutSession } from "./stripe/checkout";
 import { SUBSCRIPTION_TIERS, AI_CREDIT_PACKS } from "./stripe/products";
-import { getUserCredits, getCreditTransactions, getCreditUsageHistory, generateTrainingPlan, CREDIT_COSTS } from "./ai-credits";
+import { getUserCredits, getCreditTransactions, getCreditUsageHistory, generateTrainingPlan, generateRecruitingEmail, generateScoutingReport, analyzeNILDeal, generateCareerPath, generatePerformanceReport, handleAIChatMessage, generateSocialContent, matchAthleteToSchools, CREDIT_COSTS } from "./ai-credits";
 import { transferPortalRouter } from "./transfer-portal";
 import { fcaRouter } from "./fca";
 import { storeRouter } from "./store";
@@ -202,7 +202,7 @@ export const appRouter = router({
   partners: partnersRouter,
   admin: adminRouter,
 
-  // AI Bots
+  // AI Bots - TRUE AI AUTOMATION
   aiBots: router({
     // Generate training plan
     generateTrainingPlan: protectedProcedure
@@ -210,6 +210,129 @@ export const appRouter = router({
       .mutation(async ({ ctx, input }) => {
         const result = await generateTrainingPlan(ctx.user.id, input.prompt);
         return { result };
+      }),
+
+    // Generate recruiting email
+    generateRecruitingEmail: protectedProcedure
+      .input(z.object({
+        name: z.string(),
+        sport: z.string(),
+        position: z.string(),
+        stats: z.string(),
+        targetSchool: z.string(),
+        coachName: z.string().optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const result = await generateRecruitingEmail(ctx.user.id, input);
+        return { result };
+      }),
+
+    // Generate scouting report
+    generateScoutingReport: protectedProcedure
+      .input(z.object({
+        name: z.string(),
+        sport: z.string(),
+        position: z.string(),
+        stats: z.string(),
+        highlights: z.string().optional(),
+        weaknesses: z.string().optional(),
+        coachNotes: z.string().optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const result = await generateScoutingReport(ctx.user.id, input);
+        return { result };
+      }),
+
+    // Analyze NIL deal
+    analyzeNILDeal: protectedProcedure
+      .input(z.object({
+        brandName: z.string(),
+        dealType: z.string(),
+        compensation: z.string(),
+        duration: z.string(),
+        requirements: z.string(),
+        athleteFollowers: z.string().optional(),
+        athleteSport: z.string().optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const result = await analyzeNILDeal(ctx.user.id, input);
+        return result;
+      }),
+
+    // Generate career path
+    generateCareerPath: protectedProcedure
+      .input(z.object({
+        name: z.string(),
+        age: z.number(),
+        sport: z.string(),
+        position: z.string(),
+        currentLevel: z.string(),
+        goals: z.string(),
+        strengths: z.string().optional(),
+        challenges: z.string().optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const result = await generateCareerPath(ctx.user.id, input);
+        return { result };
+      }),
+
+    // Generate performance report
+    generatePerformanceReport: protectedProcedure
+      .input(z.object({
+        athleteName: z.string(),
+        sport: z.string(),
+        position: z.string(),
+        recentStats: z.string(),
+        previousStats: z.string().optional(),
+        injuryHistory: z.string().optional(),
+        trainingNotes: z.string().optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const result = await generatePerformanceReport(ctx.user.id, input);
+        return { result };
+      }),
+
+    // AI Chat
+    chat: protectedProcedure
+      .input(z.object({
+        message: z.string(),
+        conversationHistory: z.array(z.object({
+          role: z.enum(['user', 'assistant']),
+          content: z.string(),
+        })).default([]),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const result = await handleAIChatMessage(ctx.user.id, input.message, input.conversationHistory);
+        return { result };
+      }),
+
+    // Generate social media content
+    generateSocialContent: protectedProcedure
+      .input(z.object({
+        platform: z.enum(['twitter', 'instagram', 'linkedin', 'tiktok']),
+        topic: z.string(),
+        tone: z.enum(['professional', 'casual', 'motivational', 'informative']),
+        athleteInfo: z.string().optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const result = await generateSocialContent(ctx.user.id, input);
+        return result;
+      }),
+
+    // Match athlete to schools
+    matchToSchools: protectedProcedure
+      .input(z.object({
+        sport: z.string(),
+        position: z.string(),
+        gpa: z.number(),
+        testScores: z.string().optional(),
+        stats: z.string(),
+        preferences: z.string(),
+        location: z.string().optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const matches = await matchAthleteToSchools(ctx.user.id, input);
+        return { matches };
       }),
   }),
 });
