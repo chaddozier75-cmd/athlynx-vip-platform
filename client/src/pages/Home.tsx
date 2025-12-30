@@ -1,45 +1,105 @@
-import { Link } from "wouter";
+import { useState, useEffect } from "react";
+import { useLocation, Link } from "wouter";
+import { trpc } from "../lib/trpc";
 import UnifiedFooter from "@/components/UnifiedFooter";
 import { useAuth } from "@/_core/hooks/useAuth";
 import LoginButton from "@/components/LoginButton";
+import EmailLoginModal from "@/components/EmailLoginModal";
 
 export default function Home() {
+  const [, setLocation] = useLocation();
   const { user, loading } = useAuth();
-  const apps = [
-    {
-      name: "NIL Portal",
-      icon: "/images/nil-portal-icon.jpeg",
-      description: "Manage deals, training data, and professional connections",
-      link: "/nil-portal",
-    },
-    {
-      name: "Diamond Grind",
-      icon: "/images/diamond-grind-icon.png",
-      description: "Training programs, analytics, and performance tracking",
-      link: "/diamond-grind",
-    },
-    {
-      name: "NIL Messenger",
-      icon: "/images/nil-messenger-icon.jpeg",
-      description: "Real-time communication with coaches, scouts, and teammates",
-      link: "/messenger",
-    },
-  ];
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [role, setRole] = useState("");
+  const [sport, setSport] = useState("");
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
-  const features = [
-    { title: "Social Feed", desc: "Share highlights, connect with fans" },
-    { title: "Messaging", desc: "Direct communication platform" },
-    { title: "NIL Deals", desc: "Brand partnerships & sponsorships" },
-    { title: "Training", desc: "Personalized workout programs" },
-    { title: "Analytics", desc: "Performance tracking & insights" },
-    { title: "15+ Sports", desc: "Multi-sport support" },
-    { title: "Recruiting", desc: "College connections & commitments" },
-    { title: "Store", desc: "Gear, apparel & equipment" },
-  ];
+  // Check for OAuth error in URL and show login modal
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get('error');
+    const message = params.get('message');
+    if (error) {
+      setAuthError(message || 'Login failed. Please try email login.');
+      setShowLoginModal(true);
+      // Clean up URL
+      window.history.replaceState({}, '', '/');
+    }
+  }, []);
+
+  const signupMutation = trpc.vip.signup.useMutation({
+    onSuccess: (data) => {
+      setLocation(`/success?code=${data.accessCode}`);
+    },
+    onError: (error) => {
+      alert(`Error: ${error.message}`);
+    },
+  });
+
+  // Set page title for SEO
+  useEffect(() => {
+    document.title = "ATHLYNX VIP Early Access - Join 10,000 Founding Members | 6 Months Free";
+  }, []);
+
+  // Countdown timer to February 1, 2026
+  useEffect(() => {
+    const targetDate = new Date("2026-02-01T00:00:00").getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance > 0) {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!role) {
+      alert("Please select your role");
+      return;
+    }
+    if (!sport) {
+      alert("Please select your sport");
+      return;
+    }
+
+    signupMutation.mutate({
+      email,
+      phone: phone || undefined,
+      role,
+      sport,
+    });
+  };
+
+  const roles = ["Athlete", "Parent", "Coach", "Brand"];
+  const sports = ["Baseball", "Football", "Basketball", "Soccer", "Track & Field", "Volleyball"];
+  
+
 
   return (
     <div className="min-h-screen relative text-white overflow-x-hidden">
-      {/* Dark Blue Gradient Background - Same as VIP page */}
+      {/* Dark Blue Gradient Background */}
       <div className="absolute inset-0" 
            style={{
              background: 'linear-gradient(180deg, #0a1628 0%, #0d1f3c 25%, #0f2847 50%, #0a1e38 75%, #061424 100%)'
@@ -52,8 +112,8 @@ export default function Home() {
              background: 'radial-gradient(ellipse at top center, rgba(59, 130, 246, 0.15) 0%, transparent 60%), radial-gradient(ellipse at bottom center, rgba(6, 182, 212, 0.1) 0%, transparent 60%)'
            }}>
       </div>
-
-      {/* FIXED NAVIGATION HEADER */}
+      
+      {/* FIXED NAVIGATION HEADER WITH LOGIN */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a1628]/95 backdrop-blur-md border-b border-cyan-500/30">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -75,250 +135,318 @@ export default function Home() {
               <div className="w-24 h-10 bg-slate-700 animate-pulse rounded-lg"></div>
             ) : user ? (
               <Link href="/dashboard">
-                <button className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-cyan-500/30 transition-all">
+                <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-green-500/30 transition-all">
                   Dashboard
                 </button>
               </Link>
             ) : (
-              <LoginButton />
+              <LoginButton className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-cyan-500/30 transition-all animate-pulse" />
             )}
           </div>
         </div>
       </nav>
 
-      <div className="relative w-full max-w-[900px] mx-auto px-4 pt-24 pb-12 space-y-12">
+      <div className="relative w-full max-w-[640px] mx-auto px-4 pt-20 pb-8 space-y-8">
         
-        {/* Header with DHG Branding */}
-        <div className="text-center space-y-6">
-          {/* DHG Crab Shield Logo */}
-          <div className="flex justify-center">
-            <div className="relative">
-              <div className="absolute inset-0 bg-cyan-400 blur-3xl opacity-30 animate-pulse"></div>
+        {/* Crab Logo at Top */}
+        <div className="flex justify-center">
+          <div className="relative">
+            <div className="absolute inset-0 bg-cyan-400 blur-3xl opacity-30 animate-pulse"></div>
+            <img 
+              src="/images/dhg-crab-shield-new.jpeg" 
+              alt="DHG Crab" 
+              className="relative w-24 h-24 rounded-full shadow-2xl border-4 border-cyan-400/50"
+            />
+          </div>
+        </div>
+
+        {/* Dozier Holdings Group Badge */}
+        <div className="flex justify-center">
+          <div className="inline-flex items-center gap-3 bg-slate-900/80 backdrop-blur-md border-2 border-cyan-500/50 rounded-full px-6 py-3 shadow-2xl">
+            <div className="text-left">
+              <p className="text-gray-400 text-xs uppercase tracking-wide">PARENT COMPANY</p>
+              <p className="text-cyan-400 font-bold text-sm">Dozier Holdings Group</p>
+            </div>
+          </div>
+        </div>
+
+        {/* App Icons Row - NIL Portal, Messenger, Diamond Grind, Warriors Playbook */}
+        <div className="flex justify-center gap-3 flex-wrap">
+          <Link href="/nil-portal">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/images/dhg-crab-shield-new.jpeg" 
-                alt="DHG Crab Shield" 
-                className="relative w-28 h-28 rounded-full shadow-2xl border-4 border-cyan-400/50"
+                src="/nil-portal-icon-final.jpeg" 
+                alt="NIL Portal" 
+                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">NIL Portal</p>
+            </div>
+          </Link>
+          <Link href="/messages">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-blue-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/messenger-icon-final.jpeg" 
+                alt="NIL Messenger" 
+                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Messenger</p>
+            </div>
+          </Link>
+          <Link href="/diamond-grind">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/diamond-grind-app-icon.png" 
+                alt="Diamond Grind" 
+                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Diamond Grind</p>
+            </div>
+          </Link>
+          <Link href="/warriors-playbook">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-cyan-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/warriors-playbook-icon.png" 
+                alt="Warriors Playbook" 
+                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Warriors Playbook</p>
+            </div>
+          </Link>
+          <Link href="/transfer-portal">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/transfer-portal-app-icon.png" 
+                alt="Transfer Portal" 
+                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Transfer Portal</p>
+            </div>
+          </Link>
+          <Link href="/faith">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/faith-app-icon.png" 
+                alt="Faith" 
+                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Faith</p>
+            </div>
+          </Link>
+        </div>
+
+        {/* THE FUTURE OF ATHLETE SUCCESS */}
+        <div className="text-center">
+          <p className="text-cyan-400 text-sm md:text-base uppercase tracking-[0.3em] font-bold drop-shadow-lg">
+            THE FUTURE OF ATHLETE SUCCESS
+          </p>
+        </div>
+
+        {/* ATHLYNX Branding */}
+        <div className="text-center space-y-3">
+          <h1 className="text-7xl md:text-8xl font-black tracking-tight text-white drop-shadow-2xl">
+            ATHLYNX
+          </h1>
+          <h2 className="text-cyan-400 text-2xl md:text-3xl font-black uppercase tracking-[0.2em] drop-shadow-lg">
+            THE ATHLETE'S PLAYBOOK
+          </h2>
+          <p className="sr-only">Complete athlete ecosystem for NIL deals, training, recruiting, and professional connections. Join 10,000 founding members.</p>
+        </div>
+
+        {/* VIP Early Access Badge - Blue Theme */}
+        <div className="flex justify-center">
+          <div className="bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 rounded-full px-10 py-5 shadow-2xl transform hover:scale-105 transition-transform">
+            <p className="text-white font-black text-center">
+              <span className="text-xl">VIP EARLY ACCESS</span><br/>
+              <span className="text-3xl">6 MONTHS FREE</span>
+            </p>
+          </div>
+        </div>
+
+        {/* Countdown Timer */}
+        <div className="space-y-4">
+          <p className="text-center text-gray-400 text-sm uppercase tracking-widest font-bold">LAUNCHING IN</p>
+          <div className="flex justify-center gap-2">
+            {[
+              { value: timeLeft.days, label: "DAYS" },
+              { value: timeLeft.hours, label: "HRS" },
+              { value: timeLeft.minutes, label: "MIN" },
+              { value: timeLeft.seconds, label: "SEC" },
+            ].map(({ value, label }) => (
+              <div
+                key={label}
+                className="bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-500/50 rounded-2xl px-4 py-4 min-w-[75px] text-center shadow-xl"
+              >
+                <div className="text-cyan-400 text-4xl font-black drop-shadow-lg">{String(value).padStart(2, "0")}</div>
+                <div className="text-gray-500 text-xs mt-1 font-bold tracking-wider">{label}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-cyan-400 text-lg font-black tracking-wider drop-shadow-lg">FEBRUARY 1, 2026</p>
+        </div>
+
+        {/* Founding Member Section */}
+        <div className="bg-gradient-to-r from-red-900/60 to-orange-900/60 backdrop-blur-md border-2 border-red-500/50 rounded-3xl p-6 space-y-4 shadow-2xl">
+          <p className="text-white font-black text-center text-xl">FOUNDING MEMBER SPOTS</p>
+          <p className="text-red-400 font-black text-3xl text-center drop-shadow-lg">LIMITED TO 10,000</p>
+          <div className="w-full bg-slate-900/60 rounded-full h-4 overflow-hidden border border-red-500/50">
+            <div className="bg-gradient-to-r from-cyan-500 via-blue-500 to-red-500 h-full w-[35%] animate-pulse shadow-lg"></div>
+          </div>
+        </div>
+
+        {/* Signup Form - Blue Theme */}
+        <div className="bg-slate-900/80 backdrop-blur-xl border-2 border-cyan-500/50 rounded-3xl p-8 space-y-5 shadow-2xl">
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Email */}
+            <div>
+              <label className="block text-gray-300 text-xs uppercase tracking-widest mb-2 font-bold">
+                EMAIL ADDRESS <span className="text-red-400">*</span>
+              </label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@email.com"
+                disabled={signupMutation.isPending}
+                className="w-full bg-slate-800/70 border-2 border-slate-600 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 outline-none transition disabled:opacity-50"
               />
             </div>
-          </div>
 
-          {/* Parent Company Badge */}
-          <div className="flex justify-center">
-            <div className="inline-flex items-center gap-3 bg-slate-900/80 backdrop-blur-md border-2 border-cyan-500/50 rounded-full px-6 py-3 shadow-2xl">
-              <div className="text-left">
-                <p className="text-gray-400 text-xs uppercase tracking-wide">PARENT COMPANY</p>
-                <p className="text-cyan-400 font-bold text-sm">Dozier Holdings Group</p>
+            {/* Phone */}
+            <div>
+              <label className="block text-gray-300 text-xs uppercase tracking-widest mb-2 font-bold">
+                PHONE (OPTIONAL)
+              </label>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Phone (Optional)"
+                disabled={signupMutation.isPending}
+                className="w-full bg-slate-800/70 border-2 border-slate-600 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 outline-none transition disabled:opacity-50"
+              />
+            </div>
+
+            {/* Role Selection */}
+            <div>
+              <label className="block text-gray-300 text-xs uppercase tracking-widest mb-2 font-bold">
+                I AM A...
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {roles.map((r) => (
+                  <button
+                    key={r}
+                    type="button"
+                    onClick={() => setRole(r)}
+                    disabled={signupMutation.isPending}
+                    className={`px-5 py-3 rounded-full text-sm font-bold transition-all disabled:opacity-50 ${
+                      role === r
+                        ? "bg-cyan-500 border-2 border-cyan-400 text-white shadow-lg scale-105"
+                        : "bg-slate-800/70 border-2 border-slate-600 text-gray-300 hover:border-cyan-400 hover:text-cyan-400"
+                    }`}
+                  >
+                    {r}
+                  </button>
+                ))}
               </div>
             </div>
-          </div>
 
-          <h1 className="text-4xl md:text-5xl font-black leading-tight">
-            <span className="text-white">THE #1 SPORTS PLATFORM FOR ATHLETES</span>
-          </h1>
-          <h2 className="sr-only">ATHLYNX - Complete Athlete Ecosystem for NIL Deals, Training, and Recruiting</h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Like Facebook, Instagram, TikTok, X & LinkedIn combined for athletes
-          </p>
-        </div>
-
-        {/* Flagship Product Section */}
-        <div className="bg-slate-900/80 backdrop-blur-md border-2 border-cyan-500/50 rounded-3xl p-8 space-y-6 shadow-2xl">
-          <div className="flex justify-center">
-            <div className="bg-cyan-500 text-white px-6 py-2 rounded-full font-bold uppercase text-sm">
-              FLAGSHIP PRODUCT
+            {/* Sport Selection */}
+            <div>
+              <label className="block text-gray-300 text-xs uppercase tracking-widest mb-2 font-bold">
+                PRIMARY SPORT
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {sports.map((s) => (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => setSport(s)}
+                    disabled={signupMutation.isPending}
+                    className={`px-5 py-3 rounded-full text-sm font-bold transition-all disabled:opacity-50 ${
+                      sport === s
+                        ? "bg-cyan-500 border-2 border-cyan-400 text-white shadow-lg scale-105"
+                        : "bg-slate-800/70 border-2 border-slate-600 text-gray-300 hover:border-cyan-400 hover:text-cyan-400"
+                    }`}
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* App Icons */}
-          <div className="flex justify-center gap-4">
-            {apps.map((app) => (
-              <div key={app.name} className="relative group">
-                <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-0 group-hover:opacity-40 transition-opacity"></div>
-                <img 
-                  src={app.icon} 
-                  alt={app.name} 
-                  className="relative w-20 h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
-                />
-              </div>
-            ))}
-          </div>
+            {/* Submit Button - Blue Theme */}
+            <button
+              type="submit"
+              disabled={signupMutation.isPending}
+              className="w-full bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 text-white font-black text-xl uppercase tracking-wider py-5 rounded-full shadow-2xl hover:shadow-cyan-500/50 hover:scale-105 transition-all transform disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {signupMutation.isPending ? "PROCESSING..." : "CLAIM MY VIP SPOT"}
+            </button>
 
-          <h2 className="text-5xl md:text-6xl font-black text-center text-white">
-            ATHLYNX
-          </h2>
-          <p className="text-2xl text-center text-cyan-400 font-bold uppercase tracking-wider">
-            The Athlete's Playbook
+            {/* No credit card text */}
+            <p className="text-center text-gray-400 text-sm">
+              No credit card required. By signing up, you agree to receive updates about ATHLYNX.
+            </p>
+          </form>
+        </div>
+
+        {/* Social Proof */}
+        <div className="text-center space-y-3">
+          <p className="text-gray-400 text-sm">Join athletes from 500+ schools already on the waitlist</p>
+          <p className="text-cyan-400 font-bold">
+            SEC • ACC • Big Ten • Big 12 • Pac-12
           </p>
-
-          {/* App Cards */}
-          <div className="grid md:grid-cols-3 gap-4">
-            {apps.map((app) => (
-              <Link key={app.name} href={app.link}>
-                <a className="block bg-slate-800/60 backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-400 rounded-2xl p-6 hover:scale-105 transition-all cursor-pointer">
-                  <div className="flex items-center gap-4 mb-3">
-                    <img src={app.icon} alt={app.name} className="w-12 h-12 rounded-xl" />
-                    <h3 className="text-lg font-bold text-white">{app.name}</h3>
-                  </div>
-                  <p className="text-gray-400 text-sm">{app.description}</p>
-                </a>
-              </Link>
-            ))}
-          </div>
-
-          <p className="text-center text-gray-400 text-sm max-w-2xl mx-auto">
-            Three powerful apps. One revolutionary platform. Social, messaging, NIL deals, training, analytics - all unified.
-          </p>
-
-          {/* Action Buttons */}
-          <div className="flex justify-center gap-4 flex-wrap">
-            <Link href="/nil-portal">
-              <a className="bg-slate-800/60 border-2 border-cyan-500/50 text-cyan-400 px-6 py-3 rounded-xl font-bold hover:bg-cyan-500 hover:text-white transition">
-                Social Feed
-              </a>
-            </Link>
-            <Link href="/messenger">
-              <a className="bg-slate-800/60 border-2 border-cyan-500/50 text-cyan-400 px-6 py-3 rounded-xl font-bold hover:bg-cyan-500 hover:text-white transition">
-                Messenger
-              </a>
-            </Link>
-            <Link href="/diamond-grind">
-              <a className="bg-slate-800/60 border-2 border-cyan-500/50 text-cyan-400 px-6 py-3 rounded-xl font-bold hover:bg-cyan-500 hover:text-white transition">
-                Diamond Grind
-              </a>
-            </Link>
-          </div>
         </div>
 
-        {/* All Features Grid */}
-        <div className="space-y-6">
-          <h2 className="text-3xl md:text-4xl font-black text-center text-white">
-            ONE APP. EVERYTHING BUILT IN.
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {features.map((feature) => (
-              <div
-                key={feature.title}
-                className="bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-500/30 rounded-2xl p-6 text-center hover:scale-105 hover:border-cyan-400 transition-all cursor-pointer"
-              >
-                <h3 className="text-white font-bold text-lg mb-2">{feature.title}</h3>
-                <p className="text-gray-400 text-xs">{feature.desc}</p>
-              </div>
-            ))}
-          </div>
+        {/* Preview the App Link */}
+        <div className="text-center">
+          <button 
+            onClick={() => setLocation('/home')}
+            className="text-cyan-400 hover:text-cyan-300 font-bold underline underline-offset-4 transition-colors"
+          >
+            Preview the App →
+          </button>
         </div>
 
-        {/* Quick Links */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <Link href="/founder-story">
-            <a className="block bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-400 rounded-2xl p-6 hover:scale-105 transition-transform">
-              <img src="/images/dhg-crab-shield-new.jpeg" alt="DHG" className="w-12 h-12 rounded-lg mb-3" />
-              <h3 className="text-xl font-bold text-white mb-2">Founder's Story</h3>
-              <p className="text-gray-400 text-sm">Learn about Chad A. Dozier and the DHG mission</p>
-            </a>
-          </Link>
 
-          <Link href="/store">
-            <a className="block bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-400 rounded-2xl p-6 hover:scale-105 transition-transform">
-              <div className="w-12 h-12 rounded-lg bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center mb-3">
-                <span className="text-cyan-400 font-bold">S</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">Store</h3>
-              <p className="text-gray-400 text-sm">Gear, apparel, equipment for all sports</p>
-            </a>
-          </Link>
 
-          <Link href="/recruiting">
-            <a className="block bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-400 rounded-2xl p-6 hover:scale-105 transition-transform">
-              <div className="w-12 h-12 rounded-lg bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center mb-3">
-                <span className="text-cyan-400 font-bold">R</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">Recruiting</h3>
-              <p className="text-gray-400 text-sm">College connections and commitments</p>
-            </a>
-          </Link>
-
-          <Link href="/faith">
-            <a className="block bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-400 rounded-2xl p-6 hover:scale-105 transition-transform">
-              <div className="w-12 h-12 rounded-lg bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center mb-3">
-                <span className="text-cyan-400 font-bold text-xl">✟</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">Faith & Athletes</h3>
-              <p className="text-gray-400 text-sm">Daily devotionals, prayer wall & community</p>
-            </a>
-          </Link>
-
-          <Link href="/transfer-portal-intelligence">
-            <a className="block bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-400 rounded-2xl p-6 hover:scale-105 transition-transform">
-              <div className="w-12 h-12 rounded-lg bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center mb-3">
-                <span className="text-cyan-400 font-bold">TP</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">Transfer Portal</h3>
-              <p className="text-gray-400 text-sm">Intelligence platform for schools & athletes</p>
-            </a>
-          </Link>
-
-          <Link href="/military-division">
-            <a className="block bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-400 rounded-2xl p-6 hover:scale-105 transition-transform">
-              <div className="w-12 h-12 rounded-lg bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center mb-3">
-                <span className="text-cyan-400 font-bold">MIL</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">Military Division</h3>
-              <p className="text-gray-400 text-sm">Operation Warrior Pipeline</p>
-            </a>
-          </Link>
-        </div>
-
-        {/* Corporate & Investor Links */}
-        <div className="grid md:grid-cols-4 gap-4">
-          <Link href="/dhg">
-            <a className="block bg-slate-900/80 backdrop-blur-sm border-2 border-amber-500/30 hover:border-amber-400 rounded-2xl p-5 hover:scale-105 transition-transform text-center">
-              <img src="/images/dhg-logo.png" alt="DHG" className="w-10 h-10 rounded-lg mx-auto mb-2" />
-              <h3 className="text-white font-bold">DHG Corporate</h3>
-            </a>
-          </Link>
-          <Link href="/softmor">
-            <a className="block bg-slate-900/80 backdrop-blur-sm border-2 border-amber-500/30 hover:border-amber-400 rounded-2xl p-5 hover:scale-105 transition-transform text-center">
-              <img src="/images/hub-logo.png" alt="Softmor" className="w-10 h-10 rounded-lg mx-auto mb-2" />
-              <h3 className="text-white font-bold">Softmor Inc</h3>
-            </a>
-          </Link>
-          <Link href="/investor-hub">
-            <a className="block bg-slate-900/80 backdrop-blur-sm border-2 border-amber-500/30 hover:border-amber-400 rounded-2xl p-5 hover:scale-105 transition-transform text-center">
-              <div className="w-10 h-10 rounded-lg bg-amber-500/20 border border-amber-500/50 flex items-center justify-center mx-auto mb-2">
-                <span className="text-amber-400 font-bold">$</span>
-              </div>
-              <h3 className="text-white font-bold">Investor Hub</h3>
-            </a>
-          </Link>
-          <Link href="/hub">
-            <a className="block bg-slate-900/80 backdrop-blur-sm border-2 border-amber-500/30 hover:border-amber-400 rounded-2xl p-5 hover:scale-105 transition-transform text-center">
-              <div className="w-10 h-10 rounded-lg bg-amber-500/20 border border-amber-500/50 flex items-center justify-center mx-auto mb-2">
-                <span className="text-amber-400 font-bold">14</span>
-              </div>
-              <h3 className="text-white font-bold">Quick Links Hub</h3>
-            </a>
-          </Link>
-        </div>
-
-        {/* CTA Section */}
-        <div className="bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 rounded-3xl p-12 text-center space-y-6 shadow-2xl">
-          <h2 className="text-4xl md:text-5xl font-black text-white">
-            JOIN THE REVOLUTION
-          </h2>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            10,000 founding member spots. 6 months free VIP access. Launch February 1, 2026.
-          </p>
-          <Link href="/">
-            <a className="inline-block bg-white text-blue-600 px-8 py-4 rounded-xl font-black text-lg uppercase hover:scale-105 transition-transform shadow-xl">
-              Get VIP Access
-            </a>
-          </Link>
+        {/* Feature Checkmarks - Blue Theme */}
+        <div className="flex flex-wrap justify-center gap-3 text-sm">
+          {[
+            "Social Network",
+            "NIL Deals",
+            "Messaging",
+            "Analytics",
+            "Compliance"
+          ].map((feature) => (
+            <div key={feature} className="text-white font-bold bg-slate-800/60 backdrop-blur-sm px-4 py-2 rounded-full border border-cyan-500/40 shadow-lg flex items-center gap-2">
+              <span className="text-cyan-400"></span> {feature}
+            </div>
+          ))}
         </div>
 
       </div>
       
       {/* Unified Footer */}
       <UnifiedFooter />
+      
+      {/* Email Login Modal - triggered by OAuth failure or manual click */}
+      <EmailLoginModal open={showLoginModal} onOpenChange={setShowLoginModal} />
+      
+      {/* Auth Error Toast */}
+      {authError && (
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-red-500/90 text-white px-6 py-3 rounded-lg shadow-xl z-50 animate-bounce">
+          {authError}
+          <button onClick={() => setAuthError(null)} className="ml-4 font-bold">×</button>
+        </div>
+      )}
     </div>
   );
 }
