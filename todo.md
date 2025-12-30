@@ -1,5 +1,10 @@
 # Athlynx NIL Portal - Project TODO
 
+## Deployment Status - December 30, 2025
+- [x] Fixed TypeScript null checks for Stripe
+- [x] Rebuilt production bundle
+- [x] Ready for publish v2
+
 ## Core Requirements
 
 ### The Athlete Playbook (CRITICAL)
