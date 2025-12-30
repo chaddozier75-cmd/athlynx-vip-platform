@@ -4,6 +4,7 @@ import { trpc } from "../lib/trpc";
 import UnifiedFooter from "@/components/UnifiedFooter";
 import { useAuth } from "@/_core/hooks/useAuth";
 import LoginButton from "@/components/LoginButton";
+import EmailLoginModal from "@/components/EmailLoginModal";
 
 export default function EarlyAccess() {
   const [, setLocation] = useLocation();
@@ -12,12 +13,27 @@ export default function EarlyAccess() {
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState("");
   const [sport, setSport] = useState("");
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
+
+  // Check for OAuth error in URL and show login modal
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get('error');
+    const message = params.get('message');
+    if (error) {
+      setAuthError(message || 'Login failed. Please try email login.');
+      setShowLoginModal(true);
+      // Clean up URL
+      window.history.replaceState({}, '', '/');
+    }
+  }, []);
 
   const signupMutation = trpc.vip.signup.useMutation({
     onSuccess: (data) => {
@@ -420,6 +436,17 @@ export default function EarlyAccess() {
       
       {/* Unified Footer */}
       <UnifiedFooter />
+      
+      {/* Email Login Modal - triggered by OAuth failure or manual click */}
+      <EmailLoginModal open={showLoginModal} onOpenChange={setShowLoginModal} />
+      
+      {/* Auth Error Toast */}
+      {authError && (
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-red-500/90 text-white px-6 py-3 rounded-lg shadow-xl z-50 animate-bounce">
+          {authError}
+          <button onClick={() => setAuthError(null)} className="ml-4 font-bold">×</button>
+        </div>
+      )}
     </div>
   );
 }

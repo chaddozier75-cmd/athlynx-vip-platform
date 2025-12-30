@@ -27,7 +27,8 @@ export function registerOAuthRoutes(app: Express) {
 
       if (!code) {
         console.error("[OAuth] Missing authorization code in callback");
-        return res.status(400).json({ error: "Missing authorization code" });
+        // Redirect to home with error message instead of showing JSON
+        return res.redirect("/?error=missing_code&message=Please+try+logging+in+again");
       }
 
       // Exchange code for token using Manus OAuth
@@ -51,11 +52,8 @@ export function registerOAuthRoutes(app: Express) {
       if (!tokenResponse.ok) {
         const errorText = await tokenResponse.text();
         console.error("[OAuth] Token exchange failed:", tokenResponse.status, errorText);
-        return res.status(401).json({ 
-          error: "Authentication failed", 
-          details: `Token exchange failed: ${tokenResponse.status}`,
-          debug: errorText.substring(0, 200)
-        });
+        // Redirect to home with error - user can use email login instead
+        return res.redirect("/?error=auth_failed&message=OAuth+login+failed.+Please+use+email+login+instead.");
       }
 
       const tokenData = await tokenResponse.json();
@@ -66,7 +64,7 @@ export function registerOAuthRoutes(app: Express) {
 
       if (!user || !user.open_id) {
         console.error("[OAuth] Invalid user data from OAuth:", JSON.stringify(tokenData));
-        return res.status(401).json({ error: "Invalid user data from OAuth" });
+        return res.redirect("/?error=invalid_user&message=Invalid+user+data.+Please+use+email+login.");
       }
 
       console.log("[OAuth] User authenticated:", user.open_id, user.name);
@@ -93,15 +91,13 @@ export function registerOAuthRoutes(app: Express) {
       res.cookie(COOKIE_NAME, sessionToken, getSessionCookieOptions(req));
       console.log("[OAuth] Session cookie set");
 
-      // Always redirect to home page after successful login
-      console.log("[OAuth] Redirecting to homepage");
-      res.redirect("/");
+      // Always redirect to dashboard after successful login
+      console.log("[OAuth] Redirecting to dashboard");
+      res.redirect("/dashboard");
     } catch (error) {
       console.error("[OAuth] Callback error:", error);
-      res.status(500).json({ 
-        error: "Authentication failed", 
-        details: error instanceof Error ? error.message : "Unknown error"
-      });
+      // Redirect to home with error instead of showing JSON
+      res.redirect("/?error=server_error&message=Login+failed.+Please+try+email+login.");
     }
   });
 

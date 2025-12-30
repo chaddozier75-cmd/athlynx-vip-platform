@@ -23,7 +23,7 @@ import {
 import { Button } from "@/components/ui/button";
 import UnifiedFooter from "@/components/UnifiedFooter";
 import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
+import LoginButton from "@/components/LoginButton";
 
 export default function WarriorsPlaybook() {
   const { user, loading } = useAuth();
@@ -163,11 +163,7 @@ export default function WarriorsPlaybook() {
                 </Button>
               </Link>
             ) : (
-              <a href={getLoginUrl()}>
-                <Button size="sm" className="bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-400 hover:to-orange-500 animate-pulse">
-                  LOGIN
-                </Button>
-              </a>
+              <LoginButton className="bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-400 hover:to-orange-500 text-white font-bold px-4 py-2 rounded-lg shadow-lg animate-pulse" />
             )}
           </div>
         </div>
