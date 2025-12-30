@@ -1,0 +1,45 @@
+{
+  "query": "SELECT id, name, category, image, imageUrl FROM products WHERE category = 'fuelbots' OR name LIKE '%Fuel Bot%' LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute SELECT id, name, category, image, imageUrl FROM products WHERE category = 'fuelbots' OR name LIKE '%Fuel Bot%' LIMIT 20;",
+  "rows": [
+    {
+      "id": "21",
+      "name": "Fuel Bot - Sports Trainer",
+      "category": "ai-companions",
+      "image": "NULL",
+      "imageUrl": "/images/store/fuelbot-trainer.jpg"
+    },
+    {
+      "id": "22",
+      "name": "Fuel Bot - Medical Response",
+      "category": "ai-companions",
+      "image": "NULL",
+      "imageUrl": "/images/store/fuelbot-medical.jpg"
+    },
+    {
+      "id": "23",
+      "name": "Fuel Bot - Stadium Operations",
+      "category": "ai-companions",
+      "image": "NULL",
+      "imageUrl": "/images/store/fuelbot-stadium.jpg"
+    },
+    {
+      "id": "24",
+      "name": "Fuel Bot - Data Center",
+      "category": "ai-companions",
+      "image": "NULL",
+      "imageUrl": "/images/store/fuelbot-datacenter.jpg"
+    },
+    {
+      "id": "25",
+      "name": "Fuel Bot - Energy & Industrial",
+      "category": "ai-companions",
+      "image": "NULL",
+      "imageUrl": "/images/store/fuelbot-energy.jpg"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tcategory\timage\timageUrl\n21\tFuel Bot - Sports Trainer\tai-companions\tNULL\t/images/store/fuelbot-trainer.jpg\n22\tFuel Bot - Medical Response\tai-companions\tNULL\t/images/store/fuelbot-medical.jpg\n23\tFuel Bot - Stadium Operations\tai-companions\tNULL\t/images/store/fuelbot-stadium.jpg\n24\tFuel Bot - Data Center\tai-companions\tNULL\t/images/store/fuelbot-datacenter.jpg\n25\tFuel Bot - Energy & Industrial\tai-companions\tNULL\t/images/store/fuelbot-energy.jpg\n",
+  "stderr": "",
+  "execution_time_ms": 96
+}

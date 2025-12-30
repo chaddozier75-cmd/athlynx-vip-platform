@@ -176,7 +176,7 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/images/nil-portal-icon.jpeg" 
+                src="/nil-portal-icon.png" 
                 alt="NIL Portal" 
                 className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
@@ -187,7 +187,7 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-blue-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/images/messenger-icon.jpeg" 
+                src="/messenger-icon-1.png" 
                 alt="NIL Messenger" 
                 className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
@@ -198,7 +198,7 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/images/diamond-grind-icon.png" 
+                src="/diamond-grind-app-icon.png" 
                 alt="Diamond Grind" 
                 className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
@@ -220,7 +220,7 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/images/transfer-portal-icon.png" 
+                src="/transfer-portal-app-icon.png" 
                 alt="Transfer Portal" 
                 className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
@@ -231,7 +231,7 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/images/faith-icon.png" 
+                src="/faith-app-icon.png" 
                 alt="Faith" 
                 className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />

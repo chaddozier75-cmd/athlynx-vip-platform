@@ -85,6 +85,7 @@ function Router() {
       <Route path={"/nil-marketplace"} component={NILMarketplace} />
       <Route path={"/nil-portal"} component={NILPortal} />
       <Route path={"/messages"} component={Messages} />
+      <Route path={"/messenger"} component={Messages} />
       <Route path={"/founder-story"} component={FounderStory} />
       <Route path={"/faith"} component={Faith} />
       
