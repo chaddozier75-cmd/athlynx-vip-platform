@@ -1,64 +1,97 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Heart, MessageCircle, Share2, Send, Users, TrendingUp, Zap } from "lucide-react";
-import { formatDistanceToNow } from "date-fns";
+import { Heart, MessageCircle, Share2, Send, Users, TrendingUp, Zap, Menu, Home, ArrowLeft } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+
+// Demo posts for display
+const demoPosts = [
+  {
+    id: 1,
+    userName: "Marcus Johnson",
+    userRole: "QB | Alabama",
+    content: "Just signed my first NIL deal with Nike! Dreams do come true. Stay focused, stay humble. 🏈 #NIL #RollTide",
+    likes: 1247,
+    comments: 89,
+    timeAgo: "2 hours ago",
+    isLiked: false,
+  },
+  {
+    id: 2,
+    userName: "Sarah Williams",
+    userRole: "PG | UConn",
+    content: "Training session complete! Working on my handles every single day. The grind never stops. 💪🏀",
+    likes: 892,
+    comments: 45,
+    timeAgo: "4 hours ago",
+    isLiked: true,
+  },
+  {
+    id: 3,
+    userName: "Tyler Rodriguez",
+    userRole: "SS | Vanderbilt",
+    content: "Excited to announce my partnership with Gatorade! Thank you to everyone who believed in me. This is just the beginning. ⚾️",
+    likes: 2103,
+    comments: 156,
+    timeAgo: "6 hours ago",
+    isLiked: false,
+  },
+];
+
+const trendingDeals = [
+  { brand: "Nike", athlete: "Marcus Johnson", value: "$50K", sport: "Football" },
+  { brand: "Gatorade", athlete: "Tyler Rodriguez", value: "$35K", sport: "Baseball" },
+  { brand: "Beats", athlete: "Sarah Williams", value: "$25K", sport: "Basketball" },
+];
 
 export default function NILPortal() {
   const { user } = useAuth();
   const [newPostContent, setNewPostContent] = useState("");
   const [activeTab, setActiveTab] = useState<"feed" | "discover" | "deals">("feed");
-
-  // Queries
-  const { data: feed, isLoading: feedLoading, refetch: refetchFeed } = trpc.social.getFeed.useQuery(
-    { limit: 20, offset: 0 },
-    { enabled: !!user }
-  );
-  const { data: publicFeed, isLoading: publicLoading } = trpc.social.getPublicFeed.useQuery(
-    { limit: 20, offset: 0 },
-    { enabled: !user }
-  );
-  const { data: myStats } = trpc.social.getMyStats.useQuery(undefined, { enabled: !!user });
-  const { data: suggestedUsers } = trpc.social.getSuggestedUsers.useQuery(
-    { limit: 5 },
-    { enabled: !!user }
-  );
-
-  // Mutations
-  const createPost = trpc.social.createPost.useMutation({
-    onSuccess: () => {
-      setNewPostContent("");
-      refetchFeed();
-    },
-  });
-  const likePost = trpc.social.likePost.useMutation({ onSuccess: () => refetchFeed() });
-  const unlikePost = trpc.social.unlikePost.useMutation({ onSuccess: () => refetchFeed() });
-  const followUser = trpc.social.followUser.useMutation();
+  const [posts, setPosts] = useState(demoPosts);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleCreatePost = () => {
     if (!newPostContent.trim()) return;
-    createPost.mutate({
+    const newPost = {
+      id: Date.now(),
+      userName: user?.name || "You",
+      userRole: "Athlete",
       content: newPostContent,
-      postType: "status",
-      sourceApp: "nil_portal",
-    });
+      likes: 0,
+      comments: 0,
+      timeAgo: "Just now",
+      isLiked: false,
+    };
+    setPosts([newPost, ...posts]);
+    setNewPostContent("");
   };
 
-  const handleLikeToggle = (postId: number, isLiked: boolean) => {
-    if (isLiked) {
-      unlikePost.mutate({ postId });
-    } else {
-      likePost.mutate({ postId });
-    }
+  const handleLikeToggle = (postId: number) => {
+    setPosts(posts.map(post => {
+      if (post.id === postId) {
+        return {
+          ...post,
+          isLiked: !post.isLiked,
+          likes: post.isLiked ? post.likes - 1 : post.likes + 1
+        };
+      }
+      return post;
+    }));
   };
 
-  const displayFeed = user ? feed : publicFeed;
-  const isLoadingFeed = user ? feedLoading : publicLoading;
+  // Navigation items for hamburger menu
+  const navItems = [
+    { href: "/", label: "Home", icon: Home },
+    { href: "/nil-portal", label: "NIL Portal", icon: Users },
+    { href: "/messenger", label: "Messenger", icon: MessageCircle },
+    { href: "/diamond-grind", label: "Diamond Grind", icon: Zap },
+    { href: "/transfer-portal", label: "Transfer Portal", icon: TrendingUp },
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-cyan-900 text-white">
@@ -66,6 +99,9 @@ export default function NILPortal() {
       <header className="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-cyan-500/20">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
+            <Link href="/">
+              <ArrowLeft className="w-6 h-6 text-cyan-400 cursor-pointer hover:text-cyan-300" />
+            </Link>
             <img src="/nil-portal-n-white.jpeg" alt="NIL Portal" className="w-10 h-10 rounded-xl" />
             <div>
               <h1 className="text-xl font-bold text-white">NIL PORTAL</h1>
@@ -76,7 +112,7 @@ export default function NILPortal() {
             {user ? (
               <div className="flex items-center gap-3">
                 <Link href="/dashboard">
-                  <Button variant="outline" size="sm" className="border-cyan-500 text-cyan-400 hover:bg-cyan-500/20">
+                  <Button variant="outline" size="sm" className="border-cyan-500 text-cyan-400 hover:bg-cyan-500/20 hidden sm:flex">
                     Dashboard
                   </Button>
                 </Link>
@@ -93,6 +129,37 @@ export default function NILPortal() {
                 </Button>
               </Link>
             )}
+            
+            {/* Hamburger Menu */}
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-cyan-400">
+                  <Menu className="w-6 h-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="bg-gray-900 border-cyan-500/30 w-72">
+                <div className="flex flex-col gap-4 mt-8">
+                  <div className="flex items-center gap-3 mb-6">
+                    <img src="/dhg-crab-shield.png" alt="ATHLYNX" className="w-12 h-12" />
+                    <div>
+                      <h2 className="text-lg font-bold text-white">ATHLYNX</h2>
+                      <p className="text-xs text-cyan-400">The Athlete's Playbook</p>
+                    </div>
+                  </div>
+                  {navItems.map((item) => (
+                    <Link key={item.href} href={item.href}>
+                      <div 
+                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-cyan-500/20 cursor-pointer transition"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <item.icon className="w-5 h-5 text-cyan-400" />
+                        <span className="text-white font-medium">{item.label}</span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </header>
@@ -101,8 +168,8 @@ export default function NILPortal() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           
           {/* Left Sidebar - Stats */}
-          <div className="lg:col-span-3 space-y-4">
-            {user && myStats && (
+          <div className="lg:col-span-3 space-y-4 hidden lg:block">
+            {user && (
               <Card className="bg-gray-800/50 border-cyan-500/30">
                 <CardHeader className="pb-2">
                   <h3 className="text-lg font-bold text-white">Your Stats</h3>
@@ -110,19 +177,19 @@ export default function NILPortal() {
                 <CardContent className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-400">Posts</span>
-                    <span className="text-cyan-400 font-bold">{myStats.postsCount || 0}</span>
+                    <span className="text-cyan-400 font-bold">12</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-400">Followers</span>
-                    <span className="text-cyan-400 font-bold">{myStats.followersCount || 0}</span>
+                    <span className="text-cyan-400 font-bold">1,247</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-400">Following</span>
-                    <span className="text-cyan-400 font-bold">{myStats.followingCount || 0}</span>
+                    <span className="text-cyan-400 font-bold">89</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-400">Level</span>
-                    <span className="text-yellow-400 font-bold">Lv. {myStats.level || 1}</span>
+                    <span className="text-yellow-400 font-bold">Lv. 5</span>
                   </div>
                 </CardContent>
               </Card>
@@ -208,13 +275,10 @@ export default function NILPortal() {
                           <Button variant="ghost" size="sm" className="text-gray-400 hover:text-cyan-400">
                             🎥 Video
                           </Button>
-                          <Button variant="ghost" size="sm" className="text-gray-400 hover:text-cyan-400">
-                            🏆 Achievement
-                          </Button>
                         </div>
                         <Button
                           onClick={handleCreatePost}
-                          disabled={!newPostContent.trim() || createPost.isPending}
+                          disabled={!newPostContent.trim()}
                           className="bg-cyan-500 hover:bg-cyan-600"
                         >
                           <Send className="w-4 h-4 mr-2" />
@@ -228,61 +292,38 @@ export default function NILPortal() {
             )}
 
             {/* Feed Posts */}
-            {isLoadingFeed ? (
+            {activeTab === "feed" && (
               <div className="space-y-4">
-                {[1, 2, 3].map((i) => (
-                  <Card key={i} className="bg-gray-800/50 border-cyan-500/30 animate-pulse">
-                    <CardContent className="py-6">
-                      <div className="h-4 bg-gray-700 rounded w-3/4 mb-4"></div>
-                      <div className="h-4 bg-gray-700 rounded w-1/2"></div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            ) : displayFeed && displayFeed.length > 0 ? (
-              <div className="space-y-4">
-                {displayFeed.map((post: any) => (
+                {posts.map((post) => (
                   <Card key={post.id} className="bg-gray-800/50 border-cyan-500/30 hover:border-cyan-500/50 transition">
                     <CardContent className="pt-4">
                       <div className="flex gap-3">
                         <Avatar className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-500">
                           <AvatarFallback className="text-white">
-                            {post.userName?.charAt(0) || "A"}
+                            {post.userName.charAt(0)}
                           </AvatarFallback>
                         </Avatar>
                         <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="font-bold text-white">{post.userName || "Athlete"}</span>
-                            {post.postType !== "status" && (
-                              <span className="text-xs bg-cyan-500/20 text-cyan-400 px-2 py-0.5 rounded-full">
-                                {post.postType?.replace("_", " ")}
-                              </span>
-                            )}
-                            <span className="text-gray-500 text-sm">
-                              · {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
-                            </span>
+                          <div className="flex items-center gap-2">
+                            <span className="font-bold text-white">{post.userName}</span>
+                            <span className="text-cyan-400 text-sm">{post.userRole}</span>
                           </div>
-                          <p className="text-gray-200 whitespace-pre-wrap mb-3">{post.content}</p>
-                          
-                          {/* Post Actions */}
-                          <div className="flex items-center gap-6 pt-2 border-t border-gray-700/50">
-                            <button
-                              onClick={() => user && handleLikeToggle(post.id, post.isLiked)}
-                              className={`flex items-center gap-2 transition ${
-                                post.isLiked ? "text-red-500" : "text-gray-400 hover:text-red-500"
-                              }`}
-                              disabled={!user}
+                          <span className="text-gray-500 text-xs">{post.timeAgo}</span>
+                          <p className="mt-2 text-gray-200">{post.content}</p>
+                          <div className="flex items-center gap-6 mt-4">
+                            <button 
+                              onClick={() => handleLikeToggle(post.id)}
+                              className={`flex items-center gap-1 ${post.isLiked ? 'text-red-500' : 'text-gray-400'} hover:text-red-500 transition`}
                             >
-                              <Heart className={`w-5 h-5 ${post.isLiked ? "fill-current" : ""}`} />
-                              <span>{post.likesCount || 0}</span>
+                              <Heart className={`w-5 h-5 ${post.isLiked ? 'fill-current' : ''}`} />
+                              <span>{post.likes}</span>
                             </button>
-                            <button className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition">
+                            <button className="flex items-center gap-1 text-gray-400 hover:text-cyan-400 transition">
                               <MessageCircle className="w-5 h-5" />
-                              <span>{post.commentsCount || 0}</span>
+                              <span>{post.comments}</span>
                             </button>
-                            <button className="flex items-center gap-2 text-gray-400 hover:text-green-400 transition">
+                            <button className="flex items-center gap-1 text-gray-400 hover:text-cyan-400 transition">
                               <Share2 className="w-5 h-5" />
-                              <span>{post.sharesCount || 0}</span>
                             </button>
                           </div>
                         </div>
@@ -291,100 +332,75 @@ export default function NILPortal() {
                   </Card>
                 ))}
               </div>
-            ) : (
-              <Card className="bg-gray-800/50 border-cyan-500/30">
-                <CardContent className="py-12 text-center">
-                  <div className="text-6xl mb-4">🏆</div>
-                  <h3 className="text-xl font-bold text-white mb-2">
-                    {user ? "Your feed is empty" : "Join the Community"}
-                  </h3>
-                  <p className="text-gray-400 mb-4">
-                    {user
-                      ? "Follow other athletes or create your first post to get started!"
-                      : "Sign up to connect with athletes, share achievements, and discover NIL opportunities."}
-                  </p>
-                  {!user && (
-                    <Link href="/">
-                      <Button className="bg-cyan-500 hover:bg-cyan-600">
-                        Get Started
-                      </Button>
-                    </Link>
-                  )}
-                </CardContent>
-              </Card>
+            )}
+
+            {/* Deals Tab */}
+            {activeTab === "deals" && (
+              <div className="space-y-4">
+                <Card className="bg-gray-800/50 border-cyan-500/30">
+                  <CardHeader>
+                    <h3 className="text-lg font-bold text-white">🔥 Trending NIL Deals</h3>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {trendingDeals.map((deal, idx) => (
+                      <div key={idx} className="flex items-center justify-between p-3 bg-gray-700/30 rounded-lg">
+                        <div>
+                          <p className="font-bold text-white">{deal.athlete}</p>
+                          <p className="text-sm text-cyan-400">{deal.brand} • {deal.sport}</p>
+                        </div>
+                        <span className="text-green-400 font-bold">{deal.value}</span>
+                      </div>
+                    ))}
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+
+            {/* Discover Tab */}
+            {activeTab === "discover" && (
+              <div className="space-y-4">
+                <Card className="bg-gray-800/50 border-cyan-500/30">
+                  <CardHeader>
+                    <h3 className="text-lg font-bold text-white">🌟 Athletes to Follow</h3>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {["Marcus Johnson - QB | Alabama", "Sarah Williams - PG | UConn", "Tyler Rodriguez - SS | Vanderbilt"].map((athlete, idx) => (
+                      <div key={idx} className="flex items-center justify-between p-3 bg-gray-700/30 rounded-lg">
+                        <div className="flex items-center gap-3">
+                          <Avatar className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-500">
+                            <AvatarFallback className="text-white">{athlete.charAt(0)}</AvatarFallback>
+                          </Avatar>
+                          <span className="text-white">{athlete}</span>
+                        </div>
+                        <Button size="sm" className="bg-cyan-500 hover:bg-cyan-600">Follow</Button>
+                      </div>
+                    ))}
+                  </CardContent>
+                </Card>
+              </div>
             )}
           </div>
 
-          {/* Right Sidebar - Suggested Users & Trending */}
-          <div className="lg:col-span-3 space-y-4">
-            {/* Suggested Athletes */}
-            {user && suggestedUsers && suggestedUsers.length > 0 && (
-              <Card className="bg-gray-800/50 border-cyan-500/30">
-                <CardHeader className="pb-2">
-                  <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                    <Users className="w-5 h-5 text-cyan-400" />
-                    Athletes to Follow
-                  </h3>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {suggestedUsers.map((suggestedUser: any) => (
-                    <div key={suggestedUser.id} className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Avatar className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-500">
-                          <AvatarFallback className="text-white text-sm">
-                            {suggestedUser.name?.charAt(0) || "A"}
-                          </AvatarFallback>
-                        </Avatar>
-                        <span className="text-white text-sm">{suggestedUser.name || "Athlete"}</span>
-                      </div>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white text-xs"
-                        onClick={() => followUser.mutate({ userId: suggestedUser.id })}
-                      >
-                        Follow
-                      </Button>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Trending NIL Deals */}
+          {/* Right Sidebar */}
+          <div className="lg:col-span-3 space-y-4 hidden lg:block">
             <Card className="bg-gray-800/50 border-cyan-500/30">
-              <CardHeader className="pb-2">
-                <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-green-400" />
-                  Trending NIL Deals
-                </h3>
+              <CardHeader>
+                <h3 className="text-lg font-bold text-white">🔥 Trending</h3>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="p-3 bg-gray-700/30 rounded-lg">
-                  <p className="text-white font-medium">Nike Campus Ambassador</p>
-                  <p className="text-gray-400 text-sm">$5,000 - $15,000</p>
-                </div>
-                <div className="p-3 bg-gray-700/30 rounded-lg">
-                  <p className="text-white font-medium">Gatorade Social Post</p>
-                  <p className="text-gray-400 text-sm">$500 - $2,000</p>
-                </div>
-                <div className="p-3 bg-gray-700/30 rounded-lg">
-                  <p className="text-white font-medium">Local Car Dealership</p>
-                  <p className="text-gray-400 text-sm">$1,000 + Free Car Use</p>
-                </div>
+                <div className="text-cyan-400">#NILDeals</div>
+                <div className="text-cyan-400">#CollegeAthletes</div>
+                <div className="text-cyan-400">#TransferPortal</div>
+                <div className="text-cyan-400">#DiamondGrind</div>
               </CardContent>
             </Card>
 
-            {/* App Links */}
-            <Card className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border-cyan-500/30">
-              <CardContent className="py-4 text-center">
-                <p className="text-cyan-400 font-bold mb-2">Part of ATHLYNX</p>
-                <p className="text-gray-400 text-sm mb-3">The Athlete's Playbook</p>
-                <Link href="/">
-                  <Button variant="outline" size="sm" className="border-cyan-500 text-cyan-400">
-                    Explore Platform
-                  </Button>
-                </Link>
+            <Card className="bg-gray-800/50 border-cyan-500/30">
+              <CardContent className="py-4">
+                <p className="text-gray-400 text-sm text-center">
+                  © 2025 ATHLYNX<br/>
+                  A Dozier Holdings Group Company
+                </p>
               </CardContent>
             </Card>
           </div>

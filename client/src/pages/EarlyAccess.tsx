@@ -4,7 +4,7 @@ import { trpc } from "../lib/trpc";
 import UnifiedFooter from "@/components/UnifiedFooter";
 import { useAuth } from "@/_core/hooks/useAuth";
 import LoginButton from "@/components/LoginButton";
-import EmailLoginModal from "@/components/EmailLoginModal";
+import { getLoginUrl } from "@/const";
 
 export default function EarlyAccess() {
   const [, setLocation] = useLocation();
@@ -13,7 +13,7 @@ export default function EarlyAccess() {
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState("");
   const [sport, setSport] = useState("");
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  
   const [authError, setAuthError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -29,7 +29,8 @@ export default function EarlyAccess() {
     const message = params.get('message');
     if (error) {
       setAuthError(message || 'Login failed. Please try email login.');
-      setShowLoginModal(true);
+      // Redirect to login on auth error
+      window.location.href = getLoginUrl();
       // Clean up URL
       window.history.replaceState({}, '', '/');
     }
@@ -438,7 +439,7 @@ export default function EarlyAccess() {
       <UnifiedFooter />
       
       {/* Email Login Modal - triggered by OAuth failure or manual click */}
-      <EmailLoginModal open={showLoginModal} onOpenChange={setShowLoginModal} />
+
       
       {/* Auth Error Toast */}
       {authError && (

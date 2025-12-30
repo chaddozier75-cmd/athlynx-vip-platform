@@ -1,6 +1,5 @@
-import { useState } from "react";
-import EmailLoginModal from "./EmailLoginModal";
 import { Button } from "./ui/button";
+import { getLoginUrl } from "@/const";
 
 interface LoginButtonProps {
   className?: string;
@@ -15,13 +14,15 @@ export default function LoginButton({
   size,
   children = "LOGIN"
 }: LoginButtonProps) {
-  const [showLogin, setShowLogin] = useState(false);
+  const handleLogin = () => {
+    window.location.href = getLoginUrl();
+  };
   
   return (
     <>
       {variant ? (
         <Button 
-          onClick={() => setShowLogin(true)}
+          onClick={handleLogin}
           variant={variant}
           size={size}
           className={className}
@@ -30,25 +31,22 @@ export default function LoginButton({
         </Button>
       ) : (
         <button 
-          onClick={() => setShowLogin(true)}
+          onClick={handleLogin}
           className={className}
         >
           {children}
         </button>
       )}
-      <EmailLoginModal open={showLogin} onOpenChange={setShowLogin} />
     </>
   );
 }
 
-// Export a hook for programmatic login modal control
+// Export a hook for programmatic login control
 export function useLoginModal() {
-  const [showLogin, setShowLogin] = useState(false);
-  
   return {
-    showLogin,
-    openLogin: () => setShowLogin(true),
-    closeLogin: () => setShowLogin(false),
-    LoginModal: () => <EmailLoginModal open={showLogin} onOpenChange={setShowLogin} />
+    showLogin: false,
+    openLogin: () => { window.location.href = getLoginUrl(); },
+    closeLogin: () => {},
+    LoginModal: () => null
   };
 }
