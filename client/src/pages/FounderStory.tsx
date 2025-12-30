@@ -35,6 +35,11 @@ export default function FounderStory() {
             <h3 className="text-xl font-bold text-cyan-400">RH Watkins High School, Laurel, Mississippi</h3>
             <p className="text-gray-300">Quarterback (Football) | 3rd Base, 1st Base, Pitcher (Baseball)</p>
             <p className="text-gray-300">Elite multi-sport athlete recruited by colleges across the nation</p>
+            {/* Photo Gallery Placeholder */}
+            <div className="mt-4 p-4 border-2 border-dashed border-cyan-500/30 rounded-xl bg-slate-900/50">
+              <p className="text-cyan-400/60 text-sm text-center">📸 Photo Gallery Coming Soon</p>
+              <p className="text-gray-500 text-xs text-center mt-1">RH Watkins High School athletic photos</p>
+            </div>
           </div>
 
           <div className="bg-slate-800/50 rounded-lg p-6 space-y-4">
@@ -48,6 +53,11 @@ export default function FounderStory() {
             <p className="text-yellow-400 font-bold">1994</p>
             <h3 className="text-xl font-bold text-cyan-400">Jones County Junior College</h3>
             <p className="text-gray-300">Freshman year - Continued athletic excellence</p>
+            {/* Photo Gallery Placeholder */}
+            <div className="mt-4 p-4 border-2 border-dashed border-cyan-500/30 rounded-xl bg-slate-900/50">
+              <p className="text-cyan-400/60 text-sm text-center">📸 Photo Gallery Coming Soon</p>
+              <p className="text-gray-500 text-xs text-center mt-1">Jones County JC athletic photos</p>
+            </div>
           </div>
 
           <div className="bg-slate-800/50 rounded-lg p-6 space-y-4">
@@ -58,6 +68,11 @@ export default function FounderStory() {
             <p className="text-gray-300">Cut from the team after the injury</p>
             <p className="text-red-400 italic">The dream shattered. The pain real. But never forgotten.</p>
             <p className="text-cyan-400 italic">"Playing sports since I was 3 years old. The game never left me."</p>
+            {/* Photo Gallery Placeholder */}
+            <div className="mt-4 p-4 border-2 border-dashed border-cyan-500/30 rounded-xl bg-slate-900/50">
+              <p className="text-cyan-400/60 text-sm text-center">📸 Photo Gallery Coming Soon</p>
+              <p className="text-gray-500 text-xs text-center mt-1">Mississippi State University athletic photos</p>
+            </div>
           </div>
 
           {/* The Testimony - Personal Struggle & Redemption */}
@@ -143,6 +158,11 @@ export default function FounderStory() {
           <div className="bg-slate-800/50 rounded-lg p-6 space-y-4">
             <p className="text-gray-300">During his mother's cancer treatments and stem cell transplant, Chad and his family stayed at the <strong>Hope Lodge</strong> in Houston—a place where families find shelter, support, and community during the hardest battles of their lives.</p>
             <p className="text-cyan-400 font-bold">The Meeting: At Hope Lodge, Chad met Glenn Tse—a fellow cancer patient fighting a similar battle to his mother's. Glenn was doing great, showing that survival was possible. Hope was real.</p>
+            {/* Photo Gallery Placeholder */}
+            <div className="mt-4 p-4 border-2 border-dashed border-red-500/30 rounded-xl bg-slate-900/50">
+              <p className="text-red-400/60 text-sm text-center">📸 Photo Gallery Coming Soon</p>
+              <p className="text-gray-500 text-xs text-center mt-1">Hope Lodge & DHG founding photos</p>
+            </div>
             <p className="text-gray-300">As Chad's mother underwent treatment and began to recover, he and Glenn formed a bond. Two men, connected by circumstance, united by vision.</p>
           </div>
         </div>

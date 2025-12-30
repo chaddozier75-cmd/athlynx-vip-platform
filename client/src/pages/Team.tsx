@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Mail, Phone, Linkedin, Globe, MapPin, Building2, Download } from "lucide-react";
+import { Mail, Phone, Linkedin, Globe, MapPin, Building2, Download, Camera } from "lucide-react";
 
 const leadership = [
   {
@@ -16,6 +16,7 @@ const leadership = [
     initials: "CD",
     gradient: "from-cyan-500 to-blue-600",
     role: "founder",
+    photo: "", // Add photo URL here when available
   },
   {
     name: "Glenn Tse",
@@ -32,6 +33,7 @@ const leadership = [
     initials: "GT",
     gradient: "from-amber-500 to-orange-600",
     role: "executive",
+    photo: "", // Add photo URL here when available
   },
 ];
 
@@ -82,6 +84,58 @@ const boardStructure = [
   { seat: "Seat 5", holder: "TBD", role: "Independent Director (Finance/Governance)" },
 ];
 
+// Generate vCard content
+function generateVCard(person: typeof leadership[0]): string {
+  const isGlenn = person.name === "Glenn Tse";
+  
+  let vcard = `BEGIN:VCARD
+VERSION:3.0
+N:${person.name.split(' ').reverse().join(';')}
+FN:${person.name}
+ORG:${person.company}
+TITLE:${person.title}
+EMAIL;TYPE=WORK:${person.email}
+`;
+
+  if (isGlenn) {
+    vcard += `TEL;TYPE=WORK,VOICE:${person.phoneUSA}
+TEL;TYPE=CELL:${person.phoneHK}
+TEL;TYPE=HOME:${person.phoneChina}
+`;
+  } else {
+    vcard += `TEL;TYPE=WORK,VOICE:${person.phone}
+`;
+  }
+
+  vcard += `ADR;TYPE=WORK:;;${person.location};;;;
+URL:https://${person.linkedin}
+`;
+
+  if (person.website) {
+    vcard += `URL:https://${person.website}
+`;
+  }
+
+  vcard += `NOTE:${person.responsibilities}
+END:VCARD`;
+
+  return vcard;
+}
+
+// Download vCard file
+function downloadVCard(person: typeof leadership[0]) {
+  const vcard = generateVCard(person);
+  const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `${person.name.replace(/\s+/g, '_')}.vcf`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
 // E-Card Component for Leadership
 function ECard({ person }: { person: typeof leadership[0] }) {
   const isGlenn = person.name === "Glenn Tse";
@@ -94,9 +148,19 @@ function ECard({ person }: { person: typeof leadership[0] }) {
         <div className={`bg-gradient-to-r ${person.gradient} p-6 relative overflow-hidden`}>
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="relative flex items-center gap-4">
-            {/* Avatar */}
-            <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border-2 border-white/30 shadow-xl">
-              <span className="text-4xl font-black text-white">{person.initials}</span>
+            {/* Avatar - Photo or Initials */}
+            <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border-2 border-white/30 shadow-xl overflow-hidden relative group/avatar">
+              {person.photo ? (
+                <img src={person.photo} alt={person.name} className="w-full h-full object-cover" />
+              ) : (
+                <>
+                  <span className="text-4xl font-black text-white">{person.initials}</span>
+                  {/* Photo upload hint */}
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover/avatar:opacity-100 transition-opacity flex items-center justify-center">
+                    <Camera className="w-8 h-8 text-white/80" />
+                  </div>
+                </>
+              )}
             </div>
             {/* Name & Title */}
             <div>
@@ -207,7 +271,10 @@ function ECard({ person }: { person: typeof leadership[0] }) {
                 <p className="text-cyan-400 text-sm font-semibold">Dozier Holdings Group</p>
               </div>
             </div>
-            <button className="flex items-center gap-2 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-xl text-sm font-semibold transition-colors">
+            <button 
+              onClick={() => downloadVCard(person)}
+              className="flex items-center gap-2 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-xl text-sm font-semibold transition-colors"
+            >
               <Download className="w-4 h-4" />
               Save Contact
             </button>

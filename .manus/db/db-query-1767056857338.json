@@ -1,0 +1,24 @@
+{
+  "query": "SELECT id, name, company, access_code, access_level FROM partners",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute SELECT id, name, company, access_code, access_level FROM partners",
+  "rows": [
+    {
+      "id": "1",
+      "name": "General Fu (傅晓)",
+      "company": "Yovole Networks (有孚网络)",
+      "access_code": "Yovole-DHG-2025",
+      "access_level": "executive"
+    },
+    {
+      "id": "2",
+      "name": "ICC Sales Team",
+      "company": "International Computer Concepts Inc.",
+      "access_code": "ICC-DHG-2025",
+      "access_level": "premium"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tcompany\taccess_code\taccess_level\n1\tGeneral Fu (傅晓)\tYovole Networks (有孚网络)\tYovole-DHG-2025\texecutive\n2\tICC Sales Team\tInternational Computer Concepts Inc.\tICC-DHG-2025\tpremium\n",
+  "stderr": "",
+  "execution_time_ms": 47
+}

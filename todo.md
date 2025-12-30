@@ -1893,3 +1893,36 @@
 - [x] Add redemption message - doing this to help children avoid same mistakes
 - [x] Add testimony about living childhood dream through ATHLYNX
 - [x] Place content right after where career was cut short (MSU section)
+
+
+---
+
+## BATCH ENHANCEMENTS - December 29, 2025
+
+### 1. Admin Role Setup
+- [x] Check if Chad has logged in to the platform (not yet - users table is empty)
+- [ ] Set Chad's user role to "admin" in database (pending login)
+- [ ] Verify Admin Dashboard access works (pending login)
+
+### 2. ICC Partner Portal Access
+- [x] Add ICC as a partner in the database (already existed)
+- [x] Updated ICC to executive level with NVIDIA Elite Partner designation
+- [x] Access code: ICC-DHG-2025
+- [ ] Add ICC partnership documents if available
+
+### 3. vCard Download Functionality
+- [x] Implement vCard (.vcf) file generation
+- [x] Make "Save Contact" buttons functional on Team page
+- [x] Include all contact info (name, title, email, phone, LinkedIn)
+
+### 4. Headshot Photos for E-Cards
+- [x] Add photo field to leadership data structure
+- [x] Add photo upload/placeholder for Chad A. Dozier (shows camera icon on hover)
+- [x] Add photo upload/placeholder for Glenn Tse (shows camera icon on hover)
+- [x] Update E-Card component to display photos when available, initials as fallback
+
+### 5. Founder's Story Photos
+- [x] Add placeholder for RH Watkins High School photos
+- [x] Add placeholder for Jones County JC photos
+- [x] Add placeholder for Mississippi State photos
+- [x] Add placeholder for Hope Lodge / DHG founding photos

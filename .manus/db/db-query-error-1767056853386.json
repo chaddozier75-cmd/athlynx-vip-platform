@@ -1,0 +1,8 @@
+{
+  "query": "INSERT INTO partners (name, company, email, access_code, access_level, is_active) \nVALUES ('ICC Partnership Team', 'ICC - Ingram Content Group (NVIDIA Elite Partner)', 'partnerships@icc.com', 'ICC-DHG-2025', 'executive', 'yes')",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute INSERT INTO partners (name, company, email, access_code, access_level, is_active) \nVALUES ('ICC Partnership Team', 'ICC - Ingram Content Group (NVIDIA Elite Partner)', 'partnerships@icc.com', 'ICC-DHG-2025', 'executive', 'yes')",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1062 (23000) at line 1: Duplicate entry '?' for key 'partners.access_code'"
+  ]
+}
