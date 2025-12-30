@@ -1,9 +1,0 @@
-{
-  "query": "ALTER TABLE partners \nADD COLUMN tierId int,\nADD COLUMN equityPercentage varchar(20),\nADD COLUMN revenueSharePercentage varchar(20),\nADD COLUMN customWelcomeMessage text,\nADD COLUMN lifetimeAccess enum('yes','no') DEFAULT 'no',\nADD COLUMN whiteLabelRights enum('yes','no') DEFAULT 'no',\nADD COLUMN boardAdvisoryRights enum('yes','no') DEFAULT 'no',\nADD COLUMN grantedBy varchar(255) DEFAULT 'Chad A. Dozier',\nADD COLUMN notes text;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute ALTER TABLE partners \nADD COLUMN tierId int,\nADD COLUMN equityPercentage varchar(20),\nADD COLUMN revenueSharePercentage varchar(20),\nADD COLUMN customWelcomeMessage text,\nADD COLUMN lifetimeAccess enum('yes','no') DEFAULT 'no',\nADD COLUMN whiteLabelRights enum('yes','no') DEFAULT 'no',\nADD COLUMN boardAdvisoryRights enum('yes','no') DEFAULT 'no',\nADD COLUMN grantedBy varchar(255) DEFAULT 'Chad A. Dozier',\nADD COLUMN notes text;",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 4179
-}

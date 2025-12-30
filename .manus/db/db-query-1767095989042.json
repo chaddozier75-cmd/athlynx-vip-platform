@@ -1,9 +1,0 @@
-{
-  "query": "CREATE TABLE IF NOT EXISTS `partner_rewards` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`partnerId` int NOT NULL,\n\t`rewardType` varchar(100) NOT NULL,\n\t`rewardValue` text NOT NULL,\n\t`description` text,\n\t`grantedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n\t`grantedBy` varchar(255) DEFAULT 'Chad A. Dozier',\n\t`transactionId` int,\n\t`createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n\tCONSTRAINT `partner_rewards_id` PRIMARY KEY(`id`)\n);",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute CREATE TABLE IF NOT EXISTS `partner_rewards` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`partnerId` int NOT NULL,\n\t`rewardType` varchar(100) NOT NULL,\n\t`rewardValue` text NOT NULL,\n\t`description` text,\n\t`grantedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n\t`grantedBy` varchar(255) DEFAULT 'Chad A. Dozier',\n\t`transactionId` int,\n\t`createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n\tCONSTRAINT `partner_rewards_id` PRIMARY KEY(`id`)\n);",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 194
-}

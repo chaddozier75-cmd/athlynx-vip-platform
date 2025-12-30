@@ -43,13 +43,6 @@
       "when": 1767094478318,
       "tag": "0005_cold_cassandra_nova",
       "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "5",
-      "when": 1767095921544,
-      "tag": "0006_vengeful_carlie_cooper",
-      "breakpoints": true
     }
   ]
 }
