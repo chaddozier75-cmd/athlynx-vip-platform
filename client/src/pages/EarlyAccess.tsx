@@ -176,7 +176,7 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/nil-portal-icon.png" 
+                src="/nil-portal-icon-final.jpeg" 
                 alt="NIL Portal" 
                 className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
@@ -187,7 +187,7 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-blue-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/messenger-icon-1.png" 
+                src="/messenger-icon-final.jpeg" 
                 alt="NIL Messenger" 
                 className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
