@@ -42,7 +42,7 @@ package = "@algolia/netlify-plugin-crawler"
 [plugins.inputs]
 
 [build]
-publish = "/home/ubuntu/ai-bot-ecosystem/dist/client"
+publish = "/home/ubuntu/ai-bot-ecosystem/dist/public"
 publishOrigin = "config"
 commandOrigin = "config"
 command = "pnpm run build"
