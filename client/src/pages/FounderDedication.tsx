@@ -293,6 +293,7 @@ export default function FounderDedication() {
               Chad Allen Dozier Sr.
             </p>
             <p className="text-cyan-400">Founder & CEO, Dozier Holdings Group</p>
+            <p className="text-white/60 text-sm mt-2">@Cdozier14</p>
             <p className="text-white/40 text-sm mt-4">User #1 • {timestamp}</p>
             
             <div className="mt-8 pt-8 border-t border-white/10">
