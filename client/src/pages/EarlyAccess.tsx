@@ -25,6 +25,11 @@ export default function EarlyAccess() {
     },
   });
 
+  // Set page title for SEO
+  useEffect(() => {
+    document.title = "ATHLYNX VIP Early Access - Join 10,000 Founding Members | 6 Months Free";
+  }, []);
+
   // Countdown timer to February 1, 2026
   useEffect(() => {
     const targetDate = new Date("2026-02-01T00:00:00").getTime();
@@ -153,10 +158,10 @@ export default function EarlyAccess() {
           <h1 className="text-7xl md:text-8xl font-black tracking-tight text-white drop-shadow-2xl">
             ATHLYNX
           </h1>
-          <p className="text-cyan-400 text-2xl md:text-3xl font-black uppercase tracking-[0.2em] drop-shadow-lg">
+          <h2 className="text-cyan-400 text-2xl md:text-3xl font-black uppercase tracking-[0.2em] drop-shadow-lg">
             THE ATHLETE'S PLAYBOOK
-          </p>
-
+          </h2>
+          <p className="sr-only">Complete athlete ecosystem for NIL deals, training, recruiting, and professional connections. Join 10,000 founding members.</p>
         </div>
 
         {/* VIP Early Access Badge - Blue Theme */}

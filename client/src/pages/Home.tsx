@@ -77,8 +77,9 @@ export default function Home() {
           </div>
 
           <h1 className="text-4xl md:text-5xl font-black leading-tight">
-            <span className="text-white">THE #1 SPORTS PLATFORM</span>
+            <span className="text-white">THE #1 SPORTS PLATFORM FOR ATHLETES</span>
           </h1>
+          <h2 className="sr-only">ATHLYNX - Complete Athlete Ecosystem for NIL Deals, Training, and Recruiting</h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
             Like Facebook, Instagram, TikTok, X & LinkedIn combined for athletes
           </p>
