@@ -60,6 +60,7 @@ import AppStoreSubmission from "./pages/AppStoreSubmission";
 // DHG Empire Pages
 import BitcoinMining from "./pages/BitcoinMining";
 import WellnessPortal from "./pages/WellnessPortal";
+import FounderDedication from "./pages/FounderDedication";
 // Components
 import UnifiedNav from "./components/UnifiedNav";
 import { BrandingHeader } from "./components/BrandingHeader";
@@ -257,6 +258,11 @@ function Router() {
       <Route path={"/wellness-portal"} component={WellnessPortal} />
       <Route path={"/wellness"} component={WellnessPortal} />
       <Route path={"/mental-health"} component={WellnessPortal} />
+      
+      {/* Founder's Dedication - Historic Page */}
+      <Route path={"/founder-dedication"} component={FounderDedication} />
+      <Route path={"/dedication"} component={FounderDedication} />
+      <Route path={"/user-1"} component={FounderDedication} />
       
       {/* Admin Dashboard */}
       <Route path={"/admin"} component={AdminDashboard} />

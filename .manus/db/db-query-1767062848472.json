@@ -1,0 +1,50 @@
+{
+  "query": "SELECT TABLE_NAME, COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME LIKE '%user%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute SELECT TABLE_NAME, COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME LIKE '%user%';",
+  "rows": [
+    {
+      "TABLE_NAME": "users",
+      "COLUMN_NAME": "id"
+    },
+    {
+      "TABLE_NAME": "users",
+      "COLUMN_NAME": "openId"
+    },
+    {
+      "TABLE_NAME": "users",
+      "COLUMN_NAME": "name"
+    },
+    {
+      "TABLE_NAME": "users",
+      "COLUMN_NAME": "email"
+    },
+    {
+      "TABLE_NAME": "users",
+      "COLUMN_NAME": "loginMethod"
+    },
+    {
+      "TABLE_NAME": "users",
+      "COLUMN_NAME": "role"
+    },
+    {
+      "TABLE_NAME": "users",
+      "COLUMN_NAME": "aiCredits"
+    },
+    {
+      "TABLE_NAME": "users",
+      "COLUMN_NAME": "createdAt"
+    },
+    {
+      "TABLE_NAME": "users",
+      "COLUMN_NAME": "updatedAt"
+    },
+    {
+      "TABLE_NAME": "users",
+      "COLUMN_NAME": "lastSignedIn"
+    }
+  ],
+  "messages": [],
+  "stdout": "TABLE_NAME\tCOLUMN_NAME\nusers\tid\nusers\topenId\nusers\tname\nusers\temail\nusers\tloginMethod\nusers\trole\nusers\taiCredits\nusers\tcreatedAt\nusers\tupdatedAt\nusers\tlastSignedIn\n",
+  "stderr": "",
+  "execution_time_ms": 52
+}

@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO users (id, openId, name, email, role, createdAt, updatedAt, lastSignedIn) \nVALUES (1, 'founder-chad-dozier-001', 'Chad Allen Dozier Sr.', 'cdozier@dozierholdingsgroup.com', 'admin', NOW(), NOW(), NOW())\nON DUPLICATE KEY UPDATE name = 'Chad Allen Dozier Sr.', role = 'admin', updatedAt = NOW();",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute INSERT INTO users (id, openId, name, email, role, createdAt, updatedAt, lastSignedIn) \nVALUES (1, 'founder-chad-dozier-001', 'Chad Allen Dozier Sr.', 'cdozier@dozierholdingsgroup.com', 'admin', NOW(), NOW(), NOW())\nON DUPLICATE KEY UPDATE name = 'Chad Allen Dozier Sr.', role = 'admin', updatedAt = NOW();",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 72
+}
