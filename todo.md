@@ -1853,3 +1853,22 @@
 - [x] Create database entries linking documents to Yovole partner (5 documents)
 - [x] Partner Portal already displays documents
 - [ ] Test document access with Yovole password (Yovole-DHG-2025)
+
+
+---
+
+## ADMIN DASHBOARD - December 29, 2025
+
+### Admin Dashboard Page (/admin)
+- [x] Create AdminDashboard.tsx page component
+- [x] Dashboard overview with key metrics (orders, inquiries, revenue, products, partners, users)
+- [x] Sales Inquiries tab - view all contact sales requests with status management
+- [x] Orders tab - view all orders with status updates
+- [x] Products tab - manage products (view inventory)
+- [x] Partners tab - manage partners and access codes
+- [x] Users tab - manage user roles
+- [x] Access Logs tab - view partner portal access history
+- [x] Add admin tRPC routes for all data (admin.ts)
+- [x] Restrict access to admin role only
+- [x] Add to navigation (MANAGEMENT section)
+- [x] Add routes (/admin, /admin-dashboard)

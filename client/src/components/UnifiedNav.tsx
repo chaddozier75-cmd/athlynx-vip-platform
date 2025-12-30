@@ -54,6 +54,7 @@ const navItems = [
   {
     category: "MANAGEMENT",
     items: [
+      { name: "Admin Dashboard", href: "/admin", icon: "⚙️" },
       { name: "Project Management", href: "/project-management", icon: "📋" },
       { name: "Media", href: "/media", icon: "🎬" },
       { name: "Pricing", href: "/pricing", icon: "💰" },
