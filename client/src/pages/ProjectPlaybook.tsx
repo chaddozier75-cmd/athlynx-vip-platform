@@ -229,7 +229,7 @@ export default function ProjectPlaybook() {
           <div className="text-center">
             {/* Team Logo */}
             <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-yellow-500 to-orange-600 mb-4 shadow-lg shadow-yellow-500/30">
-              <span className="text-5xl">⚾</span>
+              <span className="text-5xl"></span>
             </div>
             
             <h1 className="text-4xl md:text-6xl font-black text-white mb-2 tracking-tight">

@@ -200,15 +200,15 @@ export default function Careers() {
           <h2 className="text-2xl font-black text-white mb-4 text-center">Why Join Dozier Holdings Group?</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <h3 className="text-cyan-400 font-bold mb-2">🚀 Startup Energy</h3>
+              <h3 className="text-cyan-400 font-bold mb-2">Startup Energy</h3>
               <p className="text-white/60 text-sm">We're a lean team moving fast. Your ideas matter and your work ships quickly.</p>
             </div>
             <div>
-              <h3 className="text-cyan-400 font-bold mb-2">💰 Equity Ownership</h3>
+              <h3 className="text-cyan-400 font-bold mb-2">Equity Ownership</h3>
               <p className="text-white/60 text-sm">Most positions include equity. When we win, you win.</p>
             </div>
             <div>
-              <h3 className="text-cyan-400 font-bold mb-2">🏆 Athletes Welcome</h3>
+              <h3 className="text-cyan-400 font-bold mb-2">Athletes Welcome</h3>
               <p className="text-white/60 text-sm">Former athletes understand our mission. Your experience is valued here.</p>
             </div>
             <div>

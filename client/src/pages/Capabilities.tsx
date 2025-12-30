@@ -64,10 +64,10 @@ export default function Capabilities() {
 
   const bots = [
     { id: "executive", name: "Executive", icon: "👔", color: "bg-blue-500" },
-    { id: "presentation", name: "Presentation", icon: "🎯", color: "bg-purple-500" },
+    { id: "presentation", name: "Presentation", icon: "", color: "bg-purple-500" },
     { id: "operations", name: "Operations", icon: "⚙️", color: "bg-green-500" },
-    { id: "marketing", name: "Marketing", icon: "📊", color: "bg-orange-500" },
-    { id: "sales", name: "Sales", icon: "💼", color: "bg-red-500" },
+    { id: "marketing", name: "Marketing", icon: "", color: "bg-orange-500" },
+    { id: "sales", name: "Sales", icon: "", color: "bg-red-500" },
   ];
 
   const keyFeatures = [

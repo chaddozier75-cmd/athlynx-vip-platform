@@ -344,14 +344,14 @@ export default function Mindset() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {[
-              { name: "Athletes", emoji: "🏆" },
+              { name: "Athletes", emoji: "" },
               { name: "Parents", emoji: "👨‍👩‍👧‍👦" },
               { name: "Coaches", emoji: "📋" },
-              { name: "Agents", emoji: "🤝" },
+              { name: "Agents", emoji: "" },
               { name: "Lawyers", emoji: "⚖️" },
-              { name: "Trainers", emoji: "💪" },
+              { name: "Trainers", emoji: "" },
               { name: "Counselors", emoji: "🧠" },
-              { name: "Chaplains", emoji: "🙏" }
+              { name: "Chaplains", emoji: "" }
             ].map((stakeholder, index) => (
               <motion.div
                 key={index}

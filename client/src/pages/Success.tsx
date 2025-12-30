@@ -60,7 +60,7 @@ export default function Success() {
         {/* Check Your Email Card */}
         <div className="bg-gradient-to-br from-yellow-900/60 to-orange-900/60 backdrop-blur-md border-2 border-yellow-500 rounded-3xl p-8 space-y-4 shadow-2xl">
           <div className="text-center">
-            <div className="text-5xl mb-4">📧</div>
+            <div className="text-5xl mb-4"></div>
             <h3 className="text-yellow-400 font-black text-2xl uppercase tracking-wider mb-4">
               CHECK YOUR EMAIL
             </h3>
@@ -74,7 +74,7 @@ export default function Success() {
         <div className="bg-black/80 backdrop-blur-xl border-2 border-cyan-400 rounded-3xl p-8 space-y-6 shadow-2xl">
           <div className="text-center">
             <h3 className="text-cyan-400 font-black text-2xl uppercase tracking-wider mb-6 flex items-center justify-center gap-3">
-              <span>🚀</span>
+              <span></span>
               <span>WHAT HAPPENS NEXT</span>
             </h3>
           </div>
@@ -116,7 +116,7 @@ export default function Success() {
         {accessCode && (
           <div className="bg-gradient-to-br from-gray-900/95 to-black/95 backdrop-blur-xl border-2 border-yellow-500 rounded-3xl p-8 space-y-4 shadow-2xl">
             <div className="text-center">
-              <div className="text-4xl mb-3">🔐</div>
+              <div className="text-4xl mb-3"></div>
               <h3 className="text-yellow-400 font-black text-xl uppercase tracking-wider mb-3">
                 YOUR ACCESS CODE
               </h3>
@@ -140,10 +140,10 @@ export default function Success() {
           </p>
           <div className="flex justify-center gap-4">
             <div className="text-white font-bold bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full border border-cyan-400/50 shadow-lg text-sm">
-              ✅ VIP Status Confirmed
+              VIP Status Confirmed
             </div>
             <div className="text-white font-bold bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full border border-yellow-500/50 shadow-lg text-sm">
-              🏆 Founding Member
+              Founding Member
             </div>
           </div>
         </div>

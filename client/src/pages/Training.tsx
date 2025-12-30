@@ -5,20 +5,20 @@ export default function Training() {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const categories = [
-    { id: "all", name: "All Training", icon: "💪" },
+    { id: "all", name: "All Training", icon: "" },
     { id: "strength", name: "Strength", icon: "🏋️" },
-    { id: "speed", name: "Speed & Agility", icon: "⚡" },
-    { id: "sport-specific", name: "Sport-Specific", icon: "🎯" },
+    { id: "speed", name: "Speed & Agility", icon: "" },
+    { id: "sport-specific", name: "Sport-Specific", icon: "" },
     { id: "recovery", name: "Recovery", icon: "🧘" },
     { id: "nutrition", name: "Nutrition", icon: "🥗" },
   ];
 
   const workoutPlans = [
     { id: 1, name: "Elite Athlete Strength", duration: "12 weeks", level: "Advanced", sport: "All Sports", rating: 4.9, users: 12500, image: "🏋️", price: "Pro" },
-    { id: 2, name: "Speed & Explosion", duration: "8 weeks", level: "Intermediate", sport: "Football, Basketball", rating: 4.8, users: 8900, image: "⚡", price: "Pro" },
-    { id: 3, name: "Baseball Power Hitting", duration: "6 weeks", level: "All Levels", sport: "Baseball", rating: 4.9, users: 5600, image: "⚾", price: "Elite" },
-    { id: 4, name: "Quarterback Mechanics", duration: "10 weeks", level: "Advanced", sport: "Football", rating: 4.7, users: 3200, image: "🏈", price: "Elite" },
-    { id: 5, name: "Basketball Vertical Jump", duration: "8 weeks", level: "Intermediate", sport: "Basketball", rating: 4.8, users: 7800, image: "🏀", price: "Pro" },
+    { id: 2, name: "Speed & Explosion", duration: "8 weeks", level: "Intermediate", sport: "Football, Basketball", rating: 4.8, users: 8900, image: "", price: "Pro" },
+    { id: 3, name: "Baseball Power Hitting", duration: "6 weeks", level: "All Levels", sport: "Baseball", rating: 4.9, users: 5600, image: "", price: "Elite" },
+    { id: 4, name: "Quarterback Mechanics", duration: "10 weeks", level: "Advanced", sport: "Football", rating: 4.7, users: 3200, image: "", price: "Elite" },
+    { id: 5, name: "Basketball Vertical Jump", duration: "8 weeks", level: "Intermediate", sport: "Basketball", rating: 4.8, users: 7800, image: "", price: "Pro" },
     { id: 6, name: "Injury Prevention", duration: "Ongoing", level: "All Levels", sport: "All Sports", rating: 4.9, users: 15000, image: "🛡️", price: "Free" },
   ];
 
@@ -42,7 +42,7 @@ export default function Training() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🏆</span>
+            <span className="text-2xl"></span>
             <span className="text-xl font-black text-white">ATHLYNX</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-sm">
@@ -59,7 +59,7 @@ export default function Training() {
           {/* Hero */}
           <div className="text-center mb-10">
             <span className="inline-block px-4 py-1 bg-orange-500/20 text-orange-400 rounded-full text-sm font-semibold mb-4">
-              💪 TRAINING & GYM
+              TRAINING & GYM
             </span>
             <h1 className="text-4xl md:text-6xl font-black text-white mb-4">
               Train Like a <span className="text-orange-400">Pro</span>
@@ -129,7 +129,7 @@ export default function Training() {
                     <p className="text-gray-500 text-sm mb-3">{plan.sport}</p>
                     <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
                       <span>⏱️ {plan.duration}</span>
-                      <span>📊 {plan.level}</span>
+                      <span>{plan.level}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1">
@@ -163,7 +163,7 @@ export default function Training() {
                   </div>
                   <div className="flex items-center justify-center gap-1 mb-1">
                     <h3 className="text-white font-bold">{trainer.name}</h3>
-                    {trainer.verified && <span className="text-blue-400 text-sm">✓</span>}
+                    {trainer.verified && <span className="text-blue-400 text-sm"></span>}
                   </div>
                   <p className="text-orange-400 text-sm mb-1">{trainer.specialty}</p>
                   <p className="text-gray-500 text-xs mb-3">{trainer.athletes}</p>

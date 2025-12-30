@@ -28,14 +28,14 @@ const staticProducts = [
   { id: 108, sku: "DDR5-32GB-ECC", name: "32GB DDR5 6400MHz ECC RAM", category: "enterprise", price: 189.99, image: "💻", rating: 4.8, reviews: 267, description: "Registered ECC memory module", requiresQuote: false },
   
   // SOFTWARE & LICENSES
-  { id: 201, sku: "ATH-PRO-ANN", name: "ATHLYNX Pro Subscription (Annual)", category: "software", price: 99.99, image: "🏆", rating: 4.9, reviews: 1245, description: "50 AI credits/mo, video highlights, analytics", requiresQuote: false },
-  { id: 202, sku: "ATH-ELITE-ANN", name: "ATHLYNX Elite Subscription (Annual)", category: "software", price: 299.99, image: "🏆", rating: 5.0, reviews: 567, description: "200 AI credits/mo, AI coach, scout access", requiresQuote: false },
-  { id: 203, sku: "ATH-ENT-LIC", name: "ATHLYNX Enterprise License", category: "software", price: 999.99, image: "🏆", rating: 5.0, reviews: 23, description: "Unlimited credits, white-label, API access", requiresQuote: false },
+  { id: 201, sku: "ATH-PRO-ANN", name: "ATHLYNX Pro Subscription (Annual)", category: "software", price: 99.99, image: "", rating: 4.9, reviews: 1245, description: "50 AI credits/mo, video highlights, analytics", requiresQuote: false },
+  { id: 202, sku: "ATH-ELITE-ANN", name: "ATHLYNX Elite Subscription (Annual)", category: "software", price: 299.99, image: "", rating: 5.0, reviews: 567, description: "200 AI credits/mo, AI coach, scout access", requiresQuote: false },
+  { id: 203, sku: "ATH-ENT-LIC", name: "ATHLYNX Enterprise License", category: "software", price: 999.99, image: "", rating: 5.0, reviews: 23, description: "Unlimited credits, white-label, API access", requiresQuote: false },
   { id: 204, sku: "AI-CRED-100", name: "AI Credits Pack - 100 Credits", category: "software", price: 9.99, image: "🤖", rating: 4.7, reviews: 2341, description: "Use for training plans, video analysis, recruiting", requiresQuote: false },
   { id: 205, sku: "AI-CRED-500", name: "AI Credits Pack - 500 Credits", category: "software", price: 39.99, image: "🤖", rating: 4.8, reviews: 1567, description: "Includes 50 bonus credits", requiresQuote: false },
   { id: 206, sku: "AI-CRED-1K", name: "AI Credits Pack - 1,000 Credits", category: "software", price: 69.99, image: "🤖", rating: 4.9, reviews: 892, description: "Includes 150 bonus credits", requiresQuote: false },
   { id: 207, sku: "AI-CRED-5K", name: "AI Credits Pack - 5,000 Credits", category: "software", price: 299.99, image: "🤖", rating: 5.0, reviews: 234, description: "Includes 1,000 bonus credits", requiresQuote: false },
-  { id: 208, sku: "WL-SPORT-APP", name: "White-Label Sport App License", category: "software", price: 4999.99, image: "📱", rating: 5.0, reviews: 12, description: "Your brand, our platform - per sport", requiresQuote: true },
+  { id: 208, sku: "WL-SPORT-APP", name: "White-Label Sport App License", category: "software", price: 4999.99, image: "", rating: 5.0, reviews: 12, description: "Your brand, our platform - per sport", requiresQuote: true },
   { id: 209, sku: "SOFT-AI-ENT", name: "Softmor AI Enterprise Suite", category: "software", price: 9999.99, image: "🧠", rating: 5.0, reviews: 8, description: "Full AI/ML platform license", requiresQuote: true },
   
   // DATA CENTER PACKAGES
@@ -43,15 +43,15 @@ const staticProducts = [
   { id: 302, sku: "DC-GROWTH", name: "Growth Data Center Package", category: "datacenter", price: 499999.99, image: "🏢", rating: 5.0, reviews: 3, description: "50 servers, full stack, dedicated support", requiresQuote: true },
   { id: 303, sku: "DC-ENTERPRISE", name: "Enterprise Data Center Package", category: "datacenter", price: 2499999.99, image: "🏢", rating: 5.0, reviews: 2, description: "250+ servers, custom config, 24/7 support", requiresQuote: true },
   { id: 304, sku: "DC-CUSTOM", name: "Custom Data Center Solution", category: "datacenter", price: 0, image: "🏢", rating: 5.0, reviews: 15, description: "Contact sales for custom quote", requiresQuote: true },
-  { id: 305, sku: "GEO-POWER", name: "Geothermal Power Integration", category: "datacenter", price: 0, image: "⚡", rating: 5.0, reviews: 4, description: "Sustainable power solutions - contact sales", requiresQuote: true },
+  { id: 305, sku: "GEO-POWER", name: "Geothermal Power Integration", category: "datacenter", price: 0, image: "", rating: 5.0, reviews: 4, description: "Sustainable power solutions - contact sales", requiresQuote: true },
   
   // SUPPORT & MAINTENANCE
   { id: 401, sku: "SUP-3YR-PARTS", name: "3-Year Parts Warranty", category: "support", price: 2999.99, image: "🛠️", rating: 4.9, reviews: 89, description: "Extended parts coverage per server", requiresQuote: false },
-  { id: 402, sku: "SUP-1YR-CRIT", name: "1-Year Critical Replacement", category: "support", price: 999.99, image: "⚡", rating: 5.0, reviews: 67, description: "Next-day replacement service", requiresQuote: false },
-  { id: 403, sku: "SUP-247-TECH", name: "24/7 Technical Support (Annual)", category: "support", price: 4999.99, image: "📞", rating: 4.8, reviews: 123, description: "Round-the-clock expert support", requiresQuote: false },
-  { id: 404, sku: "SUP-DED-MGR", name: "Dedicated Account Manager", category: "support", price: 9999.99, image: "👤", rating: 5.0, reviews: 34, description: "Personal enterprise support contact", requiresQuote: true },
+  { id: 402, sku: "SUP-1YR-CRIT", name: "1-Year Critical Replacement", category: "support", price: 999.99, image: "", rating: 5.0, reviews: 67, description: "Next-day replacement service", requiresQuote: false },
+  { id: 403, sku: "SUP-247-TECH", name: "24/7 Technical Support (Annual)", category: "support", price: 4999.99, image: "", rating: 4.8, reviews: 123, description: "Round-the-clock expert support", requiresQuote: false },
+  { id: 404, sku: "SUP-DED-MGR", name: "Dedicated Account Manager", category: "support", price: 9999.99, image: "", rating: 5.0, reviews: 34, description: "Personal enterprise support contact", requiresQuote: true },
   { id: 405, sku: "SUP-ONSITE", name: "On-Site Service Package", category: "support", price: 14999.99, image: "🛠️", rating: 5.0, reviews: 18, description: "Technician visits included (annual)", requiresQuote: true },
-  { id: 406, sku: "SUP-MONITOR", name: "Proactive Monitoring Service", category: "support", price: 1999.99, image: "📊", rating: 4.9, reviews: 56, description: "24/7 system health monitoring", requiresQuote: false },
+  { id: 406, sku: "SUP-MONITOR", name: "Proactive Monitoring Service", category: "support", price: 1999.99, image: "", rating: 4.9, reviews: 56, description: "24/7 system health monitoring", requiresQuote: false },
   { id: 407, sku: "SUP-UPDATES", name: "Software Updates & Patches", category: "support", price: 499.99, image: "🔄", rating: 4.7, reviews: 234, description: "Annual update subscription", requiresQuote: false },
   
   // AI COMPANIONS (FUEL BOTS) - All require quotes
@@ -59,18 +59,18 @@ const staticProducts = [
   { id: 502, sku: "FB-MEDICAL", name: "Fuel Bot - Medical Response Unit", category: "fuelbots", price: 0, image: "🏥", rating: 5.0, reviews: 0, description: "Rapid AED delivery & injury support - Contact sales", requiresQuote: true },
   { id: 503, sku: "FB-SECURITY", name: "Fuel Bot - Stadium Security", category: "fuelbots", price: 0, image: "🛡️", rating: 5.0, reviews: 0, description: "Autonomous security patrol - Contact sales", requiresQuote: true },
   { id: 504, sku: "FB-DATACENTER", name: "Fuel Bot - Data Center Operations", category: "fuelbots", price: 0, image: "🏢", rating: 5.0, reviews: 0, description: "Automated facility management - Contact sales", requiresQuote: true },
-  { id: 505, sku: "FB-ENERGY", name: "Fuel Bot - Energy Sector", category: "fuelbots", price: 0, image: "⚡", rating: 5.0, reviews: 0, description: "Geothermal & power station ops - Contact sales", requiresQuote: true },
+  { id: 505, sku: "FB-ENERGY", name: "Fuel Bot - Energy Sector", category: "fuelbots", price: 0, image: "", rating: 5.0, reviews: 0, description: "Geothermal & power station ops - Contact sales", requiresQuote: true },
   { id: 506, sku: "RD-HEXAPOD", name: "Hexapod Robot Dog", category: "fuelbots", price: 0, image: "🤖", rating: 5.0, reviews: 0, description: "6-legged all-terrain companion - Contact sales", requiresQuote: true },
   { id: 507, sku: "RD-HYBRID", name: "Wheel-Leg Hybrid Robot", category: "fuelbots", price: 0, image: "🤖", rating: 5.0, reviews: 0, description: "Speed + stability hybrid - Contact sales", requiresQuote: true },
   { id: 508, sku: "RD-MEDIUM", name: "Medium Size Robot Dog", category: "fuelbots", price: 0, image: "🤖", rating: 5.0, reviews: 0, description: "25kg payload, 4-6hr battery - Contact sales", requiresQuote: true },
   
   // SPORTS EQUIPMENT
-  { id: 1, sku: "BB-BAT-PRO", name: "Pro Baseball Bat", category: "baseball", price: 299.99, image: "⚾", rating: 4.8, reviews: 124, description: "Professional grade aluminum bat", requiresQuote: false },
+  { id: 1, sku: "BB-BAT-PRO", name: "Pro Baseball Bat", category: "baseball", price: 299.99, image: "", rating: 4.8, reviews: 124, description: "Professional grade aluminum bat", requiresQuote: false },
   { id: 2, sku: "BB-GLOVE-LTH", name: "Leather Baseball Glove", category: "baseball", price: 189.99, image: "🧤", rating: 4.9, reviews: 89, description: "Premium leather fielding glove", requiresQuote: false },
-  { id: 3, sku: "BB-BALLS-12", name: "Training Baseballs (12pk)", category: "baseball", price: 49.99, image: "⚾", rating: 4.7, reviews: 256, description: "Official size training balls", requiresQuote: false },
-  { id: 4, sku: "FB-BALL-ELITE", name: "Elite Football", category: "football", price: 129.99, image: "🏈", rating: 4.8, reviews: 178, description: "Official size game ball", requiresQuote: false },
+  { id: 3, sku: "BB-BALLS-12", name: "Training Baseballs (12pk)", category: "baseball", price: 49.99, image: "", rating: 4.7, reviews: 256, description: "Official size training balls", requiresQuote: false },
+  { id: 4, sku: "FB-BALL-ELITE", name: "Elite Football", category: "football", price: 129.99, image: "", rating: 4.8, reviews: 178, description: "Official size game ball", requiresQuote: false },
   { id: 5, sku: "FB-GLOVES", name: "Football Gloves", category: "football", price: 79.99, image: "🧤", rating: 4.6, reviews: 92, description: "Sticky grip receiver gloves", requiresQuote: false },
-  { id: 6, sku: "BK-BALL-PRO", name: "Pro Basketball", category: "basketball", price: 149.99, image: "🏀", rating: 4.9, reviews: 312, description: "Indoor/outdoor composite leather", requiresQuote: false },
+  { id: 6, sku: "BK-BALL-PRO", name: "Pro Basketball", category: "basketball", price: 149.99, image: "", rating: 4.9, reviews: 312, description: "Indoor/outdoor composite leather", requiresQuote: false },
   { id: 7, sku: "BK-SHOES", name: "Basketball Shoes", category: "basketball", price: 179.99, image: "👟", rating: 4.7, reviews: 445, description: "High-top performance shoes", requiresQuote: false },
   { id: 8, sku: "FISH-ROD-PRO", name: "Fishing Rod Pro", category: "fishing", price: 249.99, image: "🎣", rating: 4.8, reviews: 67, description: "Carbon fiber spinning rod", requiresQuote: false },
   { id: 9, sku: "FISH-TACKLE", name: "Tackle Box Complete", category: "fishing", price: 89.99, image: "🧰", rating: 4.5, reviews: 134, description: "200+ piece tackle set", requiresQuote: false },
@@ -79,12 +79,12 @@ const staticProducts = [
   { id: 12, sku: "HUNT-SCOPE", name: "Hunting Rifle Scope", category: "hunting", price: 349.99, image: "🔭", rating: 4.8, reviews: 78, description: "4-16x50mm illuminated scope", requiresQuote: false },
   { id: 13, sku: "HUNT-JACKET", name: "Camo Jacket", category: "hunting", price: 149.99, image: "🧥", rating: 4.7, reviews: 112, description: "Waterproof hunting jacket", requiresQuote: false },
   { id: 14, sku: "FIT-DUMBBELLS", name: "Adjustable Dumbbells", category: "fitness", price: 399.99, image: "🏋️", rating: 4.9, reviews: 567, description: "5-52.5 lb adjustable set", requiresQuote: false },
-  { id: 15, sku: "FIT-BANDS", name: "Resistance Bands Set", category: "fitness", price: 29.99, image: "💪", rating: 4.5, reviews: 892, description: "5 resistance levels", requiresQuote: false },
+  { id: 15, sku: "FIT-BANDS", name: "Resistance Bands Set", category: "fitness", price: 29.99, image: "", rating: 4.5, reviews: 892, description: "5 resistance levels", requiresQuote: false },
   { id: 16, sku: "APP-TEE", name: "ATHLYNX Performance Tee", category: "apparel", price: 34.99, image: "👕", rating: 4.8, reviews: 234, description: "Moisture-wicking athletic tee", requiresQuote: false },
   { id: 17, sku: "APP-HOODIE", name: "ATHLYNX Hoodie", category: "apparel", price: 69.99, image: "🧥", rating: 4.9, reviews: 189, description: "Premium fleece hoodie", requiresQuote: false },
   { id: 18, sku: "TRAIN-LADDER", name: "Speed Ladder", category: "training", price: 24.99, image: "🪜", rating: 4.6, reviews: 345, description: "20ft agility ladder", requiresQuote: false },
   { id: 19, sku: "TRAIN-CONES", name: "Agility Cones (20pk)", category: "training", price: 19.99, image: "🔶", rating: 4.7, reviews: 456, description: "High-visibility training cones", requiresQuote: false },
-  { id: 20, sku: "BB-PITCH-MACH", name: "Pitching Machine", category: "baseball", price: 1299.99, image: "⚾", rating: 4.9, reviews: 34, description: "Variable speed pitching machine", requiresQuote: false },
+  { id: 20, sku: "BB-PITCH-MACH", name: "Pitching Machine", category: "baseball", price: 1299.99, image: "", rating: 4.9, reviews: 34, description: "Variable speed pitching machine", requiresQuote: false },
 ];
 
 // Product type from database
@@ -126,13 +126,13 @@ export default function Store() {
     { id: "datacenter", name: "Data Center", icon: "🏢" },
     { id: "support", name: "Support & Maintenance", icon: "🛠️" },
     { id: "fuelbots", name: "AI Companions", icon: "🤖" },
-    { id: "baseball", name: "Baseball", icon: "⚾" },
-    { id: "football", name: "Football", icon: "🏈" },
-    { id: "basketball", name: "Basketball", icon: "🏀" },
+    { id: "baseball", name: "Baseball", icon: "" },
+    { id: "football", name: "Football", icon: "" },
+    { id: "basketball", name: "Basketball", icon: "" },
     { id: "fishing", name: "Fishing", icon: "🎣" },
     { id: "golf", name: "Golf", icon: "⛳" },
     { id: "hunting", name: "Hunting", icon: "🦌" },
-    { id: "fitness", name: "Fitness", icon: "💪" },
+    { id: "fitness", name: "Fitness", icon: "" },
     { id: "apparel", name: "Apparel", icon: "👕" },
     { id: "training", name: "Training", icon: "🏋️" },
   ];
@@ -493,7 +493,7 @@ export default function Store() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🏆</span>
+            <span className="text-2xl"></span>
             <span className="text-xl font-black text-white">ATHLYNX</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-sm">

@@ -39,11 +39,11 @@ export default function Dashboard() {
   ];
 
   const tabs = [
-    { id: "overview", name: "Overview", icon: "🏠" },
+    { id: "overview", name: "Overview", icon: "" },
     { id: "subscription", name: "Subscription", icon: "💳" },
     { id: "credits", name: "AI Credits", icon: "🤖" },
     { id: "orders", name: "Orders", icon: "📦" },
-    { id: "saved", name: "Saved Players", icon: "⭐" },
+    { id: "saved", name: "Saved Players", icon: "" },
     { id: "settings", name: "Settings", icon: "⚙️" },
   ];
 
@@ -59,7 +59,7 @@ export default function Dashboard() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] flex items-center justify-center p-4">
         <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 max-w-md w-full text-center">
-          <span className="text-6xl block mb-4">🔐</span>
+          <span className="text-6xl block mb-4"></span>
           <h1 className="text-2xl font-bold text-white mb-2">Sign In Required</h1>
           <p className="text-gray-400 mb-6">Please sign in to access your dashboard</p>
           <a
@@ -90,7 +90,7 @@ export default function Dashboard() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🏆</span>
+            <span className="text-2xl"></span>
             <span className="text-xl font-black text-white">ATHLYNX</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-sm">
@@ -175,7 +175,7 @@ export default function Dashboard() {
                     <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-5">
                       <div className="flex items-center justify-between mb-3">
                         <span className="text-gray-400 text-sm">Saved Players</span>
-                        <span className="text-yellow-400">⭐</span>
+                        <span className="text-yellow-400"></span>
                       </div>
                       <p className="text-2xl font-bold text-white">{savedPlayers.length}</p>
                       <p className="text-gray-500 text-sm mt-1">Players on your watchlist</p>
@@ -190,7 +190,7 @@ export default function Dashboard() {
                         <div key={i} className="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
                           <div className="flex items-center gap-3">
                             <span className="text-xl">
-                              {activity.type === "ai" ? "🤖" : activity.type === "purchase" ? "🛒" : "👤"}
+                              {activity.type === "ai" ? "🤖" : activity.type === "purchase" ? "🛒" : ""}
                             </span>
                             <div>
                               <p className="text-white text-sm">{activity.action}</p>
@@ -262,7 +262,7 @@ export default function Dashboard() {
                           "Custom Training Plans"
                         ].map((feature, i) => (
                           <div key={i} className="flex items-center gap-2 text-gray-400 text-sm">
-                            <span className="text-green-400">✓</span>
+                            <span className="text-green-400"></span>
                             {feature}
                           </div>
                         ))}

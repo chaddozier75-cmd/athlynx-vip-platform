@@ -5,7 +5,7 @@ export default function Apps() {
     {
       name: "ATHLYNX",
       tagline: "The Athlete's Playbook",
-      icon: "🏆",
+      icon: "",
       color: "from-yellow-500 to-orange-500",
       description: "The all-in-one platform for athletes. Profiles, recruiting, NIL, training, and more.",
       features: ["Athlete Profiles", "AI Coaching", "NIL Marketplace", "Recruiting", "Messaging"],
@@ -16,7 +16,7 @@ export default function Apps() {
     {
       name: "Diamond Grind",
       tagline: "Elite Baseball Platform",
-      icon: "💎",
+      icon: "",
       color: "from-blue-500 to-blue-700",
       description: "The #1 baseball app for rankings, recruiting, tournaments, and training.",
       features: ["Player Rankings", "Tournament Finder", "Video Analysis", "Recruiting Database"],
@@ -27,7 +27,7 @@ export default function Apps() {
     {
       name: "Court Kings",
       tagline: "Basketball Dominance",
-      icon: "🏀",
+      icon: "",
       color: "from-orange-500 to-red-500",
       description: "Basketball recruiting, training, and exposure platform.",
       features: ["Hoops Rankings", "Camp Finder", "Highlight Reels", "College Connections"],
@@ -38,7 +38,7 @@ export default function Apps() {
     {
       name: "Gridiron Nexus",
       tagline: "Football Excellence",
-      icon: "🏈",
+      icon: "",
       color: "from-green-600 to-green-800",
       description: "Football recruiting, film analysis, and combine prep.",
       features: ["Prospect Rankings", "Film Room", "Combine Training", "Recruiting Board"],
@@ -49,7 +49,7 @@ export default function Apps() {
     {
       name: "Pitch Pulse",
       tagline: "Soccer Intelligence",
-      icon: "⚽",
+      icon: "",
       color: "from-emerald-500 to-teal-600",
       description: "Soccer recruiting, club connections, and international opportunities.",
       features: ["Club Finder", "International Scouts", "Training Programs", "Showcase Events"],
@@ -104,7 +104,7 @@ export default function Apps() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🏆</span>
+            <span className="text-2xl"></span>
             <span className="text-xl font-black text-white">ATHLYNX</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-sm">
@@ -121,7 +121,7 @@ export default function Apps() {
           {/* Hero */}
           <div className="text-center mb-12">
             <div className="flex justify-center gap-3 mb-4">
-              <span className="text-4xl">📱</span>
+              <span className="text-4xl"></span>
               <span className="text-4xl">🍎</span>
               <span className="text-4xl">🤖</span>
             </div>
@@ -227,7 +227,7 @@ export default function Apps() {
                   <ul className="space-y-2 text-sm text-gray-400">
                     {tier.features.map((feature, j) => (
                       <li key={j} className="flex items-center gap-2">
-                        <span className="text-green-400">✓</span>
+                        <span className="text-green-400"></span>
                         {feature}
                       </li>
                     ))}
@@ -242,10 +242,10 @@ export default function Apps() {
             <h3 className="text-xl font-bold text-white mb-6 text-center">Why Download Our Apps?</h3>
             <div className="grid md:grid-cols-4 gap-6">
               {[
-                { icon: "📱", title: "Native Experience", desc: "Optimized for iOS & Android" },
+                { icon: "", title: "Native Experience", desc: "Optimized for iOS & Android" },
                 { icon: "🔔", title: "Push Notifications", desc: "Never miss an opportunity" },
                 { icon: "📴", title: "Offline Mode", desc: "Access key features offline" },
-                { icon: "🔐", title: "Secure Payments", desc: "Stripe-powered transactions" },
+                { icon: "", title: "Secure Payments", desc: "Stripe-powered transactions" },
               ].map((feature, i) => (
                 <div key={i} className="text-center">
                   <span className="text-4xl block mb-2">{feature.icon}</span>
@@ -258,7 +258,7 @@ export default function Apps() {
 
           {/* Notify Me */}
           <div className="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl p-8 text-center">
-            <h3 className="text-2xl font-bold text-white mb-2">Get Notified When We Launch 📱</h3>
+            <h3 className="text-2xl font-bold text-white mb-2">Get Notified When We Launch </h3>
             <p className="text-white/80 mb-6">Be the first to download our mobile apps</p>
             <div className="flex justify-center gap-2 max-w-md mx-auto">
               <input

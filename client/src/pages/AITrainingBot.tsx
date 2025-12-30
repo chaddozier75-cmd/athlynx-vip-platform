@@ -86,7 +86,7 @@ export default function AITrainingBot() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🏆</span>
+            <span className="text-2xl"></span>
             <span className="text-xl font-black text-white">ATHLYNX</span>
           </Link>
           <div className="flex items-center gap-4">
@@ -114,7 +114,7 @@ export default function AITrainingBot() {
               Get personalized training plans powered by AI
             </p>
             <div className="inline-flex items-center gap-2 bg-cyan-500/20 border border-cyan-500/50 px-4 py-2 rounded-full">
-              <span className="text-cyan-400">💰</span>
+              <span className="text-cyan-400"></span>
               <span className="text-white font-semibold">{CREDIT_COST} credits per plan</span>
             </div>
           </div>
@@ -165,21 +165,21 @@ export default function AITrainingBot() {
           {/* Features */}
           <div className="grid md:grid-cols-3 gap-6 mt-12">
             <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6 text-center">
-              <span className="text-4xl block mb-3">🎯</span>
+              <span className="text-4xl block mb-3"></span>
               <h3 className="text-white font-semibold mb-2">Personalized</h3>
               <p className="text-gray-400 text-sm">
                 Plans tailored to your sport, position, and goals
               </p>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6 text-center">
-              <span className="text-4xl block mb-3">📊</span>
+              <span className="text-4xl block mb-3"></span>
               <h3 className="text-white font-semibold mb-2">Data-Driven</h3>
               <p className="text-gray-400 text-sm">
                 Based on proven training methodologies
               </p>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6 text-center">
-              <span className="text-4xl block mb-3">⚡</span>
+              <span className="text-4xl block mb-3"></span>
               <h3 className="text-white font-semibold mb-2">Instant</h3>
               <p className="text-gray-400 text-sm">
                 Get your plan in seconds, not days

@@ -6,7 +6,7 @@ const products = [
     name: 'ATHLYNX',
     tagline: "The Athlete's Playbook",
     description: 'Complete athlete ecosystem for NIL deals, social networking, messaging, and career management',
-    icon: '🦀',
+    icon: '',
     status: 'Active',
     link: '/'
   },
@@ -14,7 +14,7 @@ const products = [
     name: 'NIL Portal',
     tagline: 'Name, Image, Likeness Platform',
     description: 'Connect athletes with brands for endorsement deals and sponsorship opportunities',
-    icon: '💼',
+    icon: '',
     status: 'Active',
     link: '/nil-portal'
   },
@@ -22,7 +22,7 @@ const products = [
     name: 'Diamond Grind',
     tagline: 'Baseball Training Excellence',
     description: 'Performance tracking, training programs, and analytics for baseball athletes',
-    icon: '⚾',
+    icon: '',
     status: 'Active',
     link: '/diamond-grind'
   },
@@ -45,12 +45,12 @@ const products = [
 ];
 
 const whiteLabelApps = [
-  { name: 'Court Kings', sport: 'Basketball', icon: '🏀' },
-  { name: 'Gridiron Nexus', sport: 'Football', icon: '🏈' },
-  { name: 'Pitch Pulse', sport: 'Soccer', icon: '⚽' },
+  { name: 'Court Kings', sport: 'Basketball', icon: '' },
+  { name: 'Gridiron Nexus', sport: 'Football', icon: '' },
+  { name: 'Pitch Pulse', sport: 'Soccer', icon: '' },
   { name: 'Reel Masters', sport: 'Fishing', icon: '🎣' },
   { name: 'Faith & Sport', sport: 'Faith-Based', icon: '✝️' },
-  { name: 'Military Athletes', sport: 'Veterans', icon: '🎖️' }
+  { name: 'Military Athletes', sport: 'Veterans', icon: '' }
 ];
 
 export default function Softmor() {
@@ -193,7 +193,7 @@ export default function Softmor() {
       <div className="container py-16">
         <div className="bg-gradient-to-r from-cyan-900/50 to-blue-900/50 border border-cyan-500/30 rounded-2xl p-8 md:p-12">
           <div className="flex items-center gap-4 mb-6">
-            <div className="text-6xl">🦀</div>
+            <div className="text-6xl"></div>
             <div>
               <h2 className="text-3xl font-bold">ATHLYNX</h2>
               <p className="text-cyan-400">The Athlete's Playbook</p>
@@ -208,7 +208,7 @@ export default function Softmor() {
           <div className="grid md:grid-cols-5 gap-4 mb-8">
             {['Social Network', 'NIL Deals', 'Messaging', 'Analytics', 'Compliance'].map((feature, i) => (
               <div key={i} className="bg-white/10 rounded-lg p-3 text-center">
-                <span className="text-cyan-400">✓</span> {feature}
+                <span className="text-cyan-400"></span> {feature}
               </div>
             ))}
           </div>

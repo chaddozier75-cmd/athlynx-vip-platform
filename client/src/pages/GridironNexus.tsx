@@ -96,7 +96,7 @@ export default function GridironNexus() {
         <div className="container relative py-8 md:py-16 px-4 md:px-5">
           <div className="text-center mb-8 md:mb-12">
             <div className="inline-flex items-center gap-2 bg-red-500/20 border border-red-500/30 rounded-full px-3 md:px-4 py-2 mb-4 md:mb-6">
-              <span className="text-2xl">🏈</span>
+              <span className="text-2xl"></span>
               <span className="text-red-400 font-bold text-sm md:text-base">GRIDIRON NEXUS</span>
               <Badge className="bg-yellow-500 text-black text-xs">POWERED BY ATHLYNX</Badge>
             </div>

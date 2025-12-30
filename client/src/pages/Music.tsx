@@ -10,33 +10,33 @@ export default function Music() {
     { id: "hiphop", name: "Hip Hop", icon: "🎤" },
     { id: "edm", name: "EDM", icon: "🎧" },
     { id: "rock", name: "Rock", icon: "🎸" },
-    { id: "motivation", name: "Motivation", icon: "💪" },
+    { id: "motivation", name: "Motivation", icon: "" },
     { id: "focus", name: "Focus", icon: "🧘" },
   ];
 
   const playlists = [
-    { id: 1, name: "Pre-Game Hype", tracks: 45, duration: "2hr 30min", genre: "hiphop", plays: "2.5M", image: "🔥", curator: "ATHLYNX" },
+    { id: 1, name: "Pre-Game Hype", tracks: 45, duration: "2hr 30min", genre: "hiphop", plays: "2.5M", image: "", curator: "ATHLYNX" },
     { id: 2, name: "Weightroom Beast Mode", tracks: 60, duration: "3hr 15min", genre: "edm", plays: "1.8M", image: "🏋️", curator: "ATHLYNX" },
     { id: 3, name: "Cardio Crusher", tracks: 50, duration: "2hr 45min", genre: "edm", plays: "1.2M", image: "🏃", curator: "ATHLYNX" },
     { id: 4, name: "Focus & Flow", tracks: 40, duration: "2hr", genre: "focus", plays: "890K", image: "🧘", curator: "ATHLYNX" },
-    { id: 5, name: "Game Day Anthems", tracks: 35, duration: "1hr 45min", genre: "rock", plays: "1.5M", image: "🏆", curator: "ATHLYNX" },
-    { id: 6, name: "Motivation Monday", tracks: 30, duration: "1hr 30min", genre: "motivation", plays: "2.1M", image: "💪", curator: "ATHLYNX" },
-    { id: 7, name: "Baseball Walkup Songs", tracks: 100, duration: "5hr", genre: "hiphop", plays: "3.2M", image: "⚾", curator: "Diamond Grind" },
-    { id: 8, name: "Football Friday Nights", tracks: 55, duration: "3hr", genre: "rock", plays: "1.9M", image: "🏈", curator: "ATHLYNX" },
+    { id: 5, name: "Game Day Anthems", tracks: 35, duration: "1hr 45min", genre: "rock", plays: "1.5M", image: "", curator: "ATHLYNX" },
+    { id: 6, name: "Motivation Monday", tracks: 30, duration: "1hr 30min", genre: "motivation", plays: "2.1M", image: "", curator: "ATHLYNX" },
+    { id: 7, name: "Baseball Walkup Songs", tracks: 100, duration: "5hr", genre: "hiphop", plays: "3.2M", image: "", curator: "Diamond Grind" },
+    { id: 8, name: "Football Friday Nights", tracks: 55, duration: "3hr", genre: "rock", plays: "1.9M", image: "", curator: "ATHLYNX" },
   ];
 
   const athletePlaylists = [
-    { name: "LeBron's Pregame", athlete: "LeBron James", sport: "Basketball", followers: "5.2M", image: "🏀" },
-    { name: "Mahomes Mix", athlete: "Patrick Mahomes", sport: "Football", followers: "3.8M", image: "🏈" },
-    { name: "Trout's Walkups", athlete: "Mike Trout", sport: "Baseball", followers: "1.2M", image: "⚾" },
-    { name: "Serena's Power", athlete: "Serena Williams", sport: "Tennis", followers: "2.9M", image: "🎾" },
+    { name: "LeBron's Pregame", athlete: "LeBron James", sport: "Basketball", followers: "5.2M", image: "" },
+    { name: "Mahomes Mix", athlete: "Patrick Mahomes", sport: "Football", followers: "3.8M", image: "" },
+    { name: "Trout's Walkups", athlete: "Mike Trout", sport: "Baseball", followers: "1.2M", image: "" },
+    { name: "Serena's Power", athlete: "Serena Williams", sport: "Tennis", followers: "2.9M", image: "" },
   ];
 
   const podcasts = [
     { id: 1, name: "The Athlete Mindset", host: "Dr. Michael Johnson", episodes: 156, rating: 4.9, image: "🧠" },
-    { id: 2, name: "NIL Talk", host: "ATHLYNX Team", episodes: 89, rating: 4.8, image: "💰" },
-    { id: 3, name: "Recruiting Insider", host: "Coach Williams", episodes: 234, rating: 4.7, image: "🎓" },
-    { id: 4, name: "Pro Athlete Stories", host: "Marcus Allen", episodes: 178, rating: 4.9, image: "🏆" },
+    { id: 2, name: "NIL Talk", host: "ATHLYNX Team", episodes: 89, rating: 4.8, image: "" },
+    { id: 3, name: "Recruiting Insider", host: "Coach Williams", episodes: 234, rating: 4.7, image: "" },
+    { id: 4, name: "Pro Athlete Stories", host: "Marcus Allen", episodes: 178, rating: 4.9, image: "" },
   ];
 
   const filteredPlaylists = selectedGenre === "all" 
@@ -49,7 +49,7 @@ export default function Music() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🏆</span>
+            <span className="text-2xl"></span>
             <span className="text-xl font-black text-white">ATHLYNX</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-sm">

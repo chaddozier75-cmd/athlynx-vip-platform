@@ -33,7 +33,7 @@ export default function MediaShowcase() {
         <div className="relative z-10 text-center px-4">
           {/* Trophy Badge */}
           <div className="inline-flex items-center gap-2 px-6 py-3 border-2 border-yellow-500/50 rounded-full mb-8 bg-black/50">
-            <span className="text-yellow-500 text-xl">🏆</span>
+            <span className="text-yellow-500 text-xl"></span>
             <span className="text-yellow-500 font-bold tracking-[0.3em] text-sm">INTRODUCING</span>
           </div>
 

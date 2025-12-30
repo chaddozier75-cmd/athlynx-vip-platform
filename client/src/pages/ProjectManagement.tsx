@@ -180,17 +180,17 @@ export default function ProjectManagement() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Link href="/">
                   <button className="w-full p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-400 hover:bg-green-500/30 transition-colors">
-                    🚀 VIP Signup Page
+                    VIP Signup Page
                   </button>
                 </Link>
                 <Link href="/diamond-grind">
                   <button className="w-full p-4 bg-blue-500/20 border border-blue-500/50 rounded-lg text-blue-400 hover:bg-blue-500/30 transition-colors">
-                    ⚾ Diamond Grind
+                    Diamond Grind
                   </button>
                 </Link>
                 <Link href="/nil-portal">
                   <button className="w-full p-4 bg-purple-500/20 border border-purple-500/50 rounded-lg text-purple-400 hover:bg-purple-500/30 transition-colors">
-                    💰 NIL Portal
+                    NIL Portal
                   </button>
                 </Link>
                 <Link href="/store">
@@ -203,7 +203,7 @@ export default function ProjectManagement() {
 
             {/* Launch Countdown */}
             <div className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-xl p-6">
-              <h2 className="text-xl font-bold text-white mb-4">🚀 Launch Timeline</h2>
+              <h2 className="text-xl font-bold text-white mb-4">Launch Timeline</h2>
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
                   <div className="w-4 h-4 rounded-full bg-green-500"></div>
@@ -281,7 +281,7 @@ export default function ProjectManagement() {
             {/* Real Estate Division */}
             <div className="bg-slate-800/50 border border-cyan-500/20 rounded-xl p-6">
               <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                🏠 Real Estate Division
+                Real Estate Division
               </h2>
               <div className="overflow-x-auto">
                 <table className="w-full">
@@ -343,7 +343,7 @@ export default function ProjectManagement() {
           <div className="space-y-8">
             {/* Core Features */}
             <div className="bg-slate-800/50 border border-cyan-500/20 rounded-xl p-6">
-              <h2 className="text-xl font-bold text-white mb-4">🎯 ATHLYNX Platform Features</h2>
+              <h2 className="text-xl font-bold text-white mb-4">ATHLYNX Platform Features</h2>
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
@@ -361,9 +361,9 @@ export default function ProjectManagement() {
                       <tr key={feature.name} className="border-b border-gray-700/50">
                         <td className="py-3 text-white font-medium">{feature.name}</td>
                         <td className="py-3"><StatusBadge status={feature.status} /></td>
-                        <td className="py-3">{feature.pages ? "✅" : "❌"}</td>
-                        <td className="py-3">{feature.backend ? "✅" : "❌"}</td>
-                        <td className="py-3">{feature.tests ? "✅" : "⚠️"}</td>
+                        <td className="py-3">{feature.pages ? "" : ""}</td>
+                        <td className="py-3">{feature.backend ? "" : ""}</td>
+                        <td className="py-3">{feature.tests ? "" : "⚠️"}</td>
                         <td className="py-3">
                           <Link href={feature.url}>
                             <button className="px-3 py-1 bg-cyan-500/20 border border-cyan-500/50 rounded text-cyan-400 text-sm hover:bg-cyan-500/30">
@@ -380,7 +380,7 @@ export default function ProjectManagement() {
 
             {/* White-Label Apps */}
             <div className="bg-slate-800/50 border border-cyan-500/20 rounded-xl p-6">
-              <h2 className="text-xl font-bold text-white mb-4">🏆 White-Label Sport Apps</h2>
+              <h2 className="text-xl font-bold text-white mb-4">White-Label Sport Apps</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {whiteLabelApps.map((app) => (
                   <Link key={app.name} href={app.url}>
@@ -409,7 +409,7 @@ export default function ProjectManagement() {
                 {founders.map((person) => (
                   <div key={person.name} className="bg-slate-700/50 border border-gray-600 rounded-lg p-4 text-center">
                     <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full mx-auto mb-3 flex items-center justify-center text-2xl">
-                      👤
+                      
                     </div>
                     <div className="text-white font-medium">{person.name}</div>
                     <div className="text-cyan-400 text-sm">{person.title}</div>
@@ -421,12 +421,12 @@ export default function ProjectManagement() {
 
             {/* Advisors */}
             <div className="bg-slate-800/50 border border-cyan-500/20 rounded-xl p-6">
-              <h2 className="text-xl font-bold text-white mb-4">🎖️ Advisors</h2>
+              <h2 className="text-xl font-bold text-white mb-4">Advisors</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {advisors.map((person) => (
                   <div key={person.name} className="bg-slate-700/50 border border-gray-600 rounded-lg p-4 flex items-center gap-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center text-xl">
-                      ⭐
+                      
                     </div>
                     <div>
                       <div className="text-white font-medium">{person.name}</div>
@@ -458,8 +458,8 @@ export default function ProjectManagement() {
                     <div className="text-gray-400 mt-2">
                       <ul className="list-disc list-inside space-y-1">
                         <li>1,000 beta testers</li>
-                        <li>VIP signup page live ✅</li>
-                        <li>Email confirmation working ✅</li>
+                        <li>VIP signup page live </li>
+                        <li>Email confirmation working </li>
                         <li>Core features tested</li>
                       </ul>
                     </div>
@@ -509,7 +509,7 @@ export default function ProjectManagement() {
 
             {/* Immediate Priorities */}
             <div className="bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/30 rounded-xl p-6">
-              <h2 className="text-xl font-bold text-white mb-4">🔥 Immediate Priorities (Next 7 Days)</h2>
+              <h2 className="text-xl font-bold text-white mb-4">Immediate Priorities (Next 7 Days)</h2>
               <div className="space-y-2">
                 <div className="flex items-center gap-3">
                   <input type="checkbox" className="w-5 h-5 rounded" />

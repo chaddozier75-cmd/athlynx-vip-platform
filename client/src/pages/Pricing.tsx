@@ -198,7 +198,7 @@ export default function Pricing() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🏆</span>
+            <span className="text-2xl"></span>
             <span className="text-xl font-black text-white">ATHLYNX</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-sm">
@@ -268,7 +268,7 @@ export default function Pricing() {
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${tier.color} flex items-center justify-center mb-4`}>
                   <span className="text-white text-xl">
                     {tier.name === "Free" && "🆓"}
-                    {tier.name === "Pro" && "⚡"}
+                    {tier.name === "Pro" && ""}
                     {tier.name === "Elite" && "👑"}
                     {tier.name === "Enterprise" && "🏢"}
                   </span>
@@ -284,7 +284,7 @@ export default function Pricing() {
                 <ul className="space-y-3 mb-6 flex-grow">
                   {tier.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
-                      <span className="text-green-400 mt-0.5">✓</span>
+                      <span className="text-green-400 mt-0.5"></span>
                       {feature}
                     </li>
                   ))}
@@ -358,10 +358,10 @@ export default function Pricing() {
               {[
                 { icon: "🎥", title: "Auto Highlights", desc: "Generate highlight reels from game footage", credits: "10 credits" },
                 { icon: "✉️", title: "Recruiting Emails", desc: "AI writes personalized emails to coaches", credits: "5 credits" },
-                { icon: "📊", title: "Performance Analysis", desc: "Deep dive into your stats and trends", credits: "15 credits" },
-                { icon: "💪", title: "Training Plans", desc: "Custom workout plans for your goals", credits: "20 credits" },
-                { icon: "🎯", title: "Scout Matching", desc: "Find scouts interested in your profile", credits: "25 credits" },
-                { icon: "📱", title: "Social Content", desc: "Generate posts for your social media", credits: "5 credits" },
+                { icon: "", title: "Performance Analysis", desc: "Deep dive into your stats and trends", credits: "15 credits" },
+                { icon: "", title: "Training Plans", desc: "Custom workout plans for your goals", credits: "20 credits" },
+                { icon: "", title: "Scout Matching", desc: "Find scouts interested in your profile", credits: "25 credits" },
+                { icon: "", title: "Social Content", desc: "Generate posts for your social media", credits: "5 credits" },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4">
                   <div className="text-3xl">{item.icon}</div>

@@ -303,13 +303,13 @@ export default function DHGCorporate() {
         <h2 className="text-3xl font-bold mb-8">Technology Investments</h2>
         <div className="grid md:grid-cols-3 gap-6">
           <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-500/30 rounded-xl p-6">
-            <div className="text-4xl mb-4">⚡</div>
+            <div className="text-4xl mb-4"></div>
             <h3 className="text-xl font-bold mb-2">Bitcoin Mining Excellence</h3>
             <p className="text-gray-400 mb-4">State-of-the-art mining facilities with 97% uptime, advanced cooling technology, and maximum profitability optimization.</p>
             <ul className="space-y-2 text-sm text-gray-300">
-              <li className="flex items-center gap-2"><span className="text-emerald-400">✓</span> Advanced Cooling Systems</li>
-              <li className="flex items-center gap-2"><span className="text-emerald-400">✓</span> Real-time Monitoring</li>
-              <li className="flex items-center gap-2"><span className="text-emerald-400">✓</span> Maximum ROI Optimization</li>
+              <li className="flex items-center gap-2"><span className="text-emerald-400"></span> Advanced Cooling Systems</li>
+              <li className="flex items-center gap-2"><span className="text-emerald-400"></span> Real-time Monitoring</li>
+              <li className="flex items-center gap-2"><span className="text-emerald-400"></span> Maximum ROI Optimization</li>
             </ul>
           </div>
           
@@ -318,9 +318,9 @@ export default function DHGCorporate() {
             <h3 className="text-xl font-bold mb-2">The Virt Token Platform</h3>
             <p className="text-gray-400 mb-4">Revolutionary investment platform offering VLT and VPT options with cutting-edge blockchain technology.</p>
             <ul className="space-y-2 text-sm text-gray-300">
-              <li className="flex items-center gap-2"><span className="text-emerald-400">✓</span> VLT Investment Options</li>
-              <li className="flex items-center gap-2"><span className="text-emerald-400">✓</span> VPT Trading Platform</li>
-              <li className="flex items-center gap-2"><span className="text-emerald-400">✓</span> Blockchain Security</li>
+              <li className="flex items-center gap-2"><span className="text-emerald-400"></span> VLT Investment Options</li>
+              <li className="flex items-center gap-2"><span className="text-emerald-400"></span> VPT Trading Platform</li>
+              <li className="flex items-center gap-2"><span className="text-emerald-400"></span> Blockchain Security</li>
             </ul>
           </div>
           
@@ -329,9 +329,9 @@ export default function DHGCorporate() {
             <h3 className="text-xl font-bold mb-2">Elite Computing Solutions</h3>
             <p className="text-gray-400 mb-4">High-performance computing through exclusive advanced technology partnerships, delivering unmatched processing power.</p>
             <ul className="space-y-2 text-sm text-gray-300">
-              <li className="flex items-center gap-2"><span className="text-emerald-400">✓</span> Strategic Partnerships</li>
-              <li className="flex items-center gap-2"><span className="text-emerald-400">✓</span> Custom Configurations</li>
-              <li className="flex items-center gap-2"><span className="text-emerald-400">✓</span> Enterprise-Grade Performance</li>
+              <li className="flex items-center gap-2"><span className="text-emerald-400"></span> Strategic Partnerships</li>
+              <li className="flex items-center gap-2"><span className="text-emerald-400"></span> Custom Configurations</li>
+              <li className="flex items-center gap-2"><span className="text-emerald-400"></span> Enterprise-Grade Performance</li>
             </ul>
           </div>
         </div>

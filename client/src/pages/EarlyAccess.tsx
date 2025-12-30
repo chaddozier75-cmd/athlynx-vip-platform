@@ -120,13 +120,13 @@ export default function EarlyAccess() {
             ) : user ? (
               <Link href="/dashboard">
                 <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-green-500/30 transition-all">
-                  ✅ Dashboard
+                  Dashboard
                 </button>
               </Link>
             ) : (
               <a href={getLoginUrl()}>
                 <button className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-cyan-500/30 transition-all animate-pulse">
-                  🔐 LOGIN
+                  LOGIN
                 </button>
               </a>
             )}
@@ -158,7 +158,7 @@ export default function EarlyAccess() {
           </div>
         </div>
 
-        {/* App Icons Row - NIL Portal, Warriors Playbook, Messenger, Diamond Grind */}
+        {/* App Icons Row - NIL Portal, Messenger, Diamond Grind, Warriors Playbook */}
         <div className="flex justify-center gap-3 flex-wrap">
           <Link href="/nil-portal">
             <div className="relative group cursor-pointer">
@@ -169,15 +169,6 @@ export default function EarlyAccess() {
                 className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
               <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">NIL Portal</p>
-            </div>
-          </Link>
-          <Link href="/warriors-playbook">
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-yellow-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
-              <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform bg-gradient-to-br from-yellow-500 via-orange-500 to-red-500 flex items-center justify-center">
-                <span className="text-3xl md:text-4xl">⚔️</span>
-              </div>
-              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-yellow-400">Warrior's Playbook</p>
             </div>
           </Link>
           <Link href="/messages">
@@ -200,6 +191,39 @@ export default function EarlyAccess() {
                 className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
               <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Diamond Grind</p>
+            </div>
+          </Link>
+          <Link href="/warriors-playbook">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-cyan-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/warriors-playbook-icon.png" 
+                alt="Warriors Playbook" 
+                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Warriors Playbook</p>
+            </div>
+          </Link>
+          <Link href="/transfer-portal">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/images/transfer-portal-icon.png" 
+                alt="Transfer Portal" 
+                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Transfer Portal</p>
+            </div>
+          </Link>
+          <Link href="/faith">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/images/faith-icon.png" 
+                alt="Faith" 
+                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Faith</p>
             </div>
           </Link>
         </div>
@@ -391,7 +415,7 @@ export default function EarlyAccess() {
             "Compliance"
           ].map((feature) => (
             <div key={feature} className="text-white font-bold bg-slate-800/60 backdrop-blur-sm px-4 py-2 rounded-full border border-cyan-500/40 shadow-lg flex items-center gap-2">
-              <span className="text-cyan-400">✓</span> {feature}
+              <span className="text-cyan-400"></span> {feature}
             </div>
           ))}
         </div>

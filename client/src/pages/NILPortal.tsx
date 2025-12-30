@@ -21,7 +21,7 @@ export default function NILPortal() {
         {/* Launch Badge */}
         <div className="flex justify-center">
           <div className="bg-gradient-to-r from-yellow-500 to-orange-500 border-2 border-yellow-400 rounded-full px-8 py-3 inline-block">
-            <p className="text-black font-bold text-sm">🚀 LAUNCHING FEBRUARY 2026</p>
+            <p className="text-black font-bold text-sm">LAUNCHING FEBRUARY 2026</p>
           </div>
         </div>
 
@@ -42,58 +42,58 @@ export default function NILPortal() {
         {/* Feature Cards */}
         <div className="grid md:grid-cols-2 gap-6">
           <div className="bg-black/40 backdrop-blur-sm border-2 border-green-400 rounded-2xl p-8 space-y-4">
-            <div className="text-5xl">💰</div>
+            <div className="text-5xl"></div>
             <h3 className="text-2xl font-bold text-white">NIL Deal Management</h3>
             <p className="text-gray-300">
               Connect with brands, negotiate deals, track payments, and manage your entire NIL portfolio in one place.
             </p>
             <ul className="space-y-2 text-gray-300 text-sm">
-              <li>✓ Brand partnership marketplace</li>
-              <li>✓ Contract management & e-signatures</li>
-              <li>✓ Payment tracking & invoicing</li>
-              <li>✓ Tax documentation & reporting</li>
+              <li> Brand partnership marketplace</li>
+              <li> Contract management & e-signatures</li>
+              <li> Payment tracking & invoicing</li>
+              <li> Tax documentation & reporting</li>
             </ul>
           </div>
 
           <div className="bg-black/40 backdrop-blur-sm border-2 border-cyan-400 rounded-2xl p-8 space-y-4">
-            <div className="text-5xl">📊</div>
+            <div className="text-5xl"></div>
             <h3 className="text-2xl font-bold text-white">Performance Analytics</h3>
             <p className="text-gray-300">
               Track your training data, game stats, and recruiting metrics. Share your progress with coaches and scouts.
             </p>
             <ul className="space-y-2 text-gray-300 text-sm">
-              <li>✓ Training session tracking</li>
-              <li>✓ Game performance analysis</li>
-              <li>✓ Recruiting profile builder</li>
-              <li>✓ Video highlight management</li>
+              <li> Training session tracking</li>
+              <li> Game performance analysis</li>
+              <li> Recruiting profile builder</li>
+              <li> Video highlight management</li>
             </ul>
           </div>
 
           <div className="bg-black/40 backdrop-blur-sm border-2 border-purple-400 rounded-2xl p-8 space-y-4">
-            <div className="text-5xl">🤝</div>
+            <div className="text-5xl"></div>
             <h3 className="text-2xl font-bold text-white">Professional Network</h3>
             <p className="text-gray-300">
               Build relationships with coaches, scouts, agents, and other athletes. Your career network in one platform.
             </p>
             <ul className="space-y-2 text-gray-300 text-sm">
-              <li>✓ Coach & scout connections</li>
-              <li>✓ Agent & advisor directory</li>
-              <li>✓ Athlete community forums</li>
-              <li>✓ Mentorship programs</li>
+              <li> Coach & scout connections</li>
+              <li> Agent & advisor directory</li>
+              <li> Athlete community forums</li>
+              <li> Mentorship programs</li>
             </ul>
           </div>
 
           <div className="bg-black/40 backdrop-blur-sm border-2 border-orange-400 rounded-2xl p-8 space-y-4">
-            <div className="text-5xl">🎓</div>
+            <div className="text-5xl"></div>
             <h3 className="text-2xl font-bold text-white">Education & Resources</h3>
             <p className="text-gray-300">
               Learn about NIL regulations, financial literacy, personal branding, and career development.
             </p>
             <ul className="space-y-2 text-gray-300 text-sm">
-              <li>✓ NIL compliance training</li>
-              <li>✓ Financial literacy courses</li>
-              <li>✓ Personal branding workshops</li>
-              <li>✓ Career transition planning</li>
+              <li> NIL compliance training</li>
+              <li> Financial literacy courses</li>
+              <li> Personal branding workshops</li>
+              <li> Career transition planning</li>
             </ul>
           </div>
         </div>
@@ -160,7 +160,7 @@ export default function NILPortal() {
           </p>
           <Link href="/">
             <a className="inline-block bg-white text-black px-8 py-4 rounded-xl font-black text-lg uppercase hover:scale-105 transition-transform">
-              🏆 Claim Your Spot
+              Claim Your Spot
             </a>
           </Link>
         </div>

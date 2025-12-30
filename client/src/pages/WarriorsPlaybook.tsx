@@ -141,7 +141,7 @@ export default function WarriorsPlaybook() {
           <div className="flex items-center gap-4">
             <Link href="/diamond-grind">
               <span className="text-white/80 hover:text-cyan-400 transition-colors cursor-pointer text-sm">
-                ⚾ Diamond Grind
+                Diamond Grind
               </span>
             </Link>
             <Link href="/mindset">
@@ -159,13 +159,13 @@ export default function WarriorsPlaybook() {
             ) : user ? (
               <Link href="/dashboard">
                 <Button size="sm" className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500">
-                  ✅ Dashboard
+                  Dashboard
                 </Button>
               </Link>
             ) : (
               <a href={getLoginUrl()}>
                 <Button size="sm" className="bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-400 hover:to-orange-500 animate-pulse">
-                  🔐 LOGIN
+                  LOGIN
                 </Button>
               </a>
             )}
@@ -514,7 +514,7 @@ export default function WarriorsPlaybook() {
               </Link>
               <Link href="/diamond-grind">
                 <Button variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 px-8 py-6 text-lg rounded-full">
-                  ⚾ Diamond Grind
+                  Diamond Grind
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>

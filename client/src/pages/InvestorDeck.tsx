@@ -44,7 +44,7 @@ export default function InvestorDeck() {
           <h2 className="text-3xl font-bold text-white text-center mb-12">The DHG Ecosystem</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl border border-cyan-500/30 p-8 text-center">
-              <div className="text-5xl mb-4">🏆</div>
+              <div className="text-5xl mb-4"></div>
               <h3 className="text-xl font-bold text-white mb-2">ATHLYNX</h3>
               <p className="text-gray-400 text-sm mb-4">The Athlete's Playbook</p>
               <ul className="text-left text-gray-300 text-sm space-y-2">
@@ -166,7 +166,7 @@ export default function InvestorDeck() {
               </div>
               <div className="bg-gradient-to-r from-green-500/10 to-transparent rounded-xl border border-green-500/20 p-6">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center text-2xl">📱</div>
+                  <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center text-2xl"></div>
                   <div>
                     <h3 className="text-white font-bold">White-Label Licensing</h3>
                     <p className="text-gray-400 text-sm">Platform licensing</p>
@@ -191,7 +191,7 @@ export default function InvestorDeck() {
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-16 h-16 bg-green-500/20 rounded-xl flex items-center justify-center">
-                  <span className="text-3xl">🏆</span>
+                  <span className="text-3xl"></span>
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white">ICC</h3>
@@ -289,7 +289,7 @@ export default function InvestorDeck() {
           <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 text-center">
               <div className="w-24 h-24 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl">
-                👤
+                
               </div>
               <h3 className="text-xl font-bold text-white">Chad A. Dozier Sr</h3>
               <p className="text-cyan-400 mb-4">Chief Executive Officer & Founder</p>
@@ -300,7 +300,7 @@ export default function InvestorDeck() {
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 text-center">
               <div className="w-24 h-24 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl">
-                👤
+                
               </div>
               <h3 className="text-xl font-bold text-white">Glenn Tse</h3>
               <p className="text-yellow-400 mb-4">CFO & VP Business Development</p>

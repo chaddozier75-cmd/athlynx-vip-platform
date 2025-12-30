@@ -11,12 +11,12 @@ export default function DiamondGrind() {
   const [filterState, setFilterState] = useState("all");
 
   const tabs = [
-    { id: "overview", name: "Overview", icon: "🏠" },
-    { id: "players", name: "Players", icon: "⚾" },
-    { id: "rankings", name: "Rankings", icon: "📊" },
-    { id: "tournaments", name: "Tournaments", icon: "🏆" },
-    { id: "training", name: "Training", icon: "💪" },
-    { id: "recruiting", name: "Recruiting", icon: "🎓" },
+    { id: "overview", name: "Overview", icon: "" },
+    { id: "players", name: "Players", icon: "" },
+    { id: "rankings", name: "Rankings", icon: "" },
+    { id: "tournaments", name: "Tournaments", icon: "" },
+    { id: "training", name: "Training", icon: "" },
+    { id: "recruiting", name: "Recruiting", icon: "" },
   ];
 
   const positions = ["RHP", "LHP", "C", "1B", "2B", "3B", "SS", "OF", "DH", "UTIL"];
@@ -55,10 +55,10 @@ export default function DiamondGrind() {
   ];
 
   const stats = [
-    { label: "Players", value: "125,000+", icon: "⚾", change: "+2,500 this month" },
+    { label: "Players", value: "125,000+", icon: "", change: "+2,500 this month" },
     { label: "Scouts", value: "2,500+", icon: "👀", change: "+150 this month" },
-    { label: "Commitments", value: "8,500+", icon: "🎓", change: "+340 this year" },
-    { label: "Tournaments", value: "500+", icon: "🏆", change: "12 this week" },
+    { label: "Commitments", value: "8,500+", icon: "", change: "+340 this year" },
+    { label: "Tournaments", value: "500+", icon: "", change: "12 this week" },
   ];
 
   const filteredPlayers = topPlayers.filter(player => {
@@ -88,7 +88,7 @@ export default function DiamondGrind() {
             <button onClick={() => setShowCreateProfile(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">×</button>
             
             <div className="text-center mb-6">
-              <span className="text-5xl block mb-2">💎</span>
+              <span className="text-5xl block mb-2"></span>
               <h2 className="text-2xl font-bold text-white">Create Your Player Profile</h2>
               <p className="text-gray-400">Get discovered by 2,500+ college scouts</p>
             </div>
@@ -165,7 +165,7 @@ export default function DiamondGrind() {
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
-              <span className="text-white text-xl">💎</span>
+              <span className="text-white text-xl"></span>
             </div>
             <div>
               <h1 className="text-xl font-black text-white">DIAMOND GRIND</h1>
@@ -207,7 +207,7 @@ export default function DiamondGrind() {
           <div className="text-center mb-10 pt-6">
             <div className="inline-block mb-4">
               <div className="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                <span className="text-5xl">💎</span>
+                <span className="text-5xl"></span>
               </div>
             </div>
             <h1 className="text-5xl md:text-7xl font-black mb-2">
@@ -439,10 +439,10 @@ export default function DiamondGrind() {
                   <div className="flex flex-wrap gap-4 text-sm text-gray-400 mb-4">
                     <span>📅 {tournament.dates}</span>
                     <span>👥 {tournament.teams} teams</span>
-                    <span>💰 {tournament.prize}</span>
+                    <span>{tournament.prize}</span>
                   </div>
                   {tournament.spotsLeft > 0 && tournament.status === "Registration Open" && (
-                    <p className="text-orange-400 text-sm mb-3">🔥 Only {tournament.spotsLeft} spots left!</p>
+                    <p className="text-orange-400 text-sm mb-3">Only {tournament.spotsLeft} spots left!</p>
                   )}
                   <button
                     onClick={() => handleRegisterTournament(tournament.name)}
@@ -493,12 +493,12 @@ export default function DiamondGrind() {
           {/* Features Grid */}
           <div className="grid md:grid-cols-3 gap-4 mb-10">
             {[
-              { icon: "📊", title: "Live Stats", desc: "Real-time pitch-by-pitch tracking" },
+              { icon: "", title: "Live Stats", desc: "Real-time pitch-by-pitch tracking" },
               { icon: "🎥", title: "Video Analysis", desc: "AI-powered swing & pitching analysis" },
-              { icon: "🎓", title: "Recruiting", desc: "Connect with 2,500+ college scouts" },
-              { icon: "💰", title: "NIL Deals", desc: "Baseball-specific brand partnerships" },
+              { icon: "", title: "Recruiting", desc: "Connect with 2,500+ college scouts" },
+              { icon: "", title: "NIL Deals", desc: "Baseball-specific brand partnerships" },
               { icon: "🤖", title: "AI Coach", desc: "Personal AI training assistant" },
-              { icon: "📱", title: "Mobile App", desc: "iOS & Android apps coming soon" },
+              { icon: "", title: "Mobile App", desc: "iOS & Android apps coming soon" },
             ].map((feature, i) => (
               <div key={i} className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-5 text-center hover:border-blue-500/30 transition-all">
                 <span className="text-4xl block mb-3">{feature.icon}</span>
@@ -510,7 +510,7 @@ export default function DiamondGrind() {
 
           {/* CTA */}
           <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-8 text-center">
-            <h3 className="text-2xl font-bold text-white mb-2">Ready to Grind? 💎</h3>
+            <h3 className="text-2xl font-bold text-white mb-2">Ready to Grind? </h3>
             <p className="text-white/80 mb-6">Join 125,000+ baseball players on Diamond Grind</p>
             <div className="flex justify-center gap-4 flex-wrap">
               <button

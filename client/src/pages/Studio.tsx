@@ -70,13 +70,13 @@ export default function Studio() {
     {
       name: "The Closer's Corner",
       description: "Business, deals, and entrepreneurship",
-      icon: "💼",
+      icon: "",
       color: "from-orange-500 to-red-600"
     },
     {
       name: "Athlete Stories",
       description: "Interviews with great athletes",
-      icon: "🏆",
+      icon: "",
       color: "from-yellow-500 to-amber-600"
     },
     {
@@ -94,17 +94,17 @@ export default function Studio() {
     {
       name: "NIL Insights",
       description: "Navigating the NIL landscape",
-      icon: "💰",
+      icon: "",
       color: "from-pink-500 to-rose-600"
     }
   ];
 
   const stakeholderContent = [
-    { role: "Athletes", topics: ["Mental preparation", "Career development", "NIL strategies"], emoji: "🏆" },
+    { role: "Athletes", topics: ["Mental preparation", "Career development", "NIL strategies"], emoji: "" },
     { role: "Parents", topics: ["Supporting your athlete", "Financial planning", "Balancing life"], emoji: "👨‍👩‍👧‍👦" },
     { role: "Coaches", topics: ["Leadership", "Team building", "Player development"], emoji: "📋" },
-    { role: "Agents", topics: ["Contract negotiations", "Client management", "Industry trends"], emoji: "🤝" },
-    { role: "Trainers", topics: ["Performance optimization", "Injury prevention", "Recovery"], emoji: "💪" },
+    { role: "Agents", topics: ["Contract negotiations", "Client management", "Industry trends"], emoji: "" },
+    { role: "Trainers", topics: ["Performance optimization", "Injury prevention", "Recovery"], emoji: "" },
     { role: "Counselors", topics: ["Mental health", "Life transitions", "Stress management"], emoji: "🧠" }
   ];
 

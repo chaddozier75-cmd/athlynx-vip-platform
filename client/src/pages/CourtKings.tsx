@@ -84,7 +84,7 @@ export default function CourtKings() {
         <div className="container relative py-8 md:py-16 px-4 md:px-5">
           <div className="text-center mb-8 md:mb-12">
             <div className="inline-flex items-center gap-2 bg-purple-500/20 border border-purple-500/30 rounded-full px-3 md:px-4 py-2 mb-4 md:mb-6">
-              <span className="text-2xl">🏀</span>
+              <span className="text-2xl"></span>
               <span className="text-purple-400 font-bold text-sm md:text-base">COURT KINGS</span>
               <Badge className="bg-orange-500 text-black text-xs">POWERED BY ATHLYNX</Badge>
             </div>
@@ -356,7 +356,7 @@ export default function CourtKings() {
 
               <Card className="bg-purple-500/10 border-purple-500/30 mt-6">
                 <CardContent className="p-4 md:p-6">
-                  <h3 className="text-lg font-bold text-white mb-2">📱 Get Recruiting Alerts</h3>
+                  <h3 className="text-lg font-bold text-white mb-2">Get Recruiting Alerts</h3>
                   <p className="text-white/70 text-sm mb-4">Never miss a recruiting period change. Get push notifications for dead periods, contact periods, and evaluation windows.</p>
                   <Button className="bg-purple-500 hover:bg-purple-400 min-h-[44px] w-full sm:w-auto">Enable Notifications</Button>
                 </CardContent>

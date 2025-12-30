@@ -5,10 +5,10 @@ export default function MilitaryDivision() {
   const [activeTab, setActiveTab] = useState<"pipeline" | "support" | "mentorship">("pipeline");
 
   const marketStats = [
-    { value: "$1.4B+", label: "DoD Recruitment Budget", icon: "🎖️" },
-    { value: "500K+", label: "College Athletes/Year", icon: "🏆" },
-    { value: "19M", label: "U.S. Veterans", icon: "🇺🇸" },
-    { value: "96%", label: "Athletes Need Career Path", icon: "📈" },
+    { value: "$1.4B+", label: "DoD Recruitment Budget", icon: "" },
+    { value: "500K+", label: "College Athletes/Year", icon: "" },
+    { value: "19M", label: "U.S. Veterans", icon: "" },
+    { value: "96%", label: "Athletes Need Career Path", icon: "" },
   ];
 
   const pipelinePrograms = [
@@ -16,14 +16,14 @@ export default function MilitaryDivision() {
       id: 1,
       name: "Military NIL Sponsorships",
       desc: "Athletes receive NIL deals from Army, Navy, Air Force, Marines, Space Force, Coast Guard in exchange for service commitment",
-      icon: "💰",
+      icon: "",
       branch: "All Branches",
     },
     {
       id: 2,
       name: "ROTC Athlete Program",
       desc: "Support and NIL opportunities for ROTC cadets who are also college athletes",
-      icon: "🎓",
+      icon: "",
       branch: "Army, Navy, Air Force",
     },
     {
@@ -37,7 +37,7 @@ export default function MilitaryDivision() {
       id: 4,
       name: "Officer Candidate Connections",
       desc: "Fast-track athletes to officer programs with leadership development",
-      icon: "⭐",
+      icon: "",
       branch: "All Branches",
     },
   ];
@@ -82,14 +82,14 @@ export default function MilitaryDivision() {
       id: 6,
       name: "Career Transition Services",
       desc: "Help veterans find civilian employment",
-      icon: "💼",
+      icon: "",
       type: "Career",
     },
     {
       id: 7,
       name: "Veteran-Owned Business Support",
       desc: "Resources for veteran entrepreneurs",
-      icon: "🚀",
+      icon: "",
       type: "Business",
     },
   ];
@@ -99,25 +99,25 @@ export default function MilitaryDivision() {
       id: 1,
       name: "Battle Buddy System",
       desc: "Pair current athletes with veteran mentors for guidance and support",
-      icon: "🤝",
+      icon: "",
     },
     {
       id: 2,
       name: "Leadership Development",
       desc: "Military-style leadership training for athletes",
-      icon: "⚔️",
+      icon: "",
     },
     {
       id: 3,
       name: "Life Skills Training",
       desc: "Financial literacy, discipline, goal-setting",
-      icon: "📊",
+      icon: "",
     },
     {
       id: 4,
       name: "Career Guidance",
       desc: "Veterans help athletes plan post-sport careers",
-      icon: "🎯",
+      icon: "",
     },
     {
       id: 5,
@@ -131,9 +131,9 @@ export default function MilitaryDivision() {
     { company: "Lockheed Martin", opportunity: "STEM athlete sponsorships", logo: "🛡️" },
     { company: "Raytheon", opportunity: "Engineering career pipeline", logo: "🔧" },
     { company: "Boeing", opportunity: "Aviation athlete program", logo: "✈️" },
-    { company: "Northrop Grumman", opportunity: "Cybersecurity training", logo: "🔐" },
+    { company: "Northrop Grumman", opportunity: "Cybersecurity training", logo: "" },
     { company: "General Dynamics", opportunity: "Leadership development", logo: "⚙️" },
-    { company: "BAE Systems", opportunity: "Technical career paths", logo: "🎖️" },
+    { company: "BAE Systems", opportunity: "Technical career paths", logo: "" },
     { company: "L3Harris", opportunity: "Communications training", logo: "📡" },
   ];
 
@@ -189,12 +189,12 @@ export default function MilitaryDivision() {
   ];
 
   const militaryBranches = [
-    { name: "U.S. Army", motto: "This We'll Defend", icon: "⭐" },
+    { name: "U.S. Army", motto: "This We'll Defend", icon: "" },
     { name: "U.S. Navy", motto: "Non Sibi Sed Patriae", icon: "⚓" },
     { name: "U.S. Air Force", motto: "Aim High... Fly-Fight-Win", icon: "✈️" },
     { name: "U.S. Marines", motto: "Semper Fidelis", icon: "🦅" },
     { name: "U.S. Coast Guard", motto: "Semper Paratus", icon: "🚢" },
-    { name: "U.S. Space Force", motto: "Semper Supra", icon: "🚀" },
+    { name: "U.S. Space Force", motto: "Semper Supra", icon: "" },
   ];
 
   return (
@@ -203,7 +203,7 @@ export default function MilitaryDivision() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🎖️</span>
+            <span className="text-2xl"></span>
             <span className="text-xl font-black text-white">ATHLYNX</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-sm">
@@ -220,9 +220,9 @@ export default function MilitaryDivision() {
           {/* Hero Section */}
           <div className="text-center mb-12">
             <div className="flex justify-center gap-3 mb-4">
-              <span className="text-5xl">🎖️</span>
-              <span className="text-5xl">🇺🇸</span>
-              <span className="text-5xl">🎖️</span>
+              <span className="text-5xl"></span>
+              <span className="text-5xl"></span>
+              <span className="text-5xl"></span>
             </div>
             <span className="inline-block px-4 py-1 bg-red-500/20 text-red-400 rounded-full text-sm font-semibold mb-4 border border-red-500/30">
               OPERATION: WARRIOR PIPELINE
@@ -331,7 +331,7 @@ export default function MilitaryDivision() {
                     : "bg-white/5 text-gray-400 hover:bg-white/10"
                 }`}
               >
-                🎯 Athlete to Military Pipeline
+                Athlete to Military Pipeline
               </button>
               <button
                 onClick={() => setActiveTab("support")}
@@ -351,7 +351,7 @@ export default function MilitaryDivision() {
                     : "bg-white/5 text-gray-400 hover:bg-white/10"
                 }`}
               >
-                🤝 Mentorship Network
+                Mentorship Network
               </button>
             </div>
 
@@ -360,7 +360,7 @@ export default function MilitaryDivision() {
               {activeTab === "pipeline" && (
                 <div>
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="text-3xl">🎯</span>
+                    <span className="text-3xl"></span>
                     <div>
                       <h3 className="text-xl font-bold text-white">PILLAR 1: ATHLETE TO MILITARY PIPELINE</h3>
                       <p className="text-red-400">Mission: Recruit elite athletes into military service</p>
@@ -383,7 +383,7 @@ export default function MilitaryDivision() {
                     ))}
                   </div>
                   <div className="bg-black/30 rounded-xl p-4 border border-white/10">
-                    <h4 className="font-bold text-white mb-2">💰 Revenue Model</h4>
+                    <h4 className="font-bold text-white mb-2">Revenue Model</h4>
                     <div className="flex flex-wrap gap-2">
                       {["Government contracts", "Per-recruit fees", "ROTC partnerships", "Defense contractor sponsorships"].map((item) => (
                         <span key={item} className="px-3 py-1 bg-green-500/20 text-green-400 text-sm rounded-full">
@@ -421,7 +421,7 @@ export default function MilitaryDivision() {
                     ))}
                   </div>
                   <div className="bg-black/30 rounded-xl p-4 border border-white/10">
-                    <h4 className="font-bold text-white mb-2">💰 Revenue Model</h4>
+                    <h4 className="font-bold text-white mb-2">Revenue Model</h4>
                     <div className="flex flex-wrap gap-2">
                       {["VA partnership contracts", "VSO partnerships", "Corporate hiring fees", "Premium subscriptions"].map((item) => (
                         <span key={item} className="px-3 py-1 bg-green-500/20 text-green-400 text-sm rounded-full">
@@ -436,7 +436,7 @@ export default function MilitaryDivision() {
               {activeTab === "mentorship" && (
                 <div>
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="text-3xl">🤝</span>
+                    <span className="text-3xl"></span>
                     <div>
                       <h3 className="text-xl font-bold text-white">PILLAR 3: VETERAN ATHLETE MENTORSHIP NETWORK</h3>
                       <p className="text-green-400">Mission: Connect generations of warrior-athletes</p>
@@ -456,7 +456,7 @@ export default function MilitaryDivision() {
                     ))}
                   </div>
                   <div className="bg-black/30 rounded-xl p-4 border border-white/10">
-                    <h4 className="font-bold text-white mb-2">💰 Revenue Model</h4>
+                    <h4 className="font-bold text-white mb-2">Revenue Model</h4>
                     <div className="flex flex-wrap gap-2">
                       {["Corporate sponsorships", "School program fees", "Speaking engagement fees", "Training program licensing"].map((item) => (
                         <span key={item} className="px-3 py-1 bg-green-500/20 text-green-400 text-sm rounded-full">

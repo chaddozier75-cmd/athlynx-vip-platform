@@ -8,20 +8,20 @@ export default function SigningDay() {
   const [selectedSport, setSelectedSport] = useState("all");
 
   const sports = [
-    { id: "all", name: "All Sports", emoji: "🏆" },
-    { id: "football", name: "Football", emoji: "🏈" },
-    { id: "baseball", name: "Baseball", emoji: "⚾" },
-    { id: "basketball", name: "Basketball", emoji: "🏀" },
-    { id: "soccer", name: "Soccer", emoji: "⚽" },
+    { id: "all", name: "All Sports", emoji: "" },
+    { id: "football", name: "Football", emoji: "" },
+    { id: "baseball", name: "Baseball", emoji: "" },
+    { id: "basketball", name: "Basketball", emoji: "" },
+    { id: "soccer", name: "Soccer", emoji: "" },
     { id: "track", name: "Track & Field", emoji: "🏃" },
-    { id: "volleyball", name: "Volleyball", emoji: "🏐" },
+    { id: "volleyball", name: "Volleyball", emoji: "" },
   ];
 
   const upcomingEvents = [
     {
       id: 1,
       sport: "Football",
-      emoji: "🏈",
+      emoji: "",
       date: "December 20, 2024",
       name: "Early Signing Period",
       athleteCount: 1250,
@@ -30,7 +30,7 @@ export default function SigningDay() {
     {
       id: 2,
       sport: "Baseball",
-      emoji: "⚾",
+      emoji: "",
       date: "November 8, 2024",
       name: "Fall Signing Period",
       athleteCount: 850,
@@ -39,7 +39,7 @@ export default function SigningDay() {
     {
       id: 3,
       sport: "Basketball",
-      emoji: "🏀",
+      emoji: "",
       date: "November 13, 2024",
       name: "Early Signing Period",
       athleteCount: 620,

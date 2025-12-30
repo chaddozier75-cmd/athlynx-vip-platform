@@ -248,7 +248,7 @@ export default function PitchPulse() {
           <div className="flex flex-col lg:flex-row items-center gap-8">
             <div className="flex-1 text-center lg:text-left">
               <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 mb-4">
-                ⚽ POWERED BY ATHLYNX
+                POWERED BY ATHLYNX
               </Badge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4">
                 PITCH
@@ -381,7 +381,7 @@ export default function PitchPulse() {
                     {player.commitment && (
                       <div className="mt-3 pt-3 border-t border-white/10">
                         <Badge className="bg-blue-500/20 text-blue-400 w-full justify-center">
-                          ✓ Committed: {player.commitment}
+                           Committed: {player.commitment}
                         </Badge>
                       </div>
                     )}

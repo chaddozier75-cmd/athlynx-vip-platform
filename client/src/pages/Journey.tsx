@@ -39,7 +39,7 @@ export default function Journey() {
     {
       id: "athletes",
       title: "Athletes",
-      emoji: "🏆",
+      emoji: "",
       icon: Trophy,
       tagline: "Your success is our mission",
       color: "from-cyan-500 to-blue-600",
@@ -96,7 +96,7 @@ export default function Journey() {
     {
       id: "agents",
       title: "Agents",
-      emoji: "🤝",
+      emoji: "",
       icon: Briefcase,
       tagline: "Represent the best",
       color: "from-amber-500 to-orange-600",
@@ -134,7 +134,7 @@ export default function Journey() {
     {
       id: "trainers",
       title: "Trainers",
-      emoji: "💪",
+      emoji: "",
       icon: Dumbbell,
       tagline: "Build champions",
       color: "from-red-500 to-pink-600",
@@ -172,7 +172,7 @@ export default function Journey() {
     {
       id: "chaplains",
       title: "Chaplains",
-      emoji: "🙏",
+      emoji: "",
       icon: Heart,
       tagline: "Faith in the game",
       color: "from-indigo-500 to-violet-600",
