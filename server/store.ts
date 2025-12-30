@@ -342,6 +342,7 @@ export const storeRouter = router({
       }
       
       // Create Stripe checkout session
+      if (!stripe) throw new Error('Payment system not available');
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items: lineItems,
@@ -388,7 +389,7 @@ export const storeRouter = router({
       }
       
       // Verify payment with Stripe
-      if (order.stripeCheckoutSessionId) {
+      if (order.stripeCheckoutSessionId && stripe) {
         const session = await stripe.checkout.sessions.retrieve(order.stripeCheckoutSessionId);
         
         if (session.payment_status === 'paid') {
