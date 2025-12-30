@@ -3,7 +3,7 @@ import { trpc } from "@/lib/trpc";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2, Mail, KeyRound, CheckCircle } from "lucide-react";
+import { Loader2, Mail, KeyRound, CheckCircle, Sparkles } from "lucide-react";
 
 interface EmailLoginModalProps {
   open: boolean;
@@ -16,6 +16,7 @@ export default function EmailLoginModal({ open, onOpenChange }: EmailLoginModalP
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
   const [devCode, setDevCode] = useState("");
+  const [greeting, setGreeting] = useState("");
 
   const sendCodeMutation = trpc.emailAuth.sendCode.useMutation({
     onSuccess: (data) => {
@@ -24,6 +25,9 @@ export default function EmailLoginModal({ open, onOpenChange }: EmailLoginModalP
       if (data.devCode) {
         setDevCode(data.devCode);
       }
+      if (data.greeting) {
+        setGreeting(data.greeting);
+      }
     },
     onError: (err) => {
       setError(err.message);
@@ -31,13 +35,16 @@ export default function EmailLoginModal({ open, onOpenChange }: EmailLoginModalP
   });
 
   const verifyCodeMutation = trpc.emailAuth.verifyCode.useMutation({
-    onSuccess: () => {
+    onSuccess: (data) => {
       setStep("success");
       setError("");
+      if (data.greeting) {
+        setGreeting(data.greeting);
+      }
       // Reload after short delay to show success
       setTimeout(() => {
         window.location.href = "/dashboard";
-      }, 1500);
+      }, 2000);
     },
     onError: (err) => {
       setError(err.message);
@@ -67,6 +74,7 @@ export default function EmailLoginModal({ open, onOpenChange }: EmailLoginModalP
     setCode("");
     setError("");
     setDevCode("");
+    setGreeting("");
   };
 
   return (
@@ -120,16 +128,28 @@ export default function EmailLoginModal({ open, onOpenChange }: EmailLoginModalP
 
         {step === "code" && (
           <form onSubmit={handleVerifyCode} className="space-y-4 mt-4">
-            <div className="text-center text-gray-300 mb-4">
-              Enter the 6-digit code sent to<br />
-              <span className="text-cyan-400 font-semibold">{email}</span>
-            </div>
-            {devCode && (
-              <div className="bg-yellow-500/20 border border-yellow-500/50 rounded-lg p-3 text-center">
-                <p className="text-yellow-400 text-xs mb-1">Development Mode - Code:</p>
-                <p className="text-yellow-300 font-mono text-2xl tracking-widest">{devCode}</p>
+            {/* Personalized Greeting */}
+            {greeting && (
+              <div className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/50 rounded-lg p-3 text-center animate-pulse">
+                <Sparkles className="w-5 h-5 text-yellow-400 mx-auto mb-1" />
+                <p className="text-cyan-300 font-bold">{greeting}</p>
               </div>
             )}
+            
+            <div className="text-center text-gray-300 mb-2">
+              Enter the 6-digit code for<br />
+              <span className="text-cyan-400 font-semibold">{email}</span>
+            </div>
+            
+            {/* Code Display - Always Visible */}
+            {devCode && (
+              <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-2 border-green-500/50 rounded-lg p-4 text-center">
+                <p className="text-green-400 text-xs mb-2 font-bold uppercase tracking-wider">🔐 Your Login Code</p>
+                <p className="text-green-300 font-mono text-3xl tracking-[0.5em] font-bold">{devCode}</p>
+                <p className="text-green-400/60 text-xs mt-2">Enter this code below</p>
+              </div>
+            )}
+            
             <div className="relative">
               <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-cyan-400" />
               <Input
@@ -169,10 +189,14 @@ export default function EmailLoginModal({ open, onOpenChange }: EmailLoginModalP
 
         {step === "success" && (
           <div className="text-center py-8 space-y-4">
-            <CheckCircle className="w-16 h-16 text-green-400 mx-auto" />
-            <div className="text-xl font-bold text-green-400">Login Successful!</div>
+            <CheckCircle className="w-16 h-16 text-green-400 mx-auto animate-bounce" />
+            <div className="text-xl font-bold text-green-400">Login Successful! 🎉</div>
+            {greeting && (
+              <div className="text-cyan-300 font-semibold">{greeting}</div>
+            )}
             <div className="text-gray-300">Redirecting to dashboard...</div>
             <Loader2 className="w-6 h-6 text-cyan-400 mx-auto animate-spin" />
+            <p className="text-yellow-400/60 text-xs italic">"Never ever give up."</p>
           </div>
         )}
       </DialogContent>
