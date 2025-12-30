@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import UnifiedFooter from "@/components/UnifiedFooter";
 import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
+import LoginButton from "@/components/LoginButton";
 
 export default function Home() {
   const { user, loading } = useAuth();
@@ -80,11 +80,7 @@ export default function Home() {
                 </button>
               </Link>
             ) : (
-              <a href={getLoginUrl()}>
-                <button className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-cyan-500/30 transition-all">
-                  LOGIN
-                </button>
-              </a>
+              <LoginButton />
             )}
           </div>
         </div>

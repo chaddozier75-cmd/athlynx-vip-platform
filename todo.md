@@ -2408,3 +2408,20 @@
 - [x] Add navigation links to Warrior's Playbook from VIP landing page
 - [x] Save final checkpoint for launch
 
+
+
+---
+
+## 🔐 EMAIL-BASED AUTHENTICATION SYSTEM - December 30, 2025
+
+### Bypass Manus OAuth - Implement Email Verification Login
+- [ ] Create email verification code generation system
+- [ ] Store verification codes in database with expiration
+- [ ] Build email sending via Manus notification API
+- [ ] Create login page with email input
+- [ ] Create verification code input page
+- [ ] Implement session creation after verification
+- [ ] Update auth context to use new system
+- [ ] Test full login flow
+- [ ] Deploy and verify on production
+

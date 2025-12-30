@@ -10,6 +10,9 @@ function getQueryParam(req: Request, key: string): string | undefined {
   return typeof value === "string" ? value : undefined;
 }
 
+// Manus OAuth server URL - use env or fallback to production URL
+const MANUS_OAUTH_URL = ENV.oAuthServerUrl || "https://api.manus.im";
+
 export function registerOAuthRoutes(app: Express) {
   // OAuth callback route
   app.get("/api/oauth/callback", async (req: Request, res: Response) => {
@@ -17,7 +20,10 @@ export function registerOAuthRoutes(app: Express) {
       const code = getQueryParam(req, "code");
       const state = getQueryParam(req, "state");
 
-      console.log("[OAuth] Callback received - code:", code ? "present" : "missing", "state:", state);
+      console.log("[OAuth] Callback received");
+      console.log("[OAuth] Code present:", !!code);
+      console.log("[OAuth] State:", state);
+      console.log("[OAuth] Using OAuth URL:", MANUS_OAUTH_URL);
 
       if (!code) {
         console.error("[OAuth] Missing authorization code in callback");
@@ -25,9 +31,11 @@ export function registerOAuthRoutes(app: Express) {
       }
 
       // Exchange code for token using Manus OAuth
-      console.log("[OAuth] Exchanging code for token at:", `${ENV.oAuthServerUrl}/api/oauth/token`);
+      const tokenUrl = `${MANUS_OAUTH_URL}/api/oauth/token`;
+      console.log("[OAuth] Exchanging code at:", tokenUrl);
+      console.log("[OAuth] App ID:", ENV.appId);
       
-      const tokenResponse = await fetch(`${ENV.oAuthServerUrl}/api/oauth/token`, {
+      const tokenResponse = await fetch(tokenUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,19 +46,26 @@ export function registerOAuthRoutes(app: Express) {
         }),
       });
 
+      console.log("[OAuth] Token response status:", tokenResponse.status);
+
       if (!tokenResponse.ok) {
         const errorText = await tokenResponse.text();
         console.error("[OAuth] Token exchange failed:", tokenResponse.status, errorText);
-        return res.status(401).json({ error: "Authentication failed" });
+        return res.status(401).json({ 
+          error: "Authentication failed", 
+          details: `Token exchange failed: ${tokenResponse.status}`,
+          debug: errorText.substring(0, 200)
+        });
       }
 
       const tokenData = await tokenResponse.json();
-      console.log("[OAuth] Token exchange successful, user data received");
+      console.log("[OAuth] Token exchange successful");
+      console.log("[OAuth] User data received:", JSON.stringify(tokenData).substring(0, 200));
       
       const { user } = tokenData;
 
       if (!user || !user.open_id) {
-        console.error("[OAuth] Invalid user data from OAuth:", tokenData);
+        console.error("[OAuth] Invalid user data from OAuth:", JSON.stringify(tokenData));
         return res.status(401).json({ error: "Invalid user data from OAuth" });
       }
 
@@ -78,36 +93,17 @@ export function registerOAuthRoutes(app: Express) {
       res.cookie(COOKIE_NAME, sessionToken, getSessionCookieOptions(req));
       console.log("[OAuth] Session cookie set");
 
-      // Decode the state to get the original redirect URL
-      // The state is base64 encoded, but we want to redirect to home after login
-      let redirectUrl = "/";
-      
-      if (state) {
-        try {
-          // State contains the original redirect URI, but we want to go to dashboard/home
-          const decodedState = Buffer.from(state, "base64").toString("utf-8");
-          console.log("[OAuth] Decoded state:", decodedState);
-          
-          // If the decoded state is the callback URL itself, redirect to home
-          // Otherwise use the decoded state as the redirect
-          if (decodedState.includes("/api/oauth/callback")) {
-            redirectUrl = "/";
-          } else {
-            redirectUrl = decodedState;
-          }
-        } catch (e) {
-          console.log("[OAuth] Could not decode state, using default redirect");
-          redirectUrl = "/";
-        }
-      }
-
-      console.log("[OAuth] Redirecting to:", redirectUrl);
-      res.redirect(redirectUrl);
+      // Always redirect to home page after successful login
+      console.log("[OAuth] Redirecting to homepage");
+      res.redirect("/");
     } catch (error) {
       console.error("[OAuth] Callback error:", error);
-      res.status(500).json({ error: "Authentication failed" });
+      res.status(500).json({ 
+        error: "Authentication failed", 
+        details: error instanceof Error ? error.message : "Unknown error"
+      });
     }
   });
 
-  console.log("[OAuth] Routes registered with Manus OAuth");
+  console.log("[OAuth] Routes registered with Manus OAuth at:", MANUS_OAUTH_URL);
 }
