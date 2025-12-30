@@ -59,6 +59,26 @@ export default function FounderStory() {
             <p className="text-red-400 italic">The dream shattered. The pain real. But never forgotten.</p>
             <p className="text-cyan-400 italic">"Playing sports since I was 3 years old. The game never left me."</p>
           </div>
+
+          {/* The Testimony - Personal Struggle & Redemption */}
+          <div className="bg-gradient-to-r from-red-900/30 to-slate-800/50 rounded-lg p-6 space-y-4 border-l-4 border-red-500">
+            <h3 className="text-xl font-bold text-red-400">The Testimony - What Followed</h3>
+            <p className="text-gray-300">A bad injury doesn't just end a career—it can change the course of a life. After being cut, poor choices followed me for many more years. The pain of losing my dream led me down paths I'm not proud of.</p>
+            <p className="text-gray-300">But that's exactly <strong>why I'm doing this</strong>.</p>
+          </div>
+
+          <div className="bg-gradient-to-r from-cyan-900/30 to-slate-800/50 rounded-lg p-6 space-y-4 border-l-4 border-cyan-500">
+            <h3 className="text-xl font-bold text-cyan-400">The Mission - Not For The Money</h3>
+            <p className="text-gray-300">I'm not building ATHLYNX for the money. I'm building it so that <strong>one child</strong> who had a childhood like mine would never have to make the same mistakes I did.</p>
+            <p className="text-cyan-400 font-bold text-lg">If my testimony helps that one person—just one—then I've done my job.</p>
+          </div>
+
+          <div className="bg-gradient-to-r from-yellow-900/30 to-slate-800/50 rounded-lg p-6 space-y-4 border-l-4 border-yellow-500">
+            <h3 className="text-xl font-bold text-yellow-400">Living The Dream</h3>
+            <p className="text-gray-300">And you know what? <strong>I'm having the time of my life.</strong></p>
+            <p className="text-gray-300">I feel like I'm living my childhood dream through these platforms and apps. Every feature we build, every athlete we help, every young person we guide—it's like playing the game all over again, but this time I get to help others win.</p>
+            <p className="text-yellow-400 font-bold text-xl italic">"I'm honored to be here. Honored to serve. Honored to give back."</p>
+          </div>
         </div>
 
         {/* The Vision (2020s) */}

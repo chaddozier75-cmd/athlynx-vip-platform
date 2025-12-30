@@ -1885,3 +1885,11 @@
 - [x] Include DHG branding, logos, and professional styling
 - [x] Add contact details (email, phone, LinkedIn)
 - [x] Make cards downloadable/shareable
+
+
+### Founder's Story - Personal Testimony Addition
+- [x] Add section about injury that ended career
+- [x] Add section about poor choices that followed for years
+- [x] Add redemption message - doing this to help children avoid same mistakes
+- [x] Add testimony about living childhood dream through ATHLYNX
+- [x] Place content right after where career was cut short (MSU section)
