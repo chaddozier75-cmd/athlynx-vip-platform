@@ -2027,3 +2027,123 @@ export const userStatsSummary = mysqlTable("user_stats_summary", {
 
 export type UserStatsSummary = typeof userStatsSummary.$inferSelect;
 export type InsertUserStatsSummary = typeof userStatsSummary.$inferInsert;
+
+
+// ============================================
+// PARTNER REWARDS & TRANSACTION DOCUMENTATION
+// Timestamped: December 30, 2025
+// "You have to reward loyalty and hard work."
+// ============================================
+
+/**
+ * Partner tiers - Founding Partners get lifetime benefits
+ */
+export const partnerTiers = mysqlTable("partner_tiers", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 100 }).notNull().unique(),
+  description: text("description"),
+  level: int("level").notNull(), // 1 = Founding Partner, 2 = VIP, 3 = Pro, 4 = Free
+  monthlyPrice: int("monthlyPrice").default(0), // in cents, 0 = free
+  benefits: text("benefits"), // JSON array of benefits
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PartnerTier = typeof partnerTiers.$inferSelect;
+
+/**
+ * Partner records - Track all founding partners and their rewards
+ */
+export const partners = mysqlTable("partners", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").references(() => users.id),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }),
+  phone: varchar("phone", { length: 50 }),
+  tierId: int("tierId").references(() => partnerTiers.id),
+  role: varchar("role", { length: 100 }), // Partner, Advisor, Investor, etc.
+  equityPercentage: varchar("equityPercentage", { length: 20 }),
+  revenueSharePercentage: varchar("revenueSharePercentage", { length: 20 }),
+  customWelcomeMessage: text("customWelcomeMessage"),
+  lifetimeAccess: mysqlEnum("lifetimeAccess", ["yes", "no"]).default("no"),
+  whiteLabelRights: mysqlEnum("whiteLabelRights", ["yes", "no"]).default("no"),
+  boardAdvisoryRights: mysqlEnum("boardAdvisoryRights", ["yes", "no"]).default("no"),
+  grantedAt: timestamp("grantedAt").defaultNow().notNull(),
+  grantedBy: varchar("grantedBy", { length: 255 }).default("Chad A. Dozier"),
+  notes: text("notes"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Partner = typeof partners.$inferSelect;
+
+/**
+ * Transaction documentation - Every transaction timestamped forever
+ */
+export const transactions = mysqlTable("transactions", {
+  id: int("id").autoincrement().primaryKey(),
+  transactionId: varchar("transactionId", { length: 50 }).notNull().unique(), // TXN-001, TXN-002, etc.
+  userId: int("userId").references(() => users.id),
+  partnerId: int("partnerId").references(() => partners.id),
+  type: mysqlEnum("type", [
+    "PARTNER_GRANT",
+    "VIP_SIGNUP", 
+    "SUBSCRIPTION",
+    "STORE_PURCHASE",
+    "REFERRAL_BONUS",
+    "REVENUE_SHARE",
+    "EQUITY_DISTRIBUTION",
+    "AI_CREDIT_PURCHASE",
+    "REFUND",
+    "OTHER"
+  ]).notNull(),
+  amount: int("amount").default(0), // in cents
+  currency: varchar("currency", { length: 10 }).default("USD"),
+  description: text("description").notNull(),
+  status: mysqlEnum("status", ["pending", "completed", "failed", "refunded"]).default("pending"),
+  referredBy: int("referredBy").references(() => users.id),
+  metadata: text("metadata"), // JSON for additional data
+  stripePaymentId: varchar("stripePaymentId", { length: 255 }),
+  timestamp: timestamp("timestamp").defaultNow().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Transaction = typeof transactions.$inferSelect;
+
+/**
+ * Partner rewards log - Track all rewards given to partners
+ */
+export const partnerRewards = mysqlTable("partner_rewards", {
+  id: int("id").autoincrement().primaryKey(),
+  partnerId: int("partnerId").references(() => partners.id).notNull(),
+  rewardType: varchar("rewardType", { length: 100 }).notNull(),
+  rewardValue: text("rewardValue").notNull(),
+  description: text("description"),
+  grantedAt: timestamp("grantedAt").defaultNow().notNull(),
+  grantedBy: varchar("grantedBy", { length: 255 }).default("Chad A. Dozier"),
+  transactionId: int("transactionId").references(() => transactions.id),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PartnerReward = typeof partnerRewards.$inferSelect;
+
+/**
+ * Revenue share payouts - Track all partner payouts
+ */
+export const revenueSharePayouts = mysqlTable("revenue_share_payouts", {
+  id: int("id").autoincrement().primaryKey(),
+  partnerId: int("partnerId").references(() => partners.id).notNull(),
+  periodStart: timestamp("periodStart").notNull(),
+  periodEnd: timestamp("periodEnd").notNull(),
+  totalRevenue: int("totalRevenue").notNull(), // in cents
+  partnerShare: int("partnerShare").notNull(), // in cents
+  sharePercentage: varchar("sharePercentage", { length: 20 }).notNull(),
+  status: mysqlEnum("status", ["pending", "paid", "cancelled"]).default("pending"),
+  paidAt: timestamp("paidAt"),
+  paymentMethod: varchar("paymentMethod", { length: 100 }),
+  transactionId: int("transactionId").references(() => transactions.id),
+  notes: text("notes"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type RevenueSharePayout = typeof revenueSharePayouts.$inferSelect;
+
