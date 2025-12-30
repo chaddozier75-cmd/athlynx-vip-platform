@@ -1,0 +1,8 @@
+{
+  "query": "SELECT p.id, p.name, p.role, p.equityPercentage, p.revenueSharePercentage, p.lifetimeAccess, p.createdAt, t.transactionId, t.timestamp \nFROM partners p \nLEFT JOIN transactions t ON t.partnerId = p.id \nORDER BY p.id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute SELECT p.id, p.name, p.role, p.equityPercentage, p.revenueSharePercentage, p.lifetimeAccess, p.createdAt, t.transactionId, t.timestamp \nFROM partners p \nLEFT JOIN transactions t ON t.partnerId = p.id \nORDER BY p.id;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'p.createdat' in 'field list'"
+  ]
+}

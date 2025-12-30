@@ -1,0 +1,66 @@
+{
+  "query": "SELECT id, name, role, equityPercentage, revenueSharePercentage, lifetimeAccess FROM partners ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute SELECT id, name, role, equityPercentage, revenueSharePercentage, lifetimeAccess FROM partners ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "General Fu (傅晓)",
+      "role": "NULL",
+      "equityPercentage": "NULL",
+      "revenueSharePercentage": "NULL",
+      "lifetimeAccess": "no"
+    },
+    {
+      "id": "2",
+      "name": "ICC Sales Team",
+      "role": "NULL",
+      "equityPercentage": "NULL",
+      "revenueSharePercentage": "NULL",
+      "lifetimeAccess": "no"
+    },
+    {
+      "id": "90001",
+      "name": "Glenn Tse",
+      "role": "CFO & COO / Chief Imagineer",
+      "equityPercentage": "20%",
+      "revenueSharePercentage": "5%",
+      "lifetimeAccess": "yes"
+    },
+    {
+      "id": "90002",
+      "name": "Lee Marshall",
+      "role": "Military Division Commander",
+      "equityPercentage": "10%",
+      "revenueSharePercentage": "5%",
+      "lifetimeAccess": "yes"
+    },
+    {
+      "id": "90003",
+      "name": "David Ford Sr.",
+      "role": "Trusted Advisor - Medical & Real Estate",
+      "equityPercentage": "10%",
+      "revenueSharePercentage": "5%",
+      "lifetimeAccess": "yes"
+    },
+    {
+      "id": "90004",
+      "name": "Jimmy Boyd",
+      "role": "Partner",
+      "equityPercentage": "10%",
+      "revenueSharePercentage": "5%",
+      "lifetimeAccess": "yes"
+    },
+    {
+      "id": "90005",
+      "name": "Andrew Kustes",
+      "role": "Partner",
+      "equityPercentage": "10%",
+      "revenueSharePercentage": "5%",
+      "lifetimeAccess": "yes"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\trole\tequityPercentage\trevenueSharePercentage\tlifetimeAccess\n1\tGeneral Fu (傅晓)\tNULL\tNULL\tNULL\tno\n2\tICC Sales Team\tNULL\tNULL\tNULL\tno\n90001\tGlenn Tse\tCFO & COO / Chief Imagineer\t20%\t5%\tyes\n90002\tLee Marshall\tMilitary Division Commander\t10%\t5%\tyes\n90003\tDavid Ford Sr.\tTrusted Advisor - Medical & Real Estate\t10%\t5%\tyes\n90004\tJimmy Boyd\tPartner\t10%\t5%\tyes\n90005\tAndrew Kustes\tPartner\t10%\t5%\tyes\n",
+  "stderr": "",
+  "execution_time_ms": 59
+}

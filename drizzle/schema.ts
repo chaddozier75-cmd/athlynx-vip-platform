@@ -1754,3 +1754,396 @@ export const emailTemplates = mysqlTable("email_templates", {
 
 export type EmailTemplate = typeof emailTemplates.$inferSelect;
 export type InsertEmailTemplate = typeof emailTemplates.$inferInsert;
+
+
+/**
+ * ============================================
+ * EMAIL-BASED AUTHENTICATION SYSTEM
+ * ============================================
+ * Bypasses Manus OAuth with simple email verification
+ */
+
+/**
+ * Email verification codes for passwordless login
+ */
+export const emailVerificationCodes = mysqlTable("email_verification_codes", {
+  id: int("id").autoincrement().primaryKey(),
+  email: varchar("email", { length: 320 }).notNull(),
+  code: varchar("code", { length: 6 }).notNull(),
+  expiresAt: timestamp("expiresAt").notNull(),
+  used: mysqlEnum("used", ["yes", "no"]).default("no").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type EmailVerificationCode = typeof emailVerificationCodes.$inferSelect;
+export type InsertEmailVerificationCode = typeof emailVerificationCodes.$inferInsert;
+
+
+/**
+ * ============================================
+ * UNIFIED APP ECOSYSTEM - INTERCONNECTED PLATFORM
+ * ============================================
+ * "Like a Philharmonic - all apps playing in harmony"
+ * NIL Portal (Social like FB) + Messenger + Diamond Grind + All Apps Connected
+ */
+
+/**
+ * Social Posts - NIL Portal Feed (The "N" Brand - like F in Facebook)
+ * Central social feed that connects all apps
+ */
+export const posts = mysqlTable("posts", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id),
+  content: text("content").notNull(),
+  mediaUrls: json("mediaUrls"), // Array of image/video URLs
+  mediaType: mysqlEnum("mediaType", ["none", "image", "video", "gallery"]).default("none").notNull(),
+  postType: mysqlEnum("postType", ["status", "achievement", "workout", "nil_deal", "announcement", "milestone"]).default("status").notNull(),
+  sourceApp: mysqlEnum("sourceApp", ["nil_portal", "diamond_grind", "messenger", "transfer_portal", "faith", "warriors_playbook"]).default("nil_portal").notNull(),
+  visibility: mysqlEnum("visibility", ["public", "followers", "private"]).default("public").notNull(),
+  likesCount: int("likesCount").default(0).notNull(),
+  commentsCount: int("commentsCount").default(0).notNull(),
+  sharesCount: int("sharesCount").default(0).notNull(),
+  isPinned: mysqlEnum("isPinned", ["yes", "no"]).default("no").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Post = typeof posts.$inferSelect;
+export type InsertPost = typeof posts.$inferInsert;
+
+/**
+ * Post Likes - Track who liked what
+ */
+export const postLikes = mysqlTable("post_likes", {
+  id: int("id").autoincrement().primaryKey(),
+  postId: int("postId").notNull().references(() => posts.id),
+  userId: int("userId").notNull().references(() => users.id),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PostLike = typeof postLikes.$inferSelect;
+export type InsertPostLike = typeof postLikes.$inferInsert;
+
+/**
+ * Post Comments - Engagement on posts
+ */
+export const postComments = mysqlTable("post_comments", {
+  id: int("id").autoincrement().primaryKey(),
+  postId: int("postId").notNull().references(() => posts.id),
+  userId: int("userId").notNull().references(() => users.id),
+  content: text("content").notNull(),
+  parentCommentId: int("parentCommentId"), // For replies
+  likesCount: int("likesCount").default(0).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type PostComment = typeof postComments.$inferSelect;
+export type InsertPostComment = typeof postComments.$inferInsert;
+
+/**
+ * Follows - Social connections between users
+ */
+export const follows = mysqlTable("follows", {
+  id: int("id").autoincrement().primaryKey(),
+  followerId: int("followerId").notNull().references(() => users.id),
+  followingId: int("followingId").notNull().references(() => users.id),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Follow = typeof follows.$inferSelect;
+export type InsertFollow = typeof follows.$inferInsert;
+
+/**
+ * Conversations - Messenger chat threads
+ */
+export const conversations = mysqlTable("conversations", {
+  id: int("id").autoincrement().primaryKey(),
+  type: mysqlEnum("type", ["direct", "group"]).default("direct").notNull(),
+  name: varchar("name", { length: 255 }), // For group chats
+  createdBy: int("createdBy").notNull().references(() => users.id),
+  lastMessageAt: timestamp("lastMessageAt"),
+  lastMessagePreview: varchar("lastMessagePreview", { length: 255 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Conversation = typeof conversations.$inferSelect;
+export type InsertConversation = typeof conversations.$inferInsert;
+
+/**
+ * Conversation Participants - Who is in each chat
+ */
+export const conversationParticipants = mysqlTable("conversation_participants", {
+  id: int("id").autoincrement().primaryKey(),
+  conversationId: int("conversationId").notNull().references(() => conversations.id),
+  userId: int("userId").notNull().references(() => users.id),
+  role: mysqlEnum("role", ["member", "admin"]).default("member").notNull(),
+  lastReadAt: timestamp("lastReadAt"),
+  unreadCount: int("unreadCount").default(0).notNull(),
+  joinedAt: timestamp("joinedAt").defaultNow().notNull(),
+});
+
+export type ConversationParticipant = typeof conversationParticipants.$inferSelect;
+export type InsertConversationParticipant = typeof conversationParticipants.$inferInsert;
+
+/**
+ * Messages - Individual chat messages
+ */
+export const messages = mysqlTable("messages", {
+  id: int("id").autoincrement().primaryKey(),
+  conversationId: int("conversationId").notNull().references(() => conversations.id),
+  senderId: int("senderId").notNull().references(() => users.id),
+  content: text("content").notNull(),
+  messageType: mysqlEnum("messageType", ["text", "image", "video", "file", "workout", "achievement", "system"]).default("text").notNull(),
+  mediaUrl: text("mediaUrl"),
+  metadata: json("metadata"), // For shared workouts, achievements, etc.
+  isEdited: mysqlEnum("isEdited", ["yes", "no"]).default("no").notNull(),
+  isDeleted: mysqlEnum("isDeleted", ["yes", "no"]).default("no").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Message = typeof messages.$inferSelect;
+export type InsertMessage = typeof messages.$inferInsert;
+
+/**
+ * Workouts - Diamond Grind training sessions
+ */
+export const workouts = mysqlTable("workouts", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id),
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description"),
+  sport: varchar("sport", { length: 100 }).notNull(),
+  workoutType: mysqlEnum("workoutType", ["strength", "cardio", "skill", "recovery", "game", "practice", "custom"]).default("custom").notNull(),
+  duration: int("duration"), // In minutes
+  intensity: mysqlEnum("intensity", ["low", "medium", "high", "max"]).default("medium").notNull(),
+  caloriesBurned: int("caloriesBurned"),
+  exercises: json("exercises"), // Array of exercise details
+  notes: text("notes"),
+  isPublic: mysqlEnum("isPublic", ["yes", "no"]).default("no").notNull(),
+  completedAt: timestamp("completedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Workout = typeof workouts.$inferSelect;
+export type InsertWorkout = typeof workouts.$inferInsert;
+
+/**
+ * Training Stats - Aggregated user statistics
+ */
+export const trainingStats = mysqlTable("training_stats", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id),
+  sport: varchar("sport", { length: 100 }).notNull(),
+  totalWorkouts: int("totalWorkouts").default(0).notNull(),
+  totalMinutes: int("totalMinutes").default(0).notNull(),
+  totalCalories: int("totalCalories").default(0).notNull(),
+  currentStreak: int("currentStreak").default(0).notNull(),
+  longestStreak: int("longestStreak").default(0).notNull(),
+  weeklyGoal: int("weeklyGoal").default(5).notNull(), // Workouts per week
+  weeklyProgress: int("weeklyProgress").default(0).notNull(),
+  level: int("level").default(1).notNull(),
+  xp: int("xp").default(0).notNull(),
+  lastWorkoutAt: timestamp("lastWorkoutAt"),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type TrainingStat = typeof trainingStats.$inferSelect;
+export type InsertTrainingStat = typeof trainingStats.$inferInsert;
+
+/**
+ * Achievements - Cross-app badges and milestones
+ */
+export const achievements = mysqlTable("achievements", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id),
+  achievementType: varchar("achievementType", { length: 100 }).notNull(),
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description"),
+  icon: varchar("icon", { length: 50 }),
+  sourceApp: mysqlEnum("sourceApp", ["nil_portal", "diamond_grind", "messenger", "transfer_portal", "faith", "warriors_playbook", "platform"]).default("platform").notNull(),
+  xpReward: int("xpReward").default(0).notNull(),
+  isRare: mysqlEnum("isRare", ["yes", "no"]).default("no").notNull(),
+  unlockedAt: timestamp("unlockedAt").defaultNow().notNull(),
+});
+
+export type Achievement = typeof achievements.$inferSelect;
+export type InsertAchievement = typeof achievements.$inferInsert;
+
+/**
+ * Activity Feed - Unified activity stream across all apps
+ */
+export const activityFeed = mysqlTable("activity_feed", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id),
+  activityType: mysqlEnum("activityType", [
+    "post_created", "post_liked", "post_commented",
+    "workout_completed", "achievement_unlocked",
+    "message_received", "follow_new",
+    "nil_deal", "transfer_update", "milestone"
+  ]).notNull(),
+  sourceApp: mysqlEnum("sourceApp", ["nil_portal", "diamond_grind", "messenger", "transfer_portal", "faith", "warriors_playbook", "platform"]).default("platform").notNull(),
+  referenceId: int("referenceId"), // ID of related post/workout/etc
+  referenceType: varchar("referenceType", { length: 50 }), // "post", "workout", "achievement", etc
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description"),
+  metadata: json("metadata"),
+  isRead: mysqlEnum("isRead", ["yes", "no"]).default("no").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ActivityFeedItem = typeof activityFeed.$inferSelect;
+export type InsertActivityFeedItem = typeof activityFeed.$inferInsert;
+
+/**
+ * User Stats Summary - Quick access to all user statistics
+ */
+export const userStatsSummary = mysqlTable("user_stats_summary", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id),
+  // Social stats
+  postsCount: int("postsCount").default(0).notNull(),
+  followersCount: int("followersCount").default(0).notNull(),
+  followingCount: int("followingCount").default(0).notNull(),
+  likesReceived: int("likesReceived").default(0).notNull(),
+  // Messenger stats
+  conversationsCount: int("conversationsCount").default(0).notNull(),
+  messagesSent: int("messagesSent").default(0).notNull(),
+  // Training stats
+  totalWorkouts: int("totalWorkouts").default(0).notNull(),
+  totalTrainingMinutes: int("totalTrainingMinutes").default(0).notNull(),
+  // Achievement stats
+  achievementsCount: int("achievementsCount").default(0).notNull(),
+  totalXp: int("totalXp").default(0).notNull(),
+  level: int("level").default(1).notNull(),
+  // Platform engagement
+  daysActive: int("daysActive").default(0).notNull(),
+  lastActiveAt: timestamp("lastActiveAt"),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type UserStatsSummary = typeof userStatsSummary.$inferSelect;
+export type InsertUserStatsSummary = typeof userStatsSummary.$inferInsert;
+
+
+// ============================================
+// PARTNER REWARDS & TRANSACTION DOCUMENTATION
+// Timestamped: December 30, 2025
+// "You have to reward loyalty and hard work."
+// ============================================
+
+/**
+ * Partner tiers - Founding Partners get lifetime benefits
+ */
+export const partnerTiers = mysqlTable("partner_tiers", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 100 }).notNull().unique(),
+  description: text("description"),
+  level: int("level").notNull(), // 1 = Founding Partner, 2 = VIP, 3 = Pro, 4 = Free
+  monthlyPrice: int("monthlyPrice").default(0), // in cents, 0 = free
+  benefits: text("benefits"), // JSON array of benefits
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PartnerTier = typeof partnerTiers.$inferSelect;
+
+/**
+ * Partner records - Track all founding partners and their rewards
+ */
+export const partners = mysqlTable("partners", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").references(() => users.id),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }),
+  phone: varchar("phone", { length: 50 }),
+  tierId: int("tierId").references(() => partnerTiers.id),
+  role: varchar("role", { length: 100 }), // Partner, Advisor, Investor, etc.
+  equityPercentage: varchar("equityPercentage", { length: 20 }),
+  revenueSharePercentage: varchar("revenueSharePercentage", { length: 20 }),
+  customWelcomeMessage: text("customWelcomeMessage"),
+  lifetimeAccess: mysqlEnum("lifetimeAccess", ["yes", "no"]).default("no"),
+  whiteLabelRights: mysqlEnum("whiteLabelRights", ["yes", "no"]).default("no"),
+  boardAdvisoryRights: mysqlEnum("boardAdvisoryRights", ["yes", "no"]).default("no"),
+  grantedAt: timestamp("grantedAt").defaultNow().notNull(),
+  grantedBy: varchar("grantedBy", { length: 255 }).default("Chad A. Dozier"),
+  notes: text("notes"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Partner = typeof partners.$inferSelect;
+
+/**
+ * Transaction documentation - Every transaction timestamped forever
+ */
+export const transactions = mysqlTable("transactions", {
+  id: int("id").autoincrement().primaryKey(),
+  transactionId: varchar("transactionId", { length: 50 }).notNull().unique(), // TXN-001, TXN-002, etc.
+  userId: int("userId").references(() => users.id),
+  partnerId: int("partnerId").references(() => partners.id),
+  type: mysqlEnum("type", [
+    "PARTNER_GRANT",
+    "VIP_SIGNUP", 
+    "SUBSCRIPTION",
+    "STORE_PURCHASE",
+    "REFERRAL_BONUS",
+    "REVENUE_SHARE",
+    "EQUITY_DISTRIBUTION",
+    "AI_CREDIT_PURCHASE",
+    "REFUND",
+    "OTHER"
+  ]).notNull(),
+  amount: int("amount").default(0), // in cents
+  currency: varchar("currency", { length: 10 }).default("USD"),
+  description: text("description").notNull(),
+  status: mysqlEnum("status", ["pending", "completed", "failed", "refunded"]).default("pending"),
+  referredBy: int("referredBy").references(() => users.id),
+  metadata: text("metadata"), // JSON for additional data
+  stripePaymentId: varchar("stripePaymentId", { length: 255 }),
+  timestamp: timestamp("timestamp").defaultNow().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Transaction = typeof transactions.$inferSelect;
+
+/**
+ * Partner rewards log - Track all rewards given to partners
+ */
+export const partnerRewards = mysqlTable("partner_rewards", {
+  id: int("id").autoincrement().primaryKey(),
+  partnerId: int("partnerId").references(() => partners.id).notNull(),
+  rewardType: varchar("rewardType", { length: 100 }).notNull(),
+  rewardValue: text("rewardValue").notNull(),
+  description: text("description"),
+  grantedAt: timestamp("grantedAt").defaultNow().notNull(),
+  grantedBy: varchar("grantedBy", { length: 255 }).default("Chad A. Dozier"),
+  transactionId: int("transactionId").references(() => transactions.id),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PartnerReward = typeof partnerRewards.$inferSelect;
+
+/**
+ * Revenue share payouts - Track all partner payouts
+ */
+export const revenueSharePayouts = mysqlTable("revenue_share_payouts", {
+  id: int("id").autoincrement().primaryKey(),
+  partnerId: int("partnerId").references(() => partners.id).notNull(),
+  periodStart: timestamp("periodStart").notNull(),
+  periodEnd: timestamp("periodEnd").notNull(),
+  totalRevenue: int("totalRevenue").notNull(), // in cents
+  partnerShare: int("partnerShare").notNull(), // in cents
+  sharePercentage: varchar("sharePercentage", { length: 20 }).notNull(),
+  status: mysqlEnum("status", ["pending", "paid", "cancelled"]).default("pending"),
+  paidAt: timestamp("paidAt"),
+  paymentMethod: varchar("paymentMethod", { length: 100 }),
+  transactionId: int("transactionId").references(() => transactions.id),
+  notes: text("notes"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type RevenueSharePayout = typeof revenueSharePayouts.$inferSelect;
+

@@ -3,7 +3,8 @@ import { useLocation, Link } from "wouter";
 import { trpc } from "../lib/trpc";
 import UnifiedFooter from "@/components/UnifiedFooter";
 import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
+import LoginButton from "@/components/LoginButton";
+import EmailLoginModal from "@/components/EmailLoginModal";
 
 export default function EarlyAccess() {
   const [, setLocation] = useLocation();
@@ -12,12 +13,27 @@ export default function EarlyAccess() {
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState("");
   const [sport, setSport] = useState("");
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
+
+  // Check for OAuth error in URL and show login modal
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get('error');
+    const message = params.get('message');
+    if (error) {
+      setAuthError(message || 'Login failed. Please try email login.');
+      setShowLoginModal(true);
+      // Clean up URL
+      window.history.replaceState({}, '', '/');
+    }
+  }, []);
 
   const signupMutation = trpc.vip.signup.useMutation({
     onSuccess: (data) => {
@@ -124,11 +140,7 @@ export default function EarlyAccess() {
                 </button>
               </Link>
             ) : (
-              <a href={getLoginUrl()}>
-                <button className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-cyan-500/30 transition-all animate-pulse">
-                  LOGIN
-                </button>
-              </a>
+              <LoginButton className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-cyan-500/30 transition-all animate-pulse" />
             )}
           </div>
         </div>
@@ -164,7 +176,7 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/images/nil-portal-icon.jpeg" 
+                src="/nil-portal-icon-final.jpeg" 
                 alt="NIL Portal" 
                 className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
@@ -175,7 +187,7 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-blue-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/images/messenger-icon.jpeg" 
+                src="/messenger-icon-final.jpeg" 
                 alt="NIL Messenger" 
                 className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
@@ -186,7 +198,7 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/images/diamond-grind-icon.png" 
+                src="/diamond-grind-app-icon.png" 
                 alt="Diamond Grind" 
                 className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
@@ -208,7 +220,7 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/images/transfer-portal-icon.png" 
+                src="/transfer-portal-app-icon.png" 
                 alt="Transfer Portal" 
                 className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
@@ -219,7 +231,7 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/images/faith-icon.png" 
+                src="/faith-app-icon.png" 
                 alt="Faith" 
                 className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
@@ -424,6 +436,17 @@ export default function EarlyAccess() {
       
       {/* Unified Footer */}
       <UnifiedFooter />
+      
+      {/* Email Login Modal - triggered by OAuth failure or manual click */}
+      <EmailLoginModal open={showLoginModal} onOpenChange={setShowLoginModal} />
+      
+      {/* Auth Error Toast */}
+      {authError && (
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-red-500/90 text-white px-6 py-3 rounded-lg shadow-xl z-50 animate-bounce">
+          {authError}
+          <button onClick={() => setAuthError(null)} className="ml-4 font-bold">×</button>
+        </div>
+      )}
     </div>
   );
 }

@@ -4,7 +4,8 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
+// LOCKED: EarlyAccess is the ONLY landing page - used for both / and /home
+// DO NOT CREATE OR USE A SEPARATE Home.tsx - THIS IS PERMANENT
 import EarlyAccess from "./pages/EarlyAccess";
 import Success from "./pages/Success";
 import AthletePlaybook from "./pages/AthletePlaybook";
@@ -73,10 +74,12 @@ import { BrandingHeader } from "./components/BrandingHeader";
 function Router() {
   return (
     <Switch>
-      {/* Main Landing */}
+      {/* LOCKED LANDING PAGE - NEVER CHANGE */}
+      {/* EarlyAccess is the SINGLE SOURCE OF TRUTH for ALL landing routes */}
+      {/* DO NOT create separate Home.tsx or change these routes - PERMANENT */}
       <Route path={"/"} component={EarlyAccess} />
+      <Route path={"/home"} component={EarlyAccess} />
       <Route path={"/success"} component={Success} />
-      <Route path={"/home"} component={Home} />
       
       {/* Core Platform */}
       <Route path={"/playbook"} component={AthletePlaybook} />
@@ -85,6 +88,7 @@ function Router() {
       <Route path={"/nil-marketplace"} component={NILMarketplace} />
       <Route path={"/nil-portal"} component={NILPortal} />
       <Route path={"/messages"} component={Messages} />
+      <Route path={"/messenger"} component={Messages} />
       <Route path={"/founder-story"} component={FounderStory} />
       <Route path={"/faith"} component={Faith} />
       

@@ -1,5 +1,10 @@
 # Athlynx NIL Portal - Project TODO
 
+## Deployment Status - December 30, 2025
+- [x] Fixed TypeScript null checks for Stripe
+- [x] Rebuilt production bundle
+- [x] Ready for publish v2
+
 ## Core Requirements
 
 ### The Athlete Playbook (CRITICAL)
@@ -2402,4 +2407,236 @@
 - [x] Create The Warrior's Playbook standalone page beside Diamond Grind
 - [x] Add navigation links to Warrior's Playbook from VIP landing page
 - [x] Save final checkpoint for launch
+
+
+
+---
+
+## 🔐 EMAIL-BASED AUTHENTICATION SYSTEM - December 30, 2025
+
+### Bypass Manus OAuth - Implement Email Verification Login
+- [ ] Create email verification code generation system
+- [ ] Store verification codes in database with expiration
+- [ ] Build email sending via Manus notification API
+- [ ] Create login page with email input
+- [ ] Create verification code input page
+- [ ] Implement session creation after verification
+- [ ] Update auth context to use new system
+- [ ] Test full login flow
+- [ ] Deploy and verify on production
+
+
+
+---
+
+## 🦀 VIP MEMBERSHIP & SECURITY SYSTEM - December 30, 2025
+
+### Membership Tiers (CRITICAL - REVENUE)
+- [ ] VIP tier - First 10,000 users FREE FOREVER
+- [ ] Free trial tier - 7 days free, then must subscribe
+- [ ] Paid tier - $4.99/month subscription
+- [ ] VIP counter on landing page showing spots remaining
+- [ ] VIP slot tracking in database
+- [ ] Auto-upgrade to paid when VIP slots full
+
+### Anti-Fraud Protection (CRITICAL - SECURITY)
+- [ ] Duplicate email detection - block same email signups
+- [ ] Duplicate phone detection - block same phone signups  
+- [ ] Device fingerprinting - track unique devices
+- [ ] IP address tracking - detect suspicious patterns
+- [ ] Bot detection with hCaptcha integration
+- [ ] Rate limiting on signups (max 3/hour per IP)
+- [ ] Rate limiting on logins (max 5 failed/hour)
+- [ ] Name similarity detection - prevent fake accounts
+- [ ] Email domain validation - block disposable emails
+
+### Cybersecurity Hardening (CRITICAL - PROTECTION)
+- [ ] Input sanitization on all forms
+- [ ] SQL injection prevention (parameterized queries)
+- [ ] XSS protection headers
+- [ ] CSRF token implementation
+- [ ] Secure session management with rotation
+- [ ] Audit logging for all user actions
+- [ ] Suspicious activity alerts to admin
+- [ ] Account lockout after failed attempts
+- [ ] Two-factor authentication option
+
+### Subscription Management (Stripe Integration)
+- [ ] Create $4.99/mo subscription product in Stripe
+- [ ] Trial expiration handling (7 days)
+- [ ] Upgrade flow from free to paid
+- [ ] Downgrade/cancellation flow
+- [ ] Payment failed handling with grace period
+- [ ] Dunning emails for failed payments
+- [ ] Subscription status sync with database
+
+### Legal & Compliance
+- [ ] Terms of Service page
+- [ ] Privacy Policy page
+- [ ] GDPR compliance for EU users
+- [ ] CCPA compliance for California users
+- [ ] Data retention policies
+- [ ] User data export functionality
+- [ ] Account deletion functionality
+
+
+
+---
+
+## 🐛 BUG FIXES - December 30, 2025 (URGENT)
+
+### Store Page Issues
+- [ ] Fix product images not loading (showing empty gray boxes)
+- [ ] Fix Fuel Bot product cards with missing images
+- [ ] Verify all product data is loading from database
+
+### Home Page Issues
+- [ ] Fix Home page showing old 3-app version instead of 6-app layout
+- [ ] Verify correct VIP Early Access page is loading
+- [ ] Check routing between / and /home
+
+### General Fixes
+- [ ] Test all navigation links
+- [ ] Verify all pages load correctly
+- [ ] Check for any console errors
+
+
+---
+
+## Brand Consistency - December 30, 2024
+- [ ] Replace all emojis with professional branded icons
+- [ ] Store products - use product images instead of emojis
+- [ ] Category filters - use branded icons
+- [ ] Consistent ATHLYNX theme across all pages
+- [ ] Professional enterprise look and feel
+
+
+---
+
+## 🎼 INTERCONNECTED APP ECOSYSTEM - December 30, 2025
+*"Like a Philharmonic - all apps playing in harmony"*
+
+### Unified Data Model
+- [ ] Create posts table for social feed (NIL Portal)
+- [ ] Create messages table for real-time chat (Messenger)
+- [ ] Create workouts/training_stats table (Diamond Grind)
+- [ ] Create achievements table (cross-app)
+- [ ] Create activity_feed table (unified activity stream)
+- [ ] Link all tables to users for clean slate start
+
+### NIL Portal - Social Feed (The "N" Brand)
+- [ ] Build post creation with text, images, videos
+- [ ] Implement likes system
+- [ ] Implement comments system
+- [ ] Implement shares/reposts
+- [ ] Add follower/following system
+- [ ] Create athlete profile cards
+- [ ] Add NIL deal announcements feed
+
+### Messenger - Real-Time Chat
+- [ ] Build conversation list UI
+- [ ] Implement direct messages (1:1)
+- [ ] Implement group chats
+- [ ] Add real-time message updates
+- [ ] Connect to NIL Portal (message from profile)
+- [ ] Connect to Diamond Grind (share workouts)
+- [ ] Add notification badges
+
+### Diamond Grind - Training Stats
+- [ ] Build workout logging system
+- [ ] Create training plan templates
+- [ ] Implement progress tracking charts
+- [ ] Add achievement badges
+- [ ] Create leaderboards
+- [ ] Connect stats to NIL Portal profile
+- [ ] Share workouts to Messenger
+
+### Dashboard - Central Hub
+- [ ] Show unified activity from ALL apps
+- [ ] Display stats summary from Diamond Grind
+- [ ] Show recent messages from Messenger
+- [ ] Display NIL Portal engagement metrics
+- [ ] Quick actions to all apps
+
+### Clean Slate User Experience
+- [ ] All new users start with zero stats
+- [ ] Progressive onboarding across apps
+- [ ] Unified notification center
+- [ ] Single profile across all apps
+
+
+
+---
+
+## 🎼 INTERCONNECTED APP ECOSYSTEM - December 30, 2025
+
+### Database Schema - Unified Data Model
+- [ ] posts table (NIL Portal social feed)
+- [ ] messages/conversations tables (Messenger)
+- [ ] workouts/training_stats tables (Diamond Grind)
+- [ ] achievements table (cross-app badges)
+- [ ] activity_feed table (unified stream)
+
+### NIL Portal - Social Feed
+- [ ] Post creation (text, images)
+- [ ] Likes, comments, shares
+- [ ] Follower/following system
+- [ ] Athlete profile cards
+
+### Messenger - Real-Time Chat
+- [ ] Conversation list
+- [ ] Direct messages
+- [ ] Group chats
+- [ ] Cross-app sharing
+
+### Diamond Grind - Training
+- [ ] Workout logging
+- [ ] Progress charts
+- [ ] Achievement badges
+- [ ] Leaderboards
+
+### Dashboard - Central Hub
+- [ ] Unified activity feed
+- [ ] Stats from all apps
+- [ ] Quick actions
+
+
+
+---
+
+## TIERED SERVICE & PARTNER REWARDS SYSTEM - December 30, 2025
+
+### Database Tables Created
+- [x] Create partner_tiers table (4 tiers: Founding Partner, VIP Lifetime, Pro Member, Free Tier)
+- [x] Create partners table (founding partner records with equity, revenue share, benefits)
+- [x] Create transactions table (timestamped record of all transactions)
+- [x] Create partner_rewards table (track rewards given to partners)
+- [x] Create revenue_share_payouts table (track partner payouts)
+
+### Founding Partners Registered
+- [x] Glenn Tse - CFO & COO / Chief Imagineer (20% equity, 5% revenue share)
+- [x] Lee Marshall - Military Division Commander (10% equity, 5% revenue share)
+- [x] David Ford Sr. - Trusted Advisor - Medical & Real Estate (10% equity, 5% revenue share)
+- [x] Jimmy Boyd - Partner (10% equity, 5% revenue share)
+- [x] Andrew Kustes - Partner (10% equity, 5% revenue share)
+
+### Transaction Documentation
+- [x] TXN-VIP-001: Chad A. Dozier Sr. - First user signup (December 29, 2025)
+- [x] TXN-FP-001: Glenn Tse - Founding Partner grant
+- [x] TXN-FP-002: Lee Marshall - Founding Partner grant
+- [x] TXN-FP-003: David Ford Sr. - Founding Partner grant
+- [x] TXN-FP-004: Jimmy Boyd - Founding Partner grant
+- [x] TXN-FP-005: Andrew Kustes - Founding Partner grant
+
+### Official Documentation Created
+- [x] ATHLYNX_Tiered_Service_Partner_Rewards.md - Full system design document
+- [x] ATHLYNX_Tiered_Service_Partner_Rewards.pdf - PDF version
+- [x] ATHLYNX_Founding_Partners_Official_Record.md - Official timestamped partner record
+- [x] ATHLYNX_Founding_Partners_Official_Record.pdf - PDF version
+
+### Service Tier Benefits Defined
+- [x] Tier 1: Founding Partner - Lifetime free, equity, revenue share, white-label, board advisory
+- [x] Tier 2: VIP Lifetime - First 10,000 users, lifetime free, 10,000 AI credits/month
+- [x] Tier 3: Pro Member - $4.99/month, 1,000 AI credits/month
+- [x] Tier 4: Free Tier - Limited access, 100 AI credits/month
 

@@ -5,11 +5,11 @@ import { httpBatchLink, TRPCClientError } from "@trpc/client";
 import { createRoot } from "react-dom/client";
 import superjson from "superjson";
 import App from "./App";
-import { getLoginUrl } from "./const";
 import "./index.css";
 
 const queryClient = new QueryClient();
 
+// Note: Auto-redirect to login disabled - using email-based auth modal instead
 const redirectToLoginIfUnauthorized = (error: unknown) => {
   if (!(error instanceof TRPCClientError)) return;
   if (typeof window === "undefined") return;
@@ -18,7 +18,8 @@ const redirectToLoginIfUnauthorized = (error: unknown) => {
 
   if (!isUnauthorized) return;
 
-  window.location.href = getLoginUrl();
+  // Don't auto-redirect - let the page handle showing login modal
+  console.log("[Auth] User not authenticated - please use login button");
 };
 
 queryClient.getQueryCache().subscribe(event => {

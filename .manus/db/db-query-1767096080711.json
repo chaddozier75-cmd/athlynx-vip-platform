@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO transactions (transactionId, userId, type, amount, currency, description, status, metadata, timestamp) VALUES\n('TXN-VIP-001', 1, 'VIP_SIGNUP', 0, 'USD', 'HISTORIC FIRST USER: Chad Allen Dozier Sr. registered as User #1 and Admin. VIP Lifetime status granted - 6 months free, 10,000 AI credits.', 'completed', '{\"user\":\"Chad Allen Dozier Sr.\",\"email\":\"cdozier@dozierholdingsgroup.com\",\"tier\":\"VIP Lifetime\",\"role\":\"admin\",\"aiCredits\":10000}', '2025-12-29 21:36:00');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute INSERT INTO transactions (transactionId, userId, type, amount, currency, description, status, metadata, timestamp) VALUES\n('TXN-VIP-001', 1, 'VIP_SIGNUP', 0, 'USD', 'HISTORIC FIRST USER: Chad Allen Dozier Sr. registered as User #1 and Admin. VIP Lifetime status granted - 6 months free, 10,000 AI credits.', 'completed', '{\"user\":\"Chad Allen Dozier Sr.\",\"email\":\"cdozier@dozierholdingsgroup.com\",\"tier\":\"VIP Lifetime\",\"role\":\"admin\",\"aiCredits\":10000}', '2025-12-29 21:36:00');",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 76
+}

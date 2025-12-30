@@ -5,9 +5,23 @@ import { sql } from "drizzle-orm";
 import { notifyOwner } from "./_core/notification";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2025-12-15.clover",
-});
+// Conditional Stripe initialization - won't crash if key is missing
+let stripe: Stripe | null = null;
+let stripeAvailable = false;
+
+if (process.env.STRIPE_SECRET_KEY) {
+  try {
+    stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: "2025-12-15.clover",
+    });
+    stripeAvailable = true;
+    console.log('[Store] Stripe initialized successfully');
+  } catch (error) {
+    console.warn('[Store] Stripe initialization failed:', error);
+  }
+} else {
+  console.warn('[Store] STRIPE_SECRET_KEY not configured - payment features disabled');
+}
 
 // Generate unique order number
 function generateOrderNumber(): string {
@@ -328,6 +342,7 @@ export const storeRouter = router({
       }
       
       // Create Stripe checkout session
+      if (!stripe) throw new Error('Payment system not available');
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items: lineItems,
@@ -374,7 +389,7 @@ export const storeRouter = router({
       }
       
       // Verify payment with Stripe
-      if (order.stripeCheckoutSessionId) {
+      if (order.stripeCheckoutSessionId && stripe) {
         const session = await stripe.checkout.sessions.retrieve(order.stripeCheckoutSessionId);
         
         if (session.payment_status === 'paid') {

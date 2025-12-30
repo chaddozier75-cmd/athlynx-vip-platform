@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO partners (name, email, company, access_code, tierId, role, equityPercentage, revenueSharePercentage, customWelcomeMessage, lifetimeAccess, whiteLabelRights, boardAdvisoryRights, grantedBy, notes) VALUES\n('Glenn Tse', 'glenn@dozierholdingsgroup.com', 'Dozier Holdings Group', 'GLENN-FP-2025', 1, 'CFO & COO / Chief Imagineer', '20%', '5%', 'Welcome Glenn! You believed in the vision from day one at Hope Lodge. Together we build the empire. 謝文傑', 'yes', 'yes', 'yes', 'Chad A. Dozier', 'Met at Hope Lodge May 2024. Financial partner and co-founder. Hong Kong/China connections.');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute INSERT INTO partners (name, email, company, access_code, tierId, role, equityPercentage, revenueSharePercentage, customWelcomeMessage, lifetimeAccess, whiteLabelRights, boardAdvisoryRights, grantedBy, notes) VALUES\n('Glenn Tse', 'glenn@dozierholdingsgroup.com', 'Dozier Holdings Group', 'GLENN-FP-2025', 1, 'CFO & COO / Chief Imagineer', '20%', '5%', 'Welcome Glenn! You believed in the vision from day one at Hope Lodge. Together we build the empire. 謝文傑', 'yes', 'yes', 'yes', 'Chad A. Dozier', 'Met at Hope Lodge May 2024. Financial partner and co-founder. Hong Kong/China connections.');",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 109
+}

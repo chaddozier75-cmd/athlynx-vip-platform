@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE products SET image = CASE \n  WHEN category = 'ai_companions' THEN '🤖'\n  WHEN category = 'enterprise' THEN '🖥️'\n  WHEN category = 'software' THEN '💿'\n  WHEN category = 'datacenter' THEN '🏢'\n  WHEN category = 'support' THEN '🛠️'\n  WHEN category = 'training' THEN '🏋️'\n  ELSE '📦'\nEND WHERE image IS NULL OR image = '';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute UPDATE products SET image = CASE \n  WHEN category = 'ai_companions' THEN '🤖'\n  WHEN category = 'enterprise' THEN '🖥️'\n  WHEN category = 'software' THEN '💿'\n  WHEN category = 'datacenter' THEN '🏢'\n  WHEN category = 'support' THEN '🛠️'\n  WHEN category = 'training' THEN '🏋️'\n  ELSE '📦'\nEND WHERE image IS NULL OR image = '';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 68
+}
