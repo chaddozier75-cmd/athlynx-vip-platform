@@ -1,9 +1,0 @@
-{
-  "query": "CREATE TABLE IF NOT EXISTS `revenue_share_payouts` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`partnerId` int NOT NULL,\n\t`periodStart` timestamp NOT NULL,\n\t`periodEnd` timestamp NOT NULL,\n\t`totalRevenue` int NOT NULL,\n\t`partnerShare` int NOT NULL,\n\t`sharePercentage` varchar(20) NOT NULL,\n\t`status` enum('pending','paid','cancelled') DEFAULT 'pending',\n\t`paidAt` timestamp,\n\t`paymentMethod` varchar(100),\n\t`transactionId` int,\n\t`notes` text,\n\t`createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n\tCONSTRAINT `revenue_share_payouts_id` PRIMARY KEY(`id`)\n);",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 234BC8KwFc7Qees.1586b1157813 --database AbuVKiqaa4gzZYPXheEZib --execute CREATE TABLE IF NOT EXISTS `revenue_share_payouts` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`partnerId` int NOT NULL,\n\t`periodStart` timestamp NOT NULL,\n\t`periodEnd` timestamp NOT NULL,\n\t`totalRevenue` int NOT NULL,\n\t`partnerShare` int NOT NULL,\n\t`sharePercentage` varchar(20) NOT NULL,\n\t`status` enum('pending','paid','cancelled') DEFAULT 'pending',\n\t`paidAt` timestamp,\n\t`paymentMethod` varchar(100),\n\t`transactionId` int,\n\t`notes` text,\n\t`createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n\tCONSTRAINT `revenue_share_payouts_id` PRIMARY KEY(`id`)\n);",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 323
-}

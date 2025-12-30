@@ -6,7 +6,6 @@
 import { invokeLLM } from "./_core/llm";
 import { notifyOwner } from "./_core/notification";
 import { ENV } from "./_core/env";
-import { sendEmail, getEmailProviderStatus } from "./emailProviders";
 
 export interface EmailTemplate {
   subject: string;
@@ -256,20 +255,11 @@ export async function sendVIPConfirmationEmail(data: VIPSignupEmailData): Promis
     // Generate the email content
     const emailTemplate = await generateVIPWelcomeEmail(data);
     
-    // Send the actual email using our dual-provider service
-    const emailResult = await sendEmail({
-      to: data.email,
-      subject: emailTemplate.subject,
-      html: emailTemplate.htmlBody,
-      text: emailTemplate.textBody,
-    });
-    
-    console.log("[Email] VIP Confirmation Email Sent:");
+    // Log the email (in production, this would integrate with email service)
+    console.log("[Email] VIP Confirmation Email Generated:");
     console.log("To:", data.email);
     console.log("Subject:", emailTemplate.subject);
     console.log("Access Code:", data.accessCode);
-    console.log("Provider:", emailResult.provider);
-    console.log("Success:", emailResult.success);
     
     // Notify owner about new signup
     await notifyOwner({

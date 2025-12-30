@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { toast } from "sonner";
 import { useAuth } from "@/_core/hooks/useAuth";
-import LoginButton from "@/components/LoginButton";
+import { getLoginUrl } from "@/const";
 import { trpc } from "@/lib/trpc";
 
 export default function AITrainingBot() {
@@ -66,9 +66,12 @@ export default function AITrainingBot() {
           <span className="text-6xl block mb-4">🤖</span>
           <h1 className="text-2xl font-bold text-white mb-2">Sign In Required</h1>
           <p className="text-gray-400 mb-6">Please sign in to access AI Training Bot</p>
-          <LoginButton className="inline-block px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold rounded-xl hover:opacity-90 transition-all">
+          <a
+            href={getLoginUrl()}
+            className="inline-block px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold rounded-xl hover:opacity-90 transition-all"
+          >
             Sign In with ATHLYNX
-          </LoginButton>
+          </a>
           <p className="text-gray-500 text-sm mt-4">
             <Link href="/" className="text-cyan-400 hover:underline">← Back to Home</Link>
           </p>

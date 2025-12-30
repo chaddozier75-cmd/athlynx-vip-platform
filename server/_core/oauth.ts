@@ -4,14 +4,25 @@ import * as db from "../db";
 import { getSessionCookieOptions } from "./cookies";
 import { sdk } from "./sdk";
 import { ENV } from "./env";
+import { notifyOwner } from "./notification";
+
+// Founding Partners - notify owner on login
+const FOUNDING_PARTNERS = [
+  { email: "cdozier14@athlynx.ai", name: "Chad A. Dozier Sr.", title: "Founder/CEO", partner: "FP-001" },
+  { email: "cdozier@dozierholdingsgroup.com", name: "Chad A. Dozier Sr.", title: "Founder/CEO", partner: "FP-001" },
+  { email: "chad.dozier@icloud.com", name: "Chad A. Dozier Sr.", title: "Founder/CEO", partner: "FP-001" },
+  { email: "chaddozier75@gmail.com", name: "Chad A. Dozier Sr.", title: "Founder/CEO", partner: "FP-001" },
+  { email: "leronious@gmail.com", name: "Lee Marshall", title: "VP of Sales & Partnerships", partner: "FP-003" },
+  { email: "gtse@dozierholdingsgroup.com", name: "Glenn Tse", title: "CFO & COO", partner: "FP-004" },
+  { email: "Jboydbamabayou@yahoo.com", name: "Jimmy Boyd", title: "VP of Real Estate", partner: "FP-005" },
+  { email: "akustes@dozierholdingsgroup.com", name: "Andrew Kustes", title: "VP of Technology", partner: "FP-006" },
+  { email: "david.ford@aocmedicalllc.com", name: "David R. Ford Sr.", title: "Trusted Advisor", partner: "TA-001" },
+];
 
 function getQueryParam(req: Request, key: string): string | undefined {
   const value = req.query[key];
   return typeof value === "string" ? value : undefined;
 }
-
-// Manus OAuth server URL - use env or fallback to production URL
-const MANUS_OAUTH_URL = ENV.oAuthServerUrl || "https://api.manus.im";
 
 export function registerOAuthRoutes(app: Express) {
   // OAuth callback route
@@ -20,23 +31,12 @@ export function registerOAuthRoutes(app: Express) {
       const code = getQueryParam(req, "code");
       const state = getQueryParam(req, "state");
 
-      console.log("[OAuth] Callback received");
-      console.log("[OAuth] Code present:", !!code);
-      console.log("[OAuth] State:", state);
-      console.log("[OAuth] Using OAuth URL:", MANUS_OAUTH_URL);
-
       if (!code) {
-        console.error("[OAuth] Missing authorization code in callback");
-        // Redirect to home with error message instead of showing JSON
-        return res.redirect("/?error=missing_code&message=Please+try+logging+in+again");
+        return res.status(400).json({ error: "Missing authorization code" });
       }
 
       // Exchange code for token using Manus OAuth
-      const tokenUrl = `${MANUS_OAUTH_URL}/api/oauth/token`;
-      console.log("[OAuth] Exchanging code at:", tokenUrl);
-      console.log("[OAuth] App ID:", ENV.appId);
-      
-      const tokenResponse = await fetch(tokenUrl, {
+      const tokenResponse = await fetch(`${ENV.oAuthServerUrl}/api/oauth/token`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,27 +47,18 @@ export function registerOAuthRoutes(app: Express) {
         }),
       });
 
-      console.log("[OAuth] Token response status:", tokenResponse.status);
-
       if (!tokenResponse.ok) {
         const errorText = await tokenResponse.text();
-        console.error("[OAuth] Token exchange failed:", tokenResponse.status, errorText);
-        // Redirect to home with error - user can use email login instead
-        return res.redirect("/?error=auth_failed&message=OAuth+login+failed.+Please+use+email+login+instead.");
+        console.error("[OAuth] Token exchange failed:", errorText);
+        return res.status(401).json({ error: "Authentication failed" });
       }
 
       const tokenData = await tokenResponse.json();
-      console.log("[OAuth] Token exchange successful");
-      console.log("[OAuth] User data received:", JSON.stringify(tokenData).substring(0, 200));
-      
       const { user } = tokenData;
 
       if (!user || !user.open_id) {
-        console.error("[OAuth] Invalid user data from OAuth:", JSON.stringify(tokenData));
-        return res.redirect("/?error=invalid_user&message=Invalid+user+data.+Please+use+email+login.");
+        return res.status(401).json({ error: "Invalid user data from OAuth" });
       }
-
-      console.log("[OAuth] User authenticated:", user.open_id, user.name);
 
       // Upsert user in database (creates if not exists, updates if exists)
       await db.upsertUser({
@@ -80,7 +71,6 @@ export function registerOAuthRoutes(app: Express) {
 
       // Get the user from database
       const dbUser = await db.getUserByOpenId(user.open_id);
-      console.log("[OAuth] User saved to database:", dbUser?.id);
 
       // Create session token using SDK
       const sessionToken = await sdk.createSessionToken(user.open_id, {
@@ -89,17 +79,34 @@ export function registerOAuthRoutes(app: Express) {
 
       // Set cookie
       res.cookie(COOKIE_NAME, sessionToken, getSessionCookieOptions(req));
-      console.log("[OAuth] Session cookie set");
 
-      // Always redirect to dashboard after successful login
-      console.log("[OAuth] Redirecting to dashboard");
-      res.redirect("/dashboard");
+      // Check if this is a founding partner login and notify owner
+      const userEmail = user.email?.toLowerCase() || "";
+      const foundingPartner = FOUNDING_PARTNERS.find(p => p.email.toLowerCase() === userEmail);
+      
+      if (foundingPartner) {
+        const timestamp = new Date().toLocaleString('en-US', { 
+          timeZone: 'America/Chicago',
+          dateStyle: 'full',
+          timeStyle: 'long'
+        });
+        
+        await notifyOwner({
+          title: `🚀 FOUNDING PARTNER LOGIN: ${foundingPartner.name}`,
+          content: `**${foundingPartner.name}** (${foundingPartner.partner}) just logged into ATHLYNX!\n\n**Title:** ${foundingPartner.title}\n**Email:** ${userEmail}\n**Timestamp:** ${timestamp}\n\n🦁 Lions Not Sheep`
+        });
+        
+        console.log(`[LOGIN ALERT] Founding Partner ${foundingPartner.name} (${foundingPartner.partner}) logged in at ${timestamp}`);
+      }
+
+      // Redirect to the state URL or home
+      const redirectUrl = state ? decodeURIComponent(state) : "/";
+      res.redirect(redirectUrl);
     } catch (error) {
       console.error("[OAuth] Callback error:", error);
-      // Redirect to home with error instead of showing JSON
-      res.redirect("/?error=server_error&message=Login+failed.+Please+try+email+login.");
+      res.status(500).json({ error: "Authentication failed" });
     }
   });
 
-  console.log("[OAuth] Routes registered with Manus OAuth at:", MANUS_OAUTH_URL);
+  console.log("[OAuth] Routes registered with Manus OAuth");
 }

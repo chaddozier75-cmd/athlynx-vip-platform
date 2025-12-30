@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { toast } from "sonner";
 import { useAuth } from "@/_core/hooks/useAuth";
-import LoginButton from "@/components/LoginButton";
+import { getLoginUrl } from "@/const";
 
 export default function Dashboard() {
   const { user, loading } = useAuth();
@@ -62,9 +62,12 @@ export default function Dashboard() {
           <span className="text-6xl block mb-4"></span>
           <h1 className="text-2xl font-bold text-white mb-2">Sign In Required</h1>
           <p className="text-gray-400 mb-6">Please sign in to access your dashboard</p>
-          <LoginButton className="inline-block px-8 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-bold rounded-xl hover:opacity-90 transition-all">
+          <a
+            href={getLoginUrl()}
+            className="inline-block px-8 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-bold rounded-xl hover:opacity-90 transition-all"
+          >
             Sign In with ATHLYNX
-          </LoginButton>
+          </a>
           <p className="text-gray-500 text-sm mt-4">
             <Link href="/" className="text-cyan-400 hover:underline">← Back to Home</Link>
           </p>
