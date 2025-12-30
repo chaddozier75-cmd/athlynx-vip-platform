@@ -8,6 +8,7 @@ import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { handleStripeWebhook } from "../stripe/webhook";
+import { securityHeaders, apiRateLimiter, securityMiddleware, requestLogger } from "../security";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -31,6 +32,25 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 async function startServer() {
   const app = express();
   const server = createServer(app);
+  
+  // ============================================
+  // ENTERPRISE SECURITY MIDDLEWARE
+  // ============================================
+  
+  // Security headers (HSTS, CSP, X-Frame-Options, etc.)
+  app.use(securityHeaders);
+  
+  // Custom security middleware
+  app.use(securityMiddleware);
+  
+  // Request logging for audit trail
+  app.use(requestLogger);
+  
+  // Rate limiting for API endpoints
+  app.use('/api/', apiRateLimiter);
+  
+  // ============================================
+  
   // Stripe webhook - MUST be before express.json() for raw body
   app.post("/api/stripe/webhook", express.raw({ type: "application/json" }), handleStripeWebhook);
   

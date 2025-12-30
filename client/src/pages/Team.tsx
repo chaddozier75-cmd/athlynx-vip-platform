@@ -72,7 +72,7 @@ const executives = [
 const advisors = [
   {
     name: "David R. Ford Sr.",
-    title: "Trusted Advisor (Uncle)",
+    title: "Trusted Advisor",
     expertise: "Business Development & Operations",
     initials: "DF",
   },

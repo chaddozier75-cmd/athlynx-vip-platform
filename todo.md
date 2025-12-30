@@ -2640,3 +2640,27 @@
 - [x] Tier 3: Pro Member - $4.99/month, 1,000 AI credits/month
 - [x] Tier 4: Free Tier - Limited access, 100 AI credits/month
 
+
+
+## NAVIGATION IMPROVEMENTS - December 30, 2025
+- [ ] Add "Back to ATHLYNX" button on DHG Corporate page
+- [ ] Make crab logo always link back to main landing page
+- [ ] Add breadcrumb navigation for easy return paths
+
+
+## ENTERPRISE SECURITY IMPLEMENTATION - December 30, 2025
+- [ ] Implement 2FA (Two-Factor Authentication) for all logins
+- [ ] Add session management with auto-timeout
+- [ ] Add device tracking and suspicious login alerts
+- [ ] Implement rate limiting to prevent brute force attacks
+- [ ] Add AES-256 data encryption for sensitive data at rest
+- [ ] Add security headers (HSTS, CSP, X-Frame-Options)
+- [ ] Implement audit logging for all user actions
+- [ ] Add security monitoring and alerting
+
+## LEGAL DOCUMENTS FOR DOCUSIGN - December 30, 2025
+- [ ] Create Terms of Service
+- [ ] Create Privacy Policy (GDPR/CCPA compliant)
+- [ ] Create User Data Protection Agreement
+- [ ] Create Founder/Partner Agreement
+- [ ] Create IP Assignment Agreement
