@@ -112,9 +112,9 @@ export default function UnifiedFooter() {
             <Link href="/terms">
               <span className="text-white/40 hover:text-white text-sm cursor-pointer transition-colors">Terms of Service</span>
             </Link>
-            <a href="https://dozierholdingsgroup.com" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white text-sm transition-colors">
-              DHG Website
-            </a>
+            <Link href="/dhg-empire">
+              <span className="text-white/40 hover:text-white text-sm cursor-pointer transition-colors">DHG Empire</span>
+            </Link>
           </div>
         </div>
       </div>

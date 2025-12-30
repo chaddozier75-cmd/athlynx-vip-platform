@@ -44,7 +44,7 @@ const navItems = [
     category: "DHG ECOSYSTEM",
     items: [
       { name: "Fuel Bots", href: "/fuel-bots", icon: "🤖" },
-      { name: "DHG Corporate", href: "/dhg", icon: "🦀" },
+      { name: "DHG Empire", href: "/dhg-empire", icon: "🦀" },
       { name: "Softmor Inc", href: "/softmor", icon: "🧠" },
       { name: "Investor Hub", href: "/investor-hub", icon: "💎" },
       { name: "Investor Deck", href: "/investor-deck", icon: "📊" },
@@ -154,9 +154,11 @@ export default function UnifiedNav() {
 
             {/* Footer */}
             <div className="p-4 border-t border-cyan-500/30">
-              <p className="text-gray-500 text-xs text-center">
-                © 2025 Dozier Holdings Group
-              </p>
+              <Link href="/dhg-empire">
+                <span className="text-gray-500 hover:text-cyan-400 text-xs text-center block transition-colors cursor-pointer">
+                  © 2025 Dozier Holdings Group
+                </span>
+              </Link>
             </div>
           </div>
         </>

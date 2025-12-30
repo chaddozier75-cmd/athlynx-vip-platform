@@ -14,7 +14,7 @@ import Messages from "./pages/Messages";
 import FounderStory from "./pages/FounderStory";
 import ComingSoon from "./pages/ComingSoon";
 import NILPortal from "./pages/NILPortal";
-// New Empire Pages
+// Empire Pages
 import Pricing from "./pages/Pricing";
 import Store from "./pages/Store";
 import Careers from "./pages/Careers";
@@ -43,8 +43,24 @@ import FuelBots from "./pages/FuelBots";
 import PartnerPortal from "./pages/PartnerPortal";
 import InvestorDeck from "./pages/InvestorDeck";
 import Contact from "./pages/Contact";
-import EmpireVision from "./pages/EmpireVision";
+import DHGEmpire from "./pages/DHGEmpire";
+import SerenityMemorial from "./pages/SerenityMemorial";
 import AdminDashboard from "./pages/AdminDashboard";
+// NEW White-Label Sport Platforms - FULL BUILDS
+import ReelMasters from "./pages/ReelMasters";
+import HuntPro from "./pages/HuntPro";
+import FairwayElite from "./pages/FairwayElite";
+import CourtKings from "./pages/CourtKings";
+import GridironNexus from "./pages/GridironNexus";
+import PitchPulse from "./pages/PitchPulse";
+// Legal & Pricing
+import PricingTiers from "./pages/PricingTiers";
+import LegalCompliance from "./pages/LegalCompliance";
+import AppStoreSubmission from "./pages/AppStoreSubmission";
+// DHG Empire Pages
+import BitcoinMining from "./pages/BitcoinMining";
+import WellnessPortal from "./pages/WellnessPortal";
+// Components
 import UnifiedNav from "./components/UnifiedNav";
 import { BrandingHeader } from "./components/BrandingHeader";
 
@@ -68,7 +84,14 @@ function Router() {
       
       {/* Empire Features - Tiered Services */}
       <Route path={"/pricing"} component={Pricing} />
+      <Route path={"/pricing-tiers"} component={PricingTiers} />
       <Route path={"/ai-credits"} component={Pricing} />
+      
+      {/* Legal & Compliance */}
+      <Route path={"/legal"} component={LegalCompliance} />
+      <Route path={"/compliance"} component={LegalCompliance} />
+      <Route path={"/privacy"} component={LegalCompliance} />
+      <Route path={"/terms"} component={LegalCompliance} />
       
       {/* National Signing Day */}
       <Route path={"/signing-day"} component={SigningDay} />
@@ -80,6 +103,7 @@ function Router() {
       
       {/* AI Bots */}
       <Route path={"/ai/training"} component={AITrainingBot} />
+      <Route path={"/ai-training-bot"} component={AITrainingBot} />
       <Route path={"/account"} component={Dashboard} />
       <Route path={"/profile"} component={Dashboard} />
       
@@ -112,30 +136,41 @@ function Router() {
       
       {/* Mobile Apps */}
       <Route path={"/apps"} component={Apps} />
-      <Route path={"/download"} component={Apps} />
+      <Route path={"/download"} component={AppStoreSubmission} />
+      <Route path={"/app-store"} component={AppStoreSubmission} />
+      <Route path={"/google-play"} component={AppStoreSubmission} />
       
-      {/* White-Label Sport Platforms */}
+      {/* ============================================ */}
+      {/* WHITE-LABEL SPORT PLATFORMS - FULL BUILDS */}
+      {/* ============================================ */}
+      
+      {/* Diamond Grind - Baseball (FULL) */}
       <Route path={"/diamond-grind"} component={DiamondGrind} />
       <Route path={"/baseball"} component={DiamondGrind} />
       
-      {/* Coming Soon - Other White-Label Apps */}
-      <Route path={"/court-kings"} component={() => <ComingSoon title="Court Kings" description="Elite basketball platform with rankings, recruiting, training, and exposure. Dominate the court." icon="🏀" />} />
-      <Route path={"/basketball"} component={() => <ComingSoon title="Court Kings" description="Elite basketball platform with rankings, recruiting, training, and exposure. Dominate the court." icon="🏀" />} />
+      {/* Court Kings - Basketball (FULL) */}
+      <Route path={"/court-kings"} component={CourtKings} />
+      <Route path={"/basketball"} component={CourtKings} />
       
-      <Route path={"/gridiron-nexus"} component={() => <ComingSoon title="Gridiron Nexus" description="Football recruiting, film analysis, combine prep, and NIL opportunities. Own the field." icon="🏈" />} />
-      <Route path={"/football"} component={() => <ComingSoon title="Gridiron Nexus" description="Football recruiting, film analysis, combine prep, and NIL opportunities. Own the field." icon="🏈" />} />
+      {/* Reel Masters - Fishing (FULL) */}
+      <Route path={"/reel-masters"} component={ReelMasters} />
+      <Route path={"/fishing"} component={ReelMasters} />
       
-      <Route path={"/pitch-pulse"} component={() => <ComingSoon title="Pitch Pulse" description="Soccer recruiting, club connections, and international opportunities. Global game, global platform." icon="⚽" />} />
-      <Route path={"/soccer"} component={() => <ComingSoon title="Pitch Pulse" description="Soccer recruiting, club connections, and international opportunities. Global game, global platform." icon="⚽" />} />
+      {/* Hunt Pro - Hunting (FULL) */}
+      <Route path={"/hunt-pro"} component={HuntPro} />
+      <Route path={"/hunting"} component={HuntPro} />
       
-      <Route path={"/reel-masters"} component={() => <ComingSoon title="Reel Masters" description="Find fishing spots, log catches, compete in tournaments, and connect with the fishing community." icon="🎣" />} />
-      <Route path={"/fishing"} component={() => <ComingSoon title="Reel Masters" description="Find fishing spots, log catches, compete in tournaments, and connect with the fishing community." icon="🎣" />} />
+      {/* Fairway Elite - Golf (FULL) */}
+      <Route path={"/fairway-elite"} component={FairwayElite} />
+      <Route path={"/golf"} component={FairwayElite} />
       
-      <Route path={"/fairway-elite"} component={() => <ComingSoon title="Fairway Elite" description="Golf handicap tracking, course finder, tee times, and tournament play. Elevate your game." icon="⛳" />} />
-      <Route path={"/golf"} component={() => <ComingSoon title="Fairway Elite" description="Golf handicap tracking, course finder, tee times, and tournament play. Elevate your game." icon="⛳" />} />
+      {/* Gridiron Nexus - Football (FULL) */}
+      <Route path={"/gridiron-nexus"} component={GridironNexus} />
+      <Route path={"/football"} component={GridironNexus} />
       
-      <Route path={"/hunt-pro"} component={() => <ComingSoon title="Hunt Pro" description="Hunting spots, harvest tracking, license management, and gear marketplace. Hunt smarter." icon="🦌" />} />
-      <Route path={"/hunting"} component={() => <ComingSoon title="Hunt Pro" description="Hunting spots, harvest tracking, license management, and gear marketplace. Hunt smarter." icon="🦌" />} />
+      {/* Pitch Pulse - Soccer (FULL) */}
+      <Route path={"/pitch-pulse"} component={PitchPulse} />
+      <Route path={"/soccer"} component={PitchPulse} />
       
       <Route path={"/ice-breakers"} component={() => <ComingSoon title="Ice Breakers" description="Hockey recruiting, showcase events, and NHL draft prep. Own the ice." icon="🏒" />} />
       <Route path={"/hockey"} component={() => <ComingSoon title="Ice Breakers" description="Hockey recruiting, showcase events, and NHL draft prep. Own the ice." icon="🏒" />} />
@@ -152,8 +187,8 @@ function Router() {
       <Route path={"/mat-warriors"} component={() => <ComingSoon title="Mat Warriors" description="Wrestling recruiting, tournament brackets, and weight management. Dominate the mat." icon="🤼" />} />
       <Route path={"/wrestling"} component={() => <ComingSoon title="Mat Warriors" description="Wrestling recruiting, tournament brackets, and weight management. Dominate the mat." icon="🤼" />} />
       
-      <Route path={"/court-kings"} component={() => <ComingSoon title="Court Kings" description="Tennis recruiting, rankings, and tournament play. Rule the court." icon="🎾" />} />
-      <Route path={"/tennis"} component={() => <ComingSoon title="Court Kings" description="Tennis recruiting, rankings, and tournament play. Rule the court." icon="🎾" />} />
+      <Route path={"/racket-kings"} component={() => <ComingSoon title="Racket Kings" description="Tennis recruiting, rankings, and tournament play. Rule the court." icon="🎾" />} />
+      <Route path={"/tennis"} component={() => <ComingSoon title="Racket Kings" description="Tennis recruiting, rankings, and tournament play. Rule the court." icon="🎾" />} />
       
       <Route path={"/lacrosse-legends"} component={() => <ComingSoon title="Lacrosse Legends" description="Lacrosse recruiting, club connections, and showcase events. Write your legacy." icon="🥍" />} />
       <Route path={"/lacrosse"} component={() => <ComingSoon title="Lacrosse Legends" description="Lacrosse recruiting, club connections, and showcase events. Write your legacy." icon="🥍" />} />
@@ -204,17 +239,28 @@ function Router() {
       <Route path={"/contact"} component={Contact} />
       <Route path={"/contact-us"} component={Contact} />
       
-      {/* Empire Vision */}
-      <Route path={"/empire"} component={EmpireVision} />
-      <Route path={"/vision"} component={EmpireVision} />
-      <Route path={"/empire-vision"} component={EmpireVision} />
+      {/* DHG Empire */}
+      <Route path={"/dhg-empire"} component={DHGEmpire} />
+      <Route path={"/empire"} component={DHGEmpire} />
+      <Route path={"/vision"} component={DHGEmpire} />
+      
+      {/* Serenity Memorial */}
+      <Route path={"/serenity-memorial"} component={SerenityMemorial} />
+      <Route path={"/serenity"} component={SerenityMemorial} />
+      
+      {/* Bitcoin Mining */}
+      <Route path={"/bitcoin-mining"} component={BitcoinMining} />
+      <Route path={"/btc"} component={BitcoinMining} />
+      <Route path={"/mining"} component={BitcoinMining} />
+      
+      {/* Wellness Portal */}
+      <Route path={"/wellness-portal"} component={WellnessPortal} />
+      <Route path={"/wellness"} component={WellnessPortal} />
+      <Route path={"/mental-health"} component={WellnessPortal} />
       
       {/* Admin Dashboard */}
       <Route path={"/admin"} component={AdminDashboard} />
       <Route path={"/admin-dashboard"} component={AdminDashboard} />
-      
-      {/* Legacy Coming Soon */}
-      <Route path={"/messenger"} component={() => <ComingSoon title="Messenger" description="Real-time messaging platform for athletes, coaches, and brands. Connect, collaborate, and communicate seamlessly." icon="💬" />} />
       
       {/* 404 */}
       <Route path={"/404"} component={NotFound} />

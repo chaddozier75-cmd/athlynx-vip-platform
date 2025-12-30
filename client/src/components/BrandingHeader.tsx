@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+import { Link } from 'wouter';
 
 export function BrandingHeader() {
   return (
@@ -13,7 +13,7 @@ export function BrandingHeader() {
           </div>
 
           {/* Center - Logo and Parent Company */}
-          <Link href="/" className="flex items-center gap-3 group">
+          <Link href="/dhg-empire" className="flex items-center gap-3 group">
             {/* DHG Crab Logo */}
             <div className="relative">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400/20 to-blue-600/20 border border-cyan-400/30 flex items-center justify-center group-hover:border-cyan-400/60 transition-all">
