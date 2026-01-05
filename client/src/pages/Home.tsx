@@ -53,51 +53,99 @@ export default function Home() {
            }}>
       </div>
 
-      {/* FIXED NAVIGATION HEADER */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a1628]/95 backdrop-blur-md border-b border-cyan-500/30">
+      {/* TOP BAR - THE FUTURE OF ATHLETE SUCCESS */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-[#0a1628] text-center py-2">
+        <span className="text-cyan-400 font-bold text-xs tracking-widest">THE FUTURE OF ATHLETE SUCCESS</span>
+      </div>
+
+      {/* MAIN HEADER - Light blue gradient */}
+      <nav className="fixed top-8 left-0 right-0 z-50 bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100 border-b border-blue-200 shadow-md">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <span className="text-cyan-400 font-bold text-xs tracking-widest">THE FUTURE OF ATHLETE SUCCESS</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="hidden md:flex items-center gap-2 mr-4">
-              <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-xs font-bold text-cyan-400 border border-cyan-500/50">DHG</div>
-              <div className="text-left">
-                <p className="text-gray-400 text-[10px] uppercase">PARENT COMPANY</p>
-                <p className="text-cyan-400 font-semibold text-xs">Dozier Holdings Group</p>
+          {/* Left - ATHLYNX Logo Box */}
+          <div className="flex items-center">
+            <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl px-4 py-2 flex items-center gap-2 shadow-lg">
+              <img src="/athlynx-logo-icon.png" alt="ATHLYNX" className="w-8 h-8" />
+              <div>
+                <p className="text-white font-black text-lg leading-none">ATHLYNX</p>
+                <p className="text-blue-200 text-[10px] tracking-wider">THE ATHLETE'S PLAYBOOK</p>
               </div>
             </div>
-            <div className="text-right mr-4">
-              <p className="text-white font-bold text-sm">ATHLYNX</p>
-              <p className="text-cyan-400 text-[10px] tracking-wider">THE ATHLETE'S PLAYBOOK</p>
-            </div>
+          </div>
+
+          {/* Center - Parent Company Badge */}
+          <div className="hidden md:flex items-center gap-2 bg-white/80 rounded-full px-4 py-2 border border-gray-200">
+            <span className="text-gray-500 text-xs">👤</span>
+            <span className="text-gray-600 text-xs">PARENT COMPANY:</span>
+            <span className="text-blue-600 font-bold text-xs">Dozier Holdings Group</span>
+          </div>
+
+          {/* Right - Buttons */}
+          <div className="flex items-center gap-2">
+            <Link href="/founders">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-lg text-sm flex items-center gap-1">
+                <span>👥</span> Founders
+              </button>
+            </Link>
             {loading ? (
-              <div className="w-24 h-10 bg-slate-700 animate-pulse rounded-lg"></div>
+              <div className="w-24 h-10 bg-slate-200 animate-pulse rounded-lg"></div>
             ) : user ? (
               <Link href="/dashboard">
-                <button className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-cyan-500/30 transition-all">
-                  Dashboard
+                <button className="bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-bold px-4 py-2 rounded-lg text-sm">
+                  ○ Dashboard
                 </button>
               </Link>
             ) : (
-              <LoginButton />
+              <Link href="/login">
+                <button className="bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-bold px-4 py-2 rounded-lg text-sm">
+                  ○ Portal Login
+                </button>
+              </Link>
             )}
           </div>
         </div>
       </nav>
 
-      <div className="relative w-full max-w-[900px] mx-auto px-4 pt-24 pb-12 space-y-12">
+      {/* CYAN BANNER - LIVE PLATFORM */}
+      <div className="fixed top-[104px] left-0 right-0 z-40 bg-cyan-500 text-center py-2">
+        <span className="text-white font-semibold text-sm">○ LIVE PLATFORM • HIPAA-compliant • Protecting our precious cargo</span>
+      </div>
+
+      {/* YELLOW NOTICE BAR */}
+      <div className="fixed top-[136px] left-0 right-0 z-40 bg-yellow-100 text-center py-2 border-b border-yellow-200">
+        <span className="text-yellow-800 text-sm">⚠️ SITE UPDATING LIVE DAILY - Please be patient with us while we add future updates and apps!</span>
+      </div>
+
+      <div className="relative w-full max-w-[900px] mx-auto px-4 pt-48 pb-12 space-y-8">
         
-        {/* Header with DHG Branding */}
+        {/* VIP CODE BOX */}
+        <div className="flex justify-center">
+          <div className="bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-8 text-center max-w-md w-full shadow-2xl border border-slate-600">
+            <img src="/athlynx-logo-icon.png" alt="ATHLYNX" className="w-12 h-12 mx-auto mb-4" />
+            <h3 className="text-white font-black text-xl mb-2">HAVE A VIP CODE?</h3>
+            <Link href="/vip-access">
+              <button className="text-gray-400 hover:text-cyan-400 text-sm underline">TAP HERE TO ENTER</button>
+            </Link>
+          </div>
+        </div>
+
+        {/* HEAVYWEIGHT CHAMPION BUTTON */}
+        <div className="flex justify-center">
+          <Link href="/founders">
+            <button className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-white font-black px-8 py-3 rounded-full shadow-lg text-sm">
+              🏆 HEAVYWEIGHT CHAMPION OF THE WORLD 🏆
+            </button>
+          </Link>
+        </div>
+
+        {/* DHG Crab Shield Logo - Large */}
         <div className="text-center space-y-6">
-          {/* DHG Crab Shield Logo */}
           <div className="flex justify-center">
             <div className="relative">
               <div className="absolute inset-0 bg-cyan-400 blur-3xl opacity-30 animate-pulse"></div>
               <img 
                 src="/images/dhg-crab-shield-new.jpeg" 
                 alt="DHG Crab Shield" 
-                className="relative w-28 h-28 rounded-full shadow-2xl border-4 border-cyan-400/50"
+                className="relative w-40 h-40 rounded-full shadow-2xl border-4 border-white/50"
               />
             </div>
           </div>
