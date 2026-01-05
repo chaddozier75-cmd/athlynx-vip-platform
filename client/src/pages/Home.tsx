@@ -97,7 +97,7 @@ export default function Home() {
               <img 
                 src="/images/dhg-crab-shield-new.jpeg" 
                 alt="DHG Crab Shield" 
-                className="relative w-28 h-28 rounded-full shadow-2xl border-4 border-cyan-400/50"
+                className="relative w-40 h-40 rounded-2xl shadow-2xl border-4 border-cyan-400/50 object-contain"
               />
             </div>
           </div>
