@@ -119,7 +119,7 @@ export default function EarlyAccess() {
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 sm:py-3">
           {/* Mobile Layout */}
           <div className="flex md:hidden items-center justify-between">
-            <span className="text-cyan-400 font-bold text-[10px] tracking-wider">ATHLYNX</span>
+            <span className="text-cyan-400 font-black text-lg tracking-wider">ATHLYNX</span>
             {loading ? (
               <div className="w-20 h-8 bg-slate-700 animate-pulse rounded-lg"></div>
             ) : user ? (
@@ -147,8 +147,8 @@ export default function EarlyAccess() {
                 </div>
               </div>
               <div className="text-right mr-4">
-                <p className="text-white font-bold text-sm">ATHLYNX</p>
-                <p className="text-cyan-400 text-[10px] tracking-wider">THE ATHLETE'S PLAYBOOK</p>
+                <p className="text-white font-black text-2xl">ATHLYNX</p>
+                <p className="text-cyan-400 text-xs tracking-wider">THE ATHLETE'S PLAYBOOK</p>
               </div>
               {loading ? (
                 <div className="w-24 h-10 bg-slate-700 animate-pulse rounded-lg"></div>
@@ -173,9 +173,9 @@ export default function EarlyAccess() {
           <div className="relative">
             <div className="absolute inset-0 bg-cyan-400 blur-3xl opacity-30 animate-pulse"></div>
             <img 
-              src="/images/dhg-crab-shield-new.jpeg" 
+              src="/dhg-crab-shield-logo.jpeg" 
               alt="DHG Crab" 
-              className="relative w-24 h-24 rounded-full shadow-2xl border-4 border-cyan-400/50"
+              className="relative w-40 h-40 sm:w-48 sm:h-48 object-contain drop-shadow-2xl"
             />
           </div>
         </div>
