@@ -47,6 +47,16 @@ async function startServer() {
       createContext,
     })
   );
+
+  // Health check endpoint for Railway
+  app.get('/health', (req, res) => {
+    res.status(200).json({ 
+      status: 'healthy', 
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+      environment: process.env.NODE_ENV
+    });
+  });
   // development mode uses Vite, production mode uses static files
   if (process.env.NODE_ENV === "development") {
     await setupVite(app, server);
@@ -66,4 +76,4 @@ async function startServer() {
   });
 }
 
-startServer().catch(console.error);
+sstartServer().catch(console.error);
