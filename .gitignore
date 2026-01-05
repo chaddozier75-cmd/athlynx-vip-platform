@@ -111,7 +111,6 @@ temp/
 julia-*.tar.gz
 
 # Large media assets (use CDN or upload separately)
-client/public/images/
 client/public/videos/
 *.mp4
 *.mov
