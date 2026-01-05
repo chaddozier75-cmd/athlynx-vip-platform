@@ -190,119 +190,159 @@ export default function EarlyAccess() {
           </div>
         </div>
 
-        {/* App Icons Row - NIL Portal, Messenger, Diamond Grind, Warriors Playbook */}
-        <div className="flex justify-center gap-2 sm:gap-3 flex-wrap px-2">
-          <Link href="/nil-portal">
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
-              <img 
-                src="/icons/portal.jpeg" 
-                alt="Portal" 
-                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
-              />
-              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Portal</p>
-            </div>
-          </Link>
-          <Link href="/messages">
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-blue-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
-              <img 
-                src="/icons/messenger.jpeg" 
-                alt="Messenger" 
-                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
-              />
-              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Messenger</p>
-            </div>
-          </Link>
-          <Link href="/diamond-grind">
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
-              <img 
-                src="/icons/diamond-grind.png" 
-                alt="Diamond Grind" 
-                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
-              />
-              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Diamond Grind</p>
-            </div>
-          </Link>
-          <Link href="/warriors-playbook">
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-cyan-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
-              <img 
-                src="/icons/warriors-playbook.png" 
-                alt="Warriors Playbook" 
-                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
-              />
-              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Warriors Playbook</p>
-            </div>
-          </Link>
-          <Link href="/transfer-portal">
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
-              <img 
-                src="/icons/transfer-portal.png" 
-                alt="Transfer Portal" 
-                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
-              />
-              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Transfer Portal</p>
-            </div>
-          </Link>
-          <Link href="/nil-vault">
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-purple-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
-              <img 
-                src="/icons/nil-vault.png" 
-                alt="NIL Vault" 
-                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
-              />
-              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">NIL Vault</p>
-            </div>
-          </Link>
-          <Link href="/ai-sales">
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-green-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
-              <img 
-                src="/icons/ai-sales.png" 
-                alt="AI Sales" 
-                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
-              />
-              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">AI Sales</p>
-            </div>
-          </Link>
-          <Link href="/faith">
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
-              <img 
-                src="/icons/faith.png" 
-                alt="Faith" 
-                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
-              />
-              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Faith</p>
-            </div>
-          </Link>
-          <Link href="/ai-recruiter">
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-orange-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
-              <img 
-                src="/icons/ai-recruiter.png" 
-                alt="AI Recruiter" 
-                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
-              />
-              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">AI Recruiter</p>
-            </div>
-          </Link>
-          <Link href="/ai-content">
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-pink-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
-              <img 
-                src="/icons/ai-content.png" 
-                alt="AI Content" 
-                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
-              />
-              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">AI Content</p>
-            </div>
-          </Link>
+      </div>
+
+      {/* THE COMPLETE ATHLETE ECOSYSTEM - White Background Section */}
+      <div className="bg-white py-12 px-4">
+        <div className="max-w-5xl mx-auto">
+          {/* Heading */}
+          <div className="text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">
+              THE COMPLETE ATHLETE ECOSYSTEM
+            </h2>
+            <p className="text-blue-600 font-semibold text-sm sm:text-base">
+              10 Powerful Apps. One Platform. Unlimited Potential.
+            </p>
+          </div>
+
+          {/* 10 App Grid - 5x2 */}
+          <div className="grid grid-cols-5 gap-3 sm:gap-4">
+            {/* Row 1 */}
+            <Link href="/nil-portal">
+              <div className="flex flex-col items-center gap-2 group cursor-pointer">
+                <div className="w-full aspect-square bg-slate-700 rounded-2xl flex items-center justify-center p-4 shadow-lg hover:shadow-xl transition-shadow">
+                  <img 
+                    src="/icons/portal.jpeg" 
+                    alt="Portal" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-xs sm:text-sm font-semibold text-slate-700 text-center">Portal</p>
+              </div>
+            </Link>
+
+            <Link href="/messages">
+              <div className="flex flex-col items-center gap-2 group cursor-pointer">
+                <div className="w-full aspect-square bg-slate-700 rounded-2xl flex items-center justify-center p-4 shadow-lg hover:shadow-xl transition-shadow">
+                  <img 
+                    src="/icons/messenger.jpeg" 
+                    alt="Messenger" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-xs sm:text-sm font-semibold text-slate-700 text-center">Messenger</p>
+              </div>
+            </Link>
+
+            <Link href="/diamond-grind">
+              <div className="flex flex-col items-center gap-2 group cursor-pointer">
+                <div className="w-full aspect-square bg-slate-700 rounded-2xl flex items-center justify-center p-4 shadow-lg hover:shadow-xl transition-shadow">
+                  <img 
+                    src="/icons/diamond-grind.png" 
+                    alt="Diamond Grind" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-xs sm:text-sm font-semibold text-slate-700 text-center">Diamond Grind</p>
+              </div>
+            </Link>
+
+            <Link href="/warriors-playbook">
+              <div className="flex flex-col items-center gap-2 group cursor-pointer">
+                <div className="w-full aspect-square bg-slate-700 rounded-2xl flex items-center justify-center p-4 shadow-lg hover:shadow-xl transition-shadow">
+                  <img 
+                    src="/icons/warriors-playbook.png" 
+                    alt="Warriors Playbook" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-xs sm:text-sm font-semibold text-slate-700 text-center">Warriors Playbook</p>
+              </div>
+            </Link>
+
+            <Link href="/transfer-portal">
+              <div className="flex flex-col items-center gap-2 group cursor-pointer">
+                <div className="w-full aspect-square bg-slate-700 rounded-2xl flex items-center justify-center p-4 shadow-lg hover:shadow-xl transition-shadow">
+                  <img 
+                    src="/icons/transfer-portal.png" 
+                    alt="Transfer Portal" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-xs sm:text-sm font-semibold text-slate-700 text-center">Transfer Portal</p>
+              </div>
+            </Link>
+
+            {/* Row 2 */}
+            <Link href="/nil-vault">
+              <div className="flex flex-col items-center gap-2 group cursor-pointer">
+                <div className="w-full aspect-square bg-slate-700 rounded-2xl flex items-center justify-center p-4 shadow-lg hover:shadow-xl transition-shadow">
+                  <img 
+                    src="/icons/nil-vault.png" 
+                    alt="NIL Vault" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-xs sm:text-sm font-semibold text-slate-700 text-center">NIL Vault</p>
+              </div>
+            </Link>
+
+            <Link href="/ai-sales">
+              <div className="flex flex-col items-center gap-2 group cursor-pointer">
+                <div className="w-full aspect-square bg-slate-700 rounded-2xl flex items-center justify-center p-4 shadow-lg hover:shadow-xl transition-shadow">
+                  <img 
+                    src="/icons/ai-sales.png" 
+                    alt="AI Sales" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-xs sm:text-sm font-semibold text-slate-700 text-center">AI Sales</p>
+              </div>
+            </Link>
+
+            <Link href="/faith">
+              <div className="flex flex-col items-center gap-2 group cursor-pointer">
+                <div className="w-full aspect-square bg-slate-700 rounded-2xl flex items-center justify-center p-4 shadow-lg hover:shadow-xl transition-shadow">
+                  <img 
+                    src="/icons/faith.png" 
+                    alt="Faith" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-xs sm:text-sm font-semibold text-slate-700 text-center">Faith</p>
+              </div>
+            </Link>
+
+            <Link href="/ai-recruiter">
+              <div className="flex flex-col items-center gap-2 group cursor-pointer">
+                <div className="w-full aspect-square bg-slate-700 rounded-2xl flex items-center justify-center p-4 shadow-lg hover:shadow-xl transition-shadow">
+                  <img 
+                    src="/icons/ai-recruiter.png" 
+                    alt="AI Recruiter" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-xs sm:text-sm font-semibold text-slate-700 text-center">AI Recruiter</p>
+              </div>
+            </Link>
+
+            <Link href="/ai-content">
+              <div className="flex flex-col items-center gap-2 group cursor-pointer">
+                <div className="w-full aspect-square bg-slate-700 rounded-2xl flex items-center justify-center p-4 shadow-lg hover:shadow-xl transition-shadow">
+                  <img 
+                    src="/icons/ai-content.png" 
+                    alt="AI Content" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-xs sm:text-sm font-semibold text-slate-700 text-center">AI Content</p>
+              </div>
+            </Link>
+          </div>
         </div>
+      </div>
+
+      <div className="relative w-full max-w-[640px] mx-auto px-4 pb-8 space-y-6 sm:space-y-8">
 
         {/* THE FUTURE OF ATHLETE SUCCESS */}
         <div className="text-center">
