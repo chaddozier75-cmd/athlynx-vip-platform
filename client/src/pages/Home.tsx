@@ -192,14 +192,14 @@ export default function Home() {
       </div>
 
       {/* THE COMPLETE ATHLETE ECOSYSTEM - White Background Section */}
-      <div className="bg-white py-16 px-4">
+      <div className="bg-gray-200 py-16 px-4">
         <div className="max-w-6xl mx-auto">
           {/* Heading */}
           <div className="text-center mb-12">
             <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4">
               THE COMPLETE ATHLETE ECOSYSTEM
             </h2>
-            <p className="text-blue-600 font-bold text-base sm:text-lg">
+            <p className="text-blue-500 font-bold text-base sm:text-lg">
               10 Powerful Apps. One Platform. Unlimited Potential.
             </p>
           </div>
@@ -211,7 +211,7 @@ export default function Home() {
               <div className="flex flex-col items-center gap-3 group cursor-pointer">
                 <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
                   <img 
-                    src="/icons/portal.jpeg" 
+                    src="/nil-portal-icon-final.jpeg" 
                     alt="Portal" 
                     className="w-full h-full object-contain"
                   />
@@ -224,7 +224,7 @@ export default function Home() {
               <div className="flex flex-col items-center gap-3 group cursor-pointer">
                 <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
                   <img 
-                    src="/icons/messenger.jpeg" 
+                    src="/messenger-icon-final.jpeg" 
                     alt="Messenger" 
                     className="w-full h-full object-contain"
                   />
@@ -237,7 +237,7 @@ export default function Home() {
               <div className="flex flex-col items-center gap-3 group cursor-pointer">
                 <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
                   <img 
-                    src="/icons/diamond-grind.png" 
+                    src="/diamond-grind-app-icon.png" 
                     alt="Diamond Grind" 
                     className="w-full h-full object-contain"
                   />
@@ -250,7 +250,7 @@ export default function Home() {
               <div className="flex flex-col items-center gap-3 group cursor-pointer">
                 <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
                   <img 
-                    src="/icons/warriors-playbook.png" 
+                    src="/warriors-playbook-icon.png" 
                     alt="Warriors Playbook" 
                     className="w-full h-full object-contain"
                   />
@@ -263,7 +263,7 @@ export default function Home() {
               <div className="flex flex-col items-center gap-3 group cursor-pointer">
                 <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
                   <img 
-                    src="/icons/transfer-portal.png" 
+                    src="/transfer-portal-app-icon.png" 
                     alt="Transfer Portal" 
                     className="w-full h-full object-contain"
                   />
@@ -277,7 +277,7 @@ export default function Home() {
               <div className="flex flex-col items-center gap-3 group cursor-pointer">
                 <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
                   <img 
-                    src="/icons/nil-vault.png" 
+                    src="/nil-vault-app-icon.png" 
                     alt="NIL Vault" 
                     className="w-full h-full object-contain"
                   />
@@ -290,7 +290,7 @@ export default function Home() {
               <div className="flex flex-col items-center gap-3 group cursor-pointer">
                 <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
                   <img 
-                    src="/icons/ai-sales.png" 
+                    src="/ai-sales-app-icon.png" 
                     alt="AI Sales" 
                     className="w-full h-full object-contain"
                   />
@@ -303,7 +303,7 @@ export default function Home() {
               <div className="flex flex-col items-center gap-3 group cursor-pointer">
                 <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
                   <img 
-                    src="/icons/faith.png" 
+                    src="/faith-app-icon.png" 
                     alt="Faith" 
                     className="w-full h-full object-contain"
                   />
@@ -316,7 +316,7 @@ export default function Home() {
               <div className="flex flex-col items-center gap-3 group cursor-pointer">
                 <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
                   <img 
-                    src="/icons/ai-recruiter.png" 
+                    src="/ai-recruiter-app-icon.png" 
                     alt="AI Recruiter" 
                     className="w-full h-full object-contain"
                   />
@@ -329,7 +329,7 @@ export default function Home() {
               <div className="flex flex-col items-center gap-3 group cursor-pointer">
                 <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
                   <img 
-                    src="/icons/ai-content.png" 
+                    src="/ai-content-app-icon.png" 
                     alt="AI Content" 
                     className="w-full h-full object-contain"
                   />
