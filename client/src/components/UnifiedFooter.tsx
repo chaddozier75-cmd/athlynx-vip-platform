@@ -48,7 +48,19 @@ const socialLinks = [
 
 export default function UnifiedFooter() {
   return (
-    <footer className="bg-slate-950 border-t border-white/10 py-12 px-5">
+    <footer className="bg-slate-950 border-t border-white/10">
+      {/* Feature Checkmarks Bar */}
+      <div className="bg-gray-100 py-4 px-5">
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-6">
+          <span className="text-gray-700 text-sm flex items-center gap-2"><span className="text-green-500">✓</span> Social Network</span>
+          <span className="text-gray-700 text-sm flex items-center gap-2"><span className="text-green-500">✓</span> NIL Deals</span>
+          <span className="text-gray-700 text-sm flex items-center gap-2"><span className="text-green-500">✓</span> Messaging</span>
+          <span className="text-gray-700 text-sm flex items-center gap-2"><span className="text-green-500">✓</span> Analytics</span>
+          <span className="text-gray-700 text-sm flex items-center gap-2"><span className="text-green-500">✓</span> Compliance</span>
+        </div>
+      </div>
+
+      <div className="py-12 px-5">
       <div className="max-w-6xl mx-auto">
         {/* Logo and tagline */}
         <div className="flex flex-col md:flex-row justify-between items-start mb-10">
@@ -178,6 +190,29 @@ export default function UnifiedFooter() {
               <span className="text-white/40 hover:text-white text-sm cursor-pointer transition-colors">DHG Empire</span>
             </Link>
           </div>
+        </div>
+      </div>
+      </div>
+
+      {/* Security & Legal Compliance Section */}
+      <div className="bg-slate-900 border-t border-cyan-500/30 py-8 px-5">
+        <div className="max-w-6xl mx-auto">
+          <h3 className="text-cyan-400 font-bold text-lg mb-4 flex items-center gap-2">
+            <span className="text-2xl">🛡️</span> SECURITY & LEGAL COMPLIANCE
+          </h3>
+          <div className="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <p className="text-white mb-2"><span className="text-cyan-400 font-bold">HIPAA Compliant:</span> All athlete health data, medical records, and personal information are protected under strict HIPAA guidelines with enterprise-grade encryption.</p>
+              <p className="text-white"><span className="text-cyan-400 font-bold">AI Transparency:</span> Our platform utilizes AI bots and automated agents for content generation, data processing, and real-time updates. All AI-generated content is clearly labeled.</p>
+            </div>
+            <div>
+              <p className="text-white mb-2"><span className="text-green-400">✓</span> <span className="text-cyan-400 font-bold">Data Collection:</span> We aggregate publicly available information from authorized sources. All web scraping activities comply with robots.txt protocols and applicable laws.</p>
+              <p className="text-white"><span className="text-green-400">✓</span> <span className="text-cyan-400 font-bold">Precious Cargo Protection:</span> Athlete data is our most valuable asset. We employ 256-bit SSL encryption, SOC 2 compliance standards, and regular security audits.</p>
+            </div>
+          </div>
+          <p className="text-gray-400 text-xs mt-4 text-center">
+            By using this platform, you acknowledge our use of AI automation and agree to our data collection practices. Platform updated daily in real-time. For questions, contact: <a href="mailto:legal@dozierholdingsgroup.com" className="text-cyan-400 hover:underline">legal@dozierholdingsgroup.com</a>
+          </p>
         </div>
       </div>
     </footer>
