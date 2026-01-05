@@ -196,19 +196,19 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/nil-portal-icon-final.jpeg" 
-                alt="NIL Portal" 
+                src="/icons/portal.jpeg" 
+                alt="Portal" 
                 className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
-              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">NIL Portal</p>
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Portal</p>
             </div>
           </Link>
           <Link href="/messages">
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-blue-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/messenger-icon-final.jpeg" 
-                alt="NIL Messenger" 
+                src="/icons/messenger.jpeg" 
+                alt="Messenger" 
                 className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
               <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Messenger</p>
@@ -218,7 +218,7 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/diamond-grind-app-icon.png" 
+                src="/icons/diamond-grind.png" 
                 alt="Diamond Grind" 
                 className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
@@ -229,7 +229,7 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-cyan-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/warriors-playbook-icon.png" 
+                src="/icons/warriors-playbook.png" 
                 alt="Warriors Playbook" 
                 className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
@@ -240,22 +240,66 @@ export default function EarlyAccess() {
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/transfer-portal-app-icon.png" 
+                src="/icons/transfer-portal.png" 
                 alt="Transfer Portal" 
                 className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
               <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Transfer Portal</p>
             </div>
           </Link>
+          <Link href="/nil-vault">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-purple-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/icons/nil-vault.png" 
+                alt="NIL Vault" 
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">NIL Vault</p>
+            </div>
+          </Link>
+          <Link href="/ai-sales">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-green-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/icons/ai-sales.png" 
+                alt="AI Sales" 
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">AI Sales</p>
+            </div>
+          </Link>
           <Link href="/faith">
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
-                src="/faith-app-icon.png" 
+                src="/icons/faith.png" 
                 alt="Faith" 
                 className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
               <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Faith</p>
+            </div>
+          </Link>
+          <Link href="/ai-recruiter">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-orange-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/icons/ai-recruiter.png" 
+                alt="AI Recruiter" 
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">AI Recruiter</p>
+            </div>
+          </Link>
+          <Link href="/ai-content">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-pink-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/icons/ai-content.png" 
+                alt="AI Content" 
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">AI Content</p>
             </div>
           </Link>
         </div>
@@ -278,15 +322,7 @@ export default function EarlyAccess() {
           <p className="sr-only">Complete athlete ecosystem for NIL deals, training, recruiting, and professional connections. Join 10,000 founding members.</p>
         </div>
 
-        {/* VIP Early Access Badge - Blue Theme */}
-        <div className="flex justify-center px-4">
-          <div className="bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 rounded-full px-6 sm:px-10 py-3 sm:py-5 shadow-2xl transform hover:scale-105 transition-transform">
-            <p className="text-white font-black text-center">
-              <span className="text-base sm:text-xl">VIP EARLY ACCESS</span><br/>
-              <span className="text-2xl sm:text-3xl">6 MONTHS FREE</span>
-            </p>
-          </div>
-        </div>
+
 
         {/* Countdown Timer */}
         <div className="space-y-4">
