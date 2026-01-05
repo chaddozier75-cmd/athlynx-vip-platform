@@ -117,6 +117,19 @@ export default function Home() {
 
       <div className="relative w-full max-w-[900px] mx-auto px-4 pt-48 pb-12 space-y-8">
         
+        {/* LARGE ATHLYNX BRANDING BOX */}
+        <div className="flex justify-center">
+          <div className="bg-gradient-to-r from-blue-500 via-blue-600 to-cyan-500 rounded-2xl px-12 py-6 flex items-center gap-4 shadow-2xl relative">
+            <img src="/athlynx-logo-icon.png" alt="ATHLYNX" className="w-16 h-16" />
+            <div>
+              <p className="text-white font-black text-3xl leading-none">ATHLYNX</p>
+              <p className="text-cyan-200 text-sm tracking-wider">THE ATHLETE'S PLAYBOOK</p>
+            </div>
+            {/* Yellow dot indicator */}
+            <div className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full"></div>
+          </div>
+        </div>
+
         {/* VIP CODE BOX */}
         <div className="flex justify-center">
           <div className="bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-8 text-center max-w-md w-full shadow-2xl border border-slate-600">
