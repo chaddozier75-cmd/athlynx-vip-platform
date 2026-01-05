@@ -47,7 +47,7 @@ export default function EarlyAccess() {
 
   // Set page title for SEO
   useEffect(() => {
-    document.title = "ATHLYNX VIP Early Access - Join 10,000 Founding Members | 6 Months Free";
+    document.title = "ATHLYNX - The Athlete's Playbook | VIP Early Access";
   }, []);
 
   // Countdown timer to February 1, 2026
