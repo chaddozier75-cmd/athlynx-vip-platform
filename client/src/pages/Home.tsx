@@ -172,14 +172,35 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
 
-          <h1 className="text-4xl md:text-5xl font-black leading-tight">
-            <span className="text-white">THE #1 SPORTS PLATFORM FOR ATHLETES</span>
-          </h1>
-          <h2 className="sr-only">ATHLYNX - Complete Athlete Ecosystem for NIL Deals, Training, and Recruiting</h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Like Facebook, Instagram, TikTok, X & LinkedIn combined for athletes
+        {/* ATHLYNX MASTERMIND SECTION */}
+        <div className="bg-slate-800/90 backdrop-blur-md border border-cyan-500/30 rounded-2xl p-8 text-center space-y-4 shadow-2xl">
+          <div className="flex justify-center items-center gap-3">
+            <img src="/athlynx-logo-icon.png" alt="ATHLYNX" className="w-10 h-10" />
+            <div>
+              <p className="text-white font-black text-2xl">ATHLYNX</p>
+              <p className="text-cyan-400 text-xs tracking-wider">THE ATHLETE'S PLAYBOOK</p>
+            </div>
+          </div>
+          <p className="text-gray-300 text-sm">
+            The mastermind behind the champion. <span className="text-cyan-400 font-bold">Building champions</span>, <span className="text-cyan-400 font-bold">training winners</span>, and <span className="text-cyan-400 font-bold">creating empires</span>.
           </p>
+          
+          {/* THE EMPIRE */}
+          <div className="flex justify-center">
+            <div className="bg-slate-900 rounded-xl px-6 py-3 border border-slate-700">
+              <p className="text-cyan-400 text-xs font-bold mb-2">THE EMPIRE</p>
+              <div className="flex items-center gap-3 text-xl">
+                <span>🏆</span>
+                <span>💰</span>
+                <span>⏰</span>
+                <span>📊</span>
+                <span>📈</span>
+              </div>
+              <p className="text-gray-400 text-[10px] mt-1">PASSIVE INCOME EMPIRE</p>
+            </div>
+          </div>
         </div>
 
         {/* Flagship Product Section */}
