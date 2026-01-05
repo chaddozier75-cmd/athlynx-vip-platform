@@ -189,6 +189,159 @@ export default function Home() {
           </div>
         </div>
 
+      </div>
+
+      {/* THE COMPLETE ATHLETE ECOSYSTEM - White Background Section */}
+      <div className="bg-white py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Heading */}
+          <div className="text-center mb-12">
+            <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4">
+              THE COMPLETE ATHLETE ECOSYSTEM
+            </h2>
+            <p className="text-blue-600 font-bold text-base sm:text-lg">
+              10 Powerful Apps. One Platform. Unlimited Potential.
+            </p>
+          </div>
+
+          {/* 10 App Grid - 5x2 */}
+          <div className="grid grid-cols-5 gap-4 sm:gap-6">
+            {/* Row 1 */}
+            <Link href="/nil-portal">
+              <div className="flex flex-col items-center gap-3 group cursor-pointer">
+                <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+                  <img 
+                    src="/icons/portal.jpeg" 
+                    alt="Portal" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-sm sm:text-base font-bold text-slate-800 text-center">Portal</p>
+              </div>
+            </Link>
+
+            <Link href="/messages">
+              <div className="flex flex-col items-center gap-3 group cursor-pointer">
+                <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+                  <img 
+                    src="/icons/messenger.jpeg" 
+                    alt="Messenger" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-sm sm:text-base font-bold text-slate-800 text-center">Messenger</p>
+              </div>
+            </Link>
+
+            <Link href="/diamond-grind">
+              <div className="flex flex-col items-center gap-3 group cursor-pointer">
+                <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+                  <img 
+                    src="/icons/diamond-grind.png" 
+                    alt="Diamond Grind" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-sm sm:text-base font-bold text-slate-800 text-center">Diamond Grind</p>
+              </div>
+            </Link>
+
+            <Link href="/warriors-playbook">
+              <div className="flex flex-col items-center gap-3 group cursor-pointer">
+                <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+                  <img 
+                    src="/icons/warriors-playbook.png" 
+                    alt="Warriors Playbook" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-sm sm:text-base font-bold text-slate-800 text-center">Warriors Playbook</p>
+              </div>
+            </Link>
+
+            <Link href="/transfer-portal">
+              <div className="flex flex-col items-center gap-3 group cursor-pointer">
+                <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+                  <img 
+                    src="/icons/transfer-portal.png" 
+                    alt="Transfer Portal" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-sm sm:text-base font-bold text-slate-800 text-center">Transfer Portal</p>
+              </div>
+            </Link>
+
+            {/* Row 2 */}
+            <Link href="/nil-vault">
+              <div className="flex flex-col items-center gap-3 group cursor-pointer">
+                <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+                  <img 
+                    src="/icons/nil-vault.png" 
+                    alt="NIL Vault" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-sm sm:text-base font-bold text-slate-800 text-center">NIL Vault</p>
+              </div>
+            </Link>
+
+            <Link href="/ai-sales">
+              <div className="flex flex-col items-center gap-3 group cursor-pointer">
+                <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+                  <img 
+                    src="/icons/ai-sales.png" 
+                    alt="AI Sales" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-sm sm:text-base font-bold text-slate-800 text-center">AI Sales</p>
+              </div>
+            </Link>
+
+            <Link href="/faith">
+              <div className="flex flex-col items-center gap-3 group cursor-pointer">
+                <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+                  <img 
+                    src="/icons/faith.png" 
+                    alt="Faith" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-sm sm:text-base font-bold text-slate-800 text-center">Faith</p>
+              </div>
+            </Link>
+
+            <Link href="/ai-recruiter">
+              <div className="flex flex-col items-center gap-3 group cursor-pointer">
+                <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+                  <img 
+                    src="/icons/ai-recruiter.png" 
+                    alt="AI Recruiter" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-sm sm:text-base font-bold text-slate-800 text-center">AI Recruiter</p>
+              </div>
+            </Link>
+
+            <Link href="/ai-content">
+              <div className="flex flex-col items-center gap-3 group cursor-pointer">
+                <div className="w-full aspect-square bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center p-4 sm:p-6 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+                  <img 
+                    src="/icons/ai-content.png" 
+                    alt="AI Content" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="text-sm sm:text-base font-bold text-slate-800 text-center">AI Content</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 space-y-12">
         {/* All Features Grid */}
         <div className="space-y-6">
           <h2 className="text-3xl md:text-4xl font-black text-center text-white">
