@@ -260,6 +260,54 @@ export default function EarlyAccess() {
           </Link>
         </div>
 
+        {/* Second Row - NIL Vault, AI Sales, AI Recruiter, AI Content */}
+        <div className="flex justify-center gap-2 sm:gap-3 flex-wrap px-2 mt-3">
+          <Link href="/nil-marketplace">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-green-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/nil-portal-icon-final.jpeg" 
+                alt="NIL Vault" 
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">NIL Vault</p>
+            </div>
+          </Link>
+          <Link href="/apps">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-purple-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/athlynx-app-icon.png" 
+                alt="AI Sales" 
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">AI Sales</p>
+            </div>
+          </Link>
+          <Link href="/apps">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-pink-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/athlynx-app-icon.png" 
+                alt="AI Recruiter" 
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">AI Recruiter</p>
+            </div>
+          </Link>
+          <Link href="/apps">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-indigo-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/athlynx-app-icon.png" 
+                alt="AI Content" 
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">AI Content</p>
+            </div>
+          </Link>
+        </div>
+
         {/* THE FUTURE OF ATHLETE SUCCESS */}
         <div className="text-center">
           <p className="text-cyan-400 text-sm md:text-base uppercase tracking-[0.3em] font-bold drop-shadow-lg">
