@@ -282,8 +282,8 @@ export default function EarlyAccess() {
         <div className="flex justify-center px-4">
           <div className="bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 rounded-full px-6 sm:px-10 py-3 sm:py-5 shadow-2xl transform hover:scale-105 transition-transform">
             <p className="text-white font-black text-center">
-              <span className="text-base sm:text-xl">VIP EARLY ACCESS</span><br/>
-              <span className="text-2xl sm:text-3xl">6 MONTHS FREE</span>
+              <span className="text-base sm:text-xl">START YOUR FREE TRIAL</span><br/>
+              <span className="text-2xl sm:text-3xl">7 DAYS FREE</span>
             </p>
           </div>
         </div>
@@ -407,12 +407,12 @@ export default function EarlyAccess() {
               disabled={signupMutation.isPending}
               className="w-full bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 text-white font-black text-xl uppercase tracking-wider py-5 rounded-full shadow-2xl hover:shadow-cyan-500/50 hover:scale-105 transition-all transform disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {signupMutation.isPending ? "PROCESSING..." : "CLAIM MY VIP SPOT"}
+              {signupMutation.isPending ? "PROCESSING..." : "START FREE TRIAL"}
             </button>
 
             {/* No credit card text */}
             <p className="text-center text-gray-400 text-sm">
-              No credit card required. By signing up, you agree to receive updates about ATHLYNX.
+              No credit card required for 7-day trial. Upgrade anytime to unlock full features.
             </p>
           </form>
         </div>

@@ -117,3 +117,5 @@ client/public/videos/
 *.mov
 *.avi
 *.webm
+.vercel
+.env*.local
