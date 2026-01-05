@@ -1,0 +1,128 @@
+{
+  "success": true,
+  "profile": {
+    "bio": "Marcus Johnson embodies relentless determination and unmatched precision as the University of Texas quarterback. A natural leader, he elevates every game with his fierce competitive spirit and unwavering commitment to excellence, inspiring teammates and fans alike to push beyond limits and chase greatness.",
+    "strengths": [
+      "Exceptional field vision and decision-making under pressure",
+      "Elite arm strength with pinpoint accuracy",
+      "Dynamic leadership that galvanizes team performance"
+    ],
+    "highlights": [
+      "Led University of Texas to a conference championship with record-setting passing yards",
+      "Named Offensive MVP in the 2023 season with a 68% completion rate",
+      "Recognized as a top Heisman Trophy contender for back-to-back seasons"
+    ],
+    "brand_statement": "Marcus Johnson: Redefining quarterback excellence through precision, leadership, and an unyielding drive to dominate.",
+    "hashtags": [
+      "#QBElite",
+      "#HookEmHorns",
+      "#GridironGreat",
+      "#TexasLonghorns",
+      "#MarcusJohnson"
+    ],
+    "generation_time": 2.63,
+    "timestamp": "2026-01-05T03:32:02.223610"
+  },
+  "opportunities": [],
+  "earnings_potential": {
+    "total_opportunities": 0,
+    "total_potential_value": 0,
+    "available_value": 0,
+    "locked_value": 0,
+    "unlock_message": "Upgrade to unlock $0 in additional opportunities!",
+    "urgency_message": "3 high-value deals expire in 48 hours!"
+  },
+  "social_proof": {
+    "recent_deals": [
+      {
+        "athlete": "Marcus J.",
+        "sport": "Football",
+        "amount": 2500,
+        "brand": "Nike",
+        "time_ago": "2 hours ago"
+      },
+      {
+        "athlete": "Sarah W.",
+        "sport": "Basketball",
+        "amount": 1800,
+        "brand": "Gatorade",
+        "time_ago": "5 hours ago"
+      },
+      {
+        "athlete": "Tyler R.",
+        "sport": "Baseball",
+        "amount": 3200,
+        "brand": "Under Armour",
+        "time_ago": "1 day ago"
+      }
+    ],
+    "stats": {
+      "total_athletes_earning": 1247,
+      "total_deals_this_week": 89,
+      "average_deal_value": 1850,
+      "top_earner_this_month": 15600
+    },
+    "trending_message": "\ud83d\udd25 1,247 athletes are earning on ATHLYNX right now!"
+  },
+  "credits": {
+    "total_credits": 100,
+    "credits_used": 20,
+    "credits_remaining": 80,
+    "percentage_used": 20.0,
+    "actions_remaining": {
+      "nil_searches": 16,
+      "brand_messages": 5,
+      "ai_optimizations": 4
+    },
+    "warning_message": "\u26a0\ufe0f Only 80 credits left! Upgrade for UNLIMITED.",
+    "upgrade_cta": "Get unlimited AI credits with Premium ($29.99/month)"
+  },
+  "notifications": [
+    {
+      "type": "opportunity",
+      "title": "\ud83d\udcb0 New NIL Match Found!",
+      "message": "Nike is looking for athletes like you - $2,500 deal",
+      "action": "View Deal",
+      "urgency": "high",
+      "locked": false
+    },
+    {
+      "type": "brand_interest",
+      "title": "\ud83d\udc40 3 Brands Viewed Your Profile",
+      "message": "Upgrade to see who's interested",
+      "action": "Upgrade Now",
+      "urgency": "medium",
+      "locked": true
+    },
+    {
+      "type": "earnings",
+      "title": "\ud83d\udd25 Athletes Earned $45K This Week",
+      "message": "You could be next! Upgrade to unlock all opportunities",
+      "action": "See Opportunities",
+      "urgency": "medium",
+      "locked": true
+    },
+    {
+      "type": "expiring",
+      "title": "\u23f0 Deal Expires in 24 Hours",
+      "message": "$1,800 Gatorade deal expires tomorrow",
+      "action": "Claim Deal",
+      "urgency": "critical",
+      "locked": true
+    },
+    {
+      "type": "social_proof",
+      "title": "\ud83c\udf89 Sarah W. Just Signed a $3,200 Deal",
+      "message": "Join 1,247 athletes earning on ATHLYNX",
+      "action": "Start Earning",
+      "urgency": "low",
+      "locked": false
+    }
+  ],
+  "upgrade_urgency": {
+    "message": "\ud83c\udf89 Welcome! You have 7 days to explore everything FREE",
+    "cta": "Explore Features",
+    "urgency": "low"
+  },
+  "hook_message": "\ud83c\udf89 CONGRATS! You unlocked $0 in opportunities! Upgrade to claim them all."
+}
