@@ -7,22 +7,64 @@ export default function Home() {
   const { user, loading } = useAuth();
   const apps = [
     {
-      name: "NIL Portal",
+      name: "Portal",
       icon: "/images/nil-portal-icon.jpeg",
-      description: "Manage deals, training data, and professional connections",
+      description: "Social network for athletes",
       link: "/nil-portal",
+    },
+    {
+      name: "Messenger",
+      icon: "/images/nil-messenger-icon.jpeg",
+      description: "HIPAA-compliant messaging",
+      link: "/messenger",
     },
     {
       name: "Diamond Grind",
       icon: "/images/diamond-grind-icon.png",
-      description: "Training programs, analytics, and performance tracking",
+      description: "Elite baseball platform",
       link: "/diamond-grind",
     },
     {
-      name: "NIL Messenger",
-      icon: "/images/nil-messenger-icon.jpeg",
-      description: "Real-time communication with coaches, scouts, and teammates",
-      link: "/messenger",
+      name: "Warriors Playbook",
+      icon: "/images/warriors-playbook-icon.png",
+      description: "Faith-based athlete development",
+      link: "/warriors-playbook",
+    },
+    {
+      name: "Transfer Portal",
+      icon: "/images/transfer-portal-app-icon.png",
+      description: "Career transition intelligence",
+      link: "/transfer-portal",
+    },
+    {
+      name: "NIL Vault",
+      icon: "/images/nil-portal-icon.jpeg",
+      description: "Manage NIL deals and contracts",
+      link: "/nil-marketplace",
+    },
+    {
+      name: "AI Sales",
+      icon: "/images/athlynx-app-icon.png",
+      description: "AI-powered brand partnerships",
+      link: "/apps",
+    },
+    {
+      name: "Faith",
+      icon: "/images/faith-app-icon.png",
+      description: "Spiritual growth and community",
+      link: "/faith",
+    },
+    {
+      name: "AI Recruiter",
+      icon: "/images/athlynx-app-icon.png",
+      description: "AI recruiting assistant",
+      link: "/apps",
+    },
+    {
+      name: "AI Content",
+      icon: "/images/athlynx-app-icon.png",
+      description: "AI content creation tools",
+      link: "/apps",
     },
   ];
 
@@ -38,18 +80,18 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen relative text-white overflow-x-hidden">
-      {/* Dark Blue Gradient Background - Same as VIP page */}
+    <div className="min-h-screen relative overflow-x-hidden">
+      {/* Blue and White Theme Background */}
       <div className="absolute inset-0" 
            style={{
-             background: 'linear-gradient(180deg, #0a1628 0%, #0d1f3c 25%, #0f2847 50%, #0a1e38 75%, #061424 100%)'
+             background: 'linear-gradient(180deg, #ffffff 0%, #e0f2fe 25%, #bae6fd 50%, #7dd3fc 75%, #38bdf8 100%)'
            }}>
       </div>
 
       {/* Subtle blue glow overlay */}
-      <div className="absolute inset-0 opacity-40"
+      <div className="absolute inset-0 opacity-30"
            style={{
-             background: 'radial-gradient(ellipse at top center, rgba(59, 130, 246, 0.15) 0%, transparent 60%), radial-gradient(ellipse at bottom center, rgba(6, 182, 212, 0.1) 0%, transparent 60%)'
+             background: 'radial-gradient(ellipse at top center, rgba(59, 130, 246, 0.2) 0%, transparent 60%), radial-gradient(ellipse at bottom center, rgba(6, 182, 212, 0.15) 0%, transparent 60%)'
            }}>
       </div>
 
