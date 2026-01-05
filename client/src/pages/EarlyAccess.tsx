@@ -114,40 +114,59 @@ export default function EarlyAccess() {
            }}>
       </div>
       
-      {/* FIXED NAVIGATION HEADER WITH LOGIN */}
+      {/* FIXED NAVIGATION HEADER WITH LOGIN - MOBILE OPTIMIZED */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a1628]/95 backdrop-blur-md border-b border-cyan-500/30">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <span className="text-cyan-400 font-bold text-xs tracking-widest">THE FUTURE OF ATHLETE SUCCESS</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="hidden md:flex items-center gap-2 mr-4">
-              <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-xs font-bold text-cyan-400 border border-cyan-500/50">DHG</div>
-              <div className="text-left">
-                <p className="text-gray-400 text-[10px] uppercase">PARENT COMPANY</p>
-                <p className="text-cyan-400 font-semibold text-xs">Dozier Holdings Group</p>
-              </div>
-            </div>
-            <div className="text-right mr-4">
-              <p className="text-white font-bold text-sm">ATHLYNX</p>
-              <p className="text-cyan-400 text-[10px] tracking-wider">THE ATHLETE'S PLAYBOOK</p>
-            </div>
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 sm:py-3">
+          {/* Mobile Layout */}
+          <div className="flex md:hidden items-center justify-between">
+            <span className="text-cyan-400 font-bold text-[10px] tracking-wider">ATHLYNX</span>
             {loading ? (
-              <div className="w-24 h-10 bg-slate-700 animate-pulse rounded-lg"></div>
+              <div className="w-20 h-8 bg-slate-700 animate-pulse rounded-lg"></div>
             ) : user ? (
               <Link href="/dashboard">
-                <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-green-500/30 transition-all">
+                <button className="bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold px-4 py-1.5 rounded-lg text-xs">
                   Dashboard
                 </button>
               </Link>
             ) : (
-              <LoginButton className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-cyan-500/30 transition-all animate-pulse" />
+              <LoginButton className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold px-4 py-1.5 rounded-lg text-xs" />
             )}
+          </div>
+          
+          {/* Desktop Layout */}
+          <div className="hidden md:flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <span className="text-cyan-400 font-bold text-xs tracking-widest">THE FUTURE OF ATHLETE SUCCESS</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 mr-4">
+                <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-xs font-bold text-cyan-400 border border-cyan-500/50">DHG</div>
+                <div className="text-left">
+                  <p className="text-gray-400 text-[10px] uppercase">PARENT COMPANY</p>
+                  <p className="text-cyan-400 font-semibold text-xs">Dozier Holdings Group</p>
+                </div>
+              </div>
+              <div className="text-right mr-4">
+                <p className="text-white font-bold text-sm">ATHLYNX</p>
+                <p className="text-cyan-400 text-[10px] tracking-wider">THE ATHLETE'S PLAYBOOK</p>
+              </div>
+              {loading ? (
+                <div className="w-24 h-10 bg-slate-700 animate-pulse rounded-lg"></div>
+              ) : user ? (
+                <Link href="/dashboard">
+                  <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-green-500/30 transition-all">
+                    Dashboard
+                  </button>
+                </Link>
+              ) : (
+                <LoginButton className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-cyan-500/30 transition-all animate-pulse" />
+              )}
+            </div>
           </div>
         </div>
       </nav>
 
-      <div className="relative w-full max-w-[640px] mx-auto px-4 pt-20 pb-8 space-y-8">
+      <div className="relative w-full max-w-[640px] mx-auto px-4 pt-16 sm:pt-20 pb-8 space-y-6 sm:space-y-8">
         
         {/* Crab Logo at Top */}
         <div className="flex justify-center">
@@ -172,14 +191,14 @@ export default function EarlyAccess() {
         </div>
 
         {/* App Icons Row - NIL Portal, Messenger, Diamond Grind, Warriors Playbook */}
-        <div className="flex justify-center gap-3 flex-wrap">
+        <div className="flex justify-center gap-2 sm:gap-3 flex-wrap px-2">
           <Link href="/nil-portal">
             <div className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <img 
                 src="/nil-portal-icon-final.jpeg" 
                 alt="NIL Portal" 
-                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
               <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">NIL Portal</p>
             </div>
@@ -190,7 +209,7 @@ export default function EarlyAccess() {
               <img 
                 src="/messenger-icon-final.jpeg" 
                 alt="NIL Messenger" 
-                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
               <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Messenger</p>
             </div>
@@ -201,7 +220,7 @@ export default function EarlyAccess() {
               <img 
                 src="/diamond-grind-app-icon.png" 
                 alt="Diamond Grind" 
-                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
               <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Diamond Grind</p>
             </div>
@@ -212,7 +231,7 @@ export default function EarlyAccess() {
               <img 
                 src="/warriors-playbook-icon.png" 
                 alt="Warriors Playbook" 
-                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
               <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Warriors Playbook</p>
             </div>
@@ -223,7 +242,7 @@ export default function EarlyAccess() {
               <img 
                 src="/transfer-portal-app-icon.png" 
                 alt="Transfer Portal" 
-                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
               <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Transfer Portal</p>
             </div>
@@ -234,7 +253,7 @@ export default function EarlyAccess() {
               <img 
                 src="/faith-app-icon.png" 
                 alt="Faith" 
-                className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
               />
               <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Faith</p>
             </div>
@@ -249,22 +268,22 @@ export default function EarlyAccess() {
         </div>
 
         {/* ATHLYNX Branding */}
-        <div className="text-center space-y-3">
-          <h1 className="text-7xl md:text-8xl font-black tracking-tight text-white drop-shadow-2xl">
+        <div className="text-center space-y-2 sm:space-y-3">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl font-black tracking-tight text-white drop-shadow-2xl">
             ATHLYNX
           </h1>
-          <h2 className="text-cyan-400 text-2xl md:text-3xl font-black uppercase tracking-[0.2em] drop-shadow-lg">
+          <h2 className="text-lg sm:text-xl md:text-3xl font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-cyan-400 drop-shadow-lg px-2">
             THE ATHLETE'S PLAYBOOK
           </h2>
           <p className="sr-only">Complete athlete ecosystem for NIL deals, training, recruiting, and professional connections. Join 10,000 founding members.</p>
         </div>
 
         {/* VIP Early Access Badge - Blue Theme */}
-        <div className="flex justify-center">
-          <div className="bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 rounded-full px-10 py-5 shadow-2xl transform hover:scale-105 transition-transform">
+        <div className="flex justify-center px-4">
+          <div className="bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 rounded-full px-6 sm:px-10 py-3 sm:py-5 shadow-2xl transform hover:scale-105 transition-transform">
             <p className="text-white font-black text-center">
-              <span className="text-xl">VIP EARLY ACCESS</span><br/>
-              <span className="text-3xl">6 MONTHS FREE</span>
+              <span className="text-base sm:text-xl">VIP EARLY ACCESS</span><br/>
+              <span className="text-2xl sm:text-3xl">6 MONTHS FREE</span>
             </p>
           </div>
         </div>
@@ -272,7 +291,7 @@ export default function EarlyAccess() {
         {/* Countdown Timer */}
         <div className="space-y-4">
           <p className="text-center text-gray-400 text-sm uppercase tracking-widest font-bold">LAUNCHING IN</p>
-          <div className="flex justify-center gap-2">
+          <div className="flex justify-center gap-1.5 sm:gap-2">
             {[
               { value: timeLeft.days, label: "DAYS" },
               { value: timeLeft.hours, label: "HRS" },
@@ -281,10 +300,10 @@ export default function EarlyAccess() {
             ].map(({ value, label }) => (
               <div
                 key={label}
-                className="bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-500/50 rounded-2xl px-4 py-4 min-w-[75px] text-center shadow-xl"
+                className="bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-500/50 rounded-xl sm:rounded-2xl px-2 sm:px-4 py-2 sm:py-4 min-w-[60px] sm:min-w-[75px] text-center shadow-xl"
               >
-                <div className="text-cyan-400 text-4xl font-black drop-shadow-lg">{String(value).padStart(2, "0")}</div>
-                <div className="text-gray-500 text-xs mt-1 font-bold tracking-wider">{label}</div>
+                <div className="text-cyan-400 text-2xl sm:text-4xl font-black drop-shadow-lg">{String(value).padStart(2, "0")}</div>
+                <div className="text-gray-500 text-[10px] sm:text-xs mt-1 font-bold tracking-wider">{label}</div>
               </div>
             ))}
           </div>
@@ -301,7 +320,7 @@ export default function EarlyAccess() {
         </div>
 
         {/* Signup Form - Blue Theme */}
-        <div className="bg-slate-900/80 backdrop-blur-xl border-2 border-cyan-500/50 rounded-3xl p-8 space-y-5 shadow-2xl">
+        <div className="bg-slate-900/80 backdrop-blur-xl border-2 border-cyan-500/50 rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-4 sm:space-y-5 shadow-2xl">
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email */}
             <div>
