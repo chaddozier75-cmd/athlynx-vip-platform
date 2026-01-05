@@ -74,7 +74,9 @@ function Router() {
   return (
     <Switch>
       {/* Main Landing */}
-      <Route path={"/"} component={EarlyAccess} />
+      <Route path={"/"} component={Home} />
+      <Route path={"/signup"} component={EarlyAccess} />
+      <Route path={"/early-access"} component={EarlyAccess} />
       <Route path={"/success"} component={Success} />
       <Route path={"/home"} component={Home} />
       
