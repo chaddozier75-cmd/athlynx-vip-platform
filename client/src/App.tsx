@@ -17,6 +17,7 @@ import NILPortal from "./pages/NILPortal";
 // Empire Pages
 import Pricing from "./pages/Pricing";
 import Store from "./pages/Store";
+import Marketplace from "./pages/Marketplace";
 import Careers from "./pages/Careers";
 import Medical from "./pages/Medical";
 import Training from "./pages/Training";
@@ -119,6 +120,7 @@ function Router() {
       {/* E-Commerce - Amazon Model */}
       <Route path={"/store"} component={Store} />
       <Route path={"/shop"} component={Store} />
+      <Route path={"/marketplace"} component={Marketplace} />
       
       {/* Career Portal - LinkedIn for Athletes */}
       <Route path={"/careers"} component={Careers} />
