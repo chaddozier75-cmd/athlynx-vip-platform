@@ -1,588 +1,472 @@
-import { Link } from "wouter";
-import { Users } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
+import { useLocation, Link } from "wouter";
+import { trpc } from "../lib/trpc";
+import UnifiedFooter from "@/components/UnifiedFooter";
+import { useAuth } from "@/_core/hooks/useAuth";
+import LoginButton from "@/components/LoginButton";
+import { getLoginUrl } from "@/const";
 
-export default function Home() {
+export default function EarlyAccess() {
+  const [, setLocation] = useLocation();
+  const { user, loading } = useAuth();
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [role, setRole] = useState("");
+  const [sport, setSport] = useState("");
+  
+  const [authError, setAuthError] = useState<string | null>(null);
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  // Check for OAuth error in URL and show login modal
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get('error');
+    const message = params.get('message');
+    if (error) {
+      setAuthError(message || 'Login failed. Please try email login.');
+      // Redirect to login on auth error
+      window.location.href = getLoginUrl();
+      // Clean up URL
+      window.history.replaceState({}, '', '/');
+    }
+  }, []);
+
+  const signupMutation = trpc.vip.signup.useMutation({
+    onSuccess: (data) => {
+      setLocation(`/success?code=${data.accessCode}`);
+    },
+    onError: (error) => {
+      alert(`Error: ${error.message}`);
+    },
+  });
+
+  // Set page title for SEO
+  useEffect(() => {
+    document.title = "ATHLYNX - The Athlete's Playbook | VIP Early Access";
+  }, []);
+
+  // Countdown timer to February 1, 2026
+  useEffect(() => {
+    const targetDate = new Date("2026-02-01T00:00:00").getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance > 0) {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!role) {
+      alert("Please select your role");
+      return;
+    }
+    if (!sport) {
+      alert("Please select your sport");
+      return;
+    }
+
+    signupMutation.mutate({
+      email,
+      phone: phone || undefined,
+      role,
+      sport,
+    });
+  };
+
+  const roles = ["Athlete", "Parent", "Coach", "Brand"];
+  const sports = ["Baseball", "Football", "Basketball", "Soccer", "Track & Field", "Volleyball"];
+  
+
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-100">
-      {/* Top Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white py-2">
-        <div className="container text-center text-xs font-semibold tracking-wider">
-          THE FUTURE OF ATHLETE SUCCESS
-        </div>
+    <div className="min-h-screen relative text-white overflow-x-hidden">
+      {/* Dark Blue Gradient Background */}
+      <div className="absolute inset-0" 
+           style={{
+             background: 'linear-gradient(180deg, #0a1628 0%, #0d1f3c 25%, #0f2847 50%, #0a1e38 75%, #061424 100%)'
+           }}>
       </div>
 
-      {/* Header with ATHLYNX Logo Box, Parent Company Badge, and Buttons */}
-      <header className="border-b bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 backdrop-blur-sm sticky top-0 z-50 shadow-lg">
-        <div className="container py-4 flex items-center justify-between">
-          {/* LEFT: ATHLYNX Logo in Cyan Gradient Box */}
-          <div className="flex items-center gap-4">
-            <div className="relative group">
-              {/* Cyan Gradient Box with Logo */}
-              <div className="flex items-center gap-3 bg-gradient-to-br from-blue-600 via-cyan-500 to-blue-700 p-3 pr-6 rounded-xl shadow-xl hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105">
-                {/* Logo Container */}
-                <div className="w-14 h-14 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                  <img 
-                    alt="ATHLYNX" 
-                    className="w-12 h-12 object-contain drop-shadow-2xl" 
-                    src="/athlynx-logo.png" 
-                  />
+      {/* Subtle blue glow overlay */}
+      <div className="absolute inset-0 opacity-40"
+           style={{
+             background: 'radial-gradient(ellipse at top center, rgba(59, 130, 246, 0.15) 0%, transparent 60%), radial-gradient(ellipse at bottom center, rgba(6, 182, 212, 0.1) 0%, transparent 60%)'
+           }}>
+      </div>
+      
+      {/* FIXED NAVIGATION HEADER WITH LOGIN - MOBILE OPTIMIZED */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a1628]/95 backdrop-blur-md border-b border-cyan-500/30">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 sm:py-3">
+          {/* Mobile Layout */}
+          <div className="flex md:hidden items-center justify-between">
+            <span className="text-cyan-400 font-bold text-[10px] tracking-wider">ATHLYNX</span>
+            {loading ? (
+              <div className="w-20 h-8 bg-slate-700 animate-pulse rounded-lg"></div>
+            ) : user ? (
+              <Link href="/dashboard">
+                <button className="bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold px-4 py-1.5 rounded-lg text-xs">
+                  Dashboard
+                </button>
+              </Link>
+            ) : (
+              <LoginButton className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold px-4 py-1.5 rounded-lg text-xs" />
+            )}
+          </div>
+          
+          {/* Desktop Layout */}
+          <div className="hidden md:flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <span className="text-cyan-400 font-bold text-xs tracking-widest">THE FUTURE OF ATHLETE SUCCESS</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 mr-4">
+                <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-xs font-bold text-cyan-400 border border-cyan-500/50">DHG</div>
+                <div className="text-left">
+                  <p className="text-gray-400 text-[10px] uppercase">PARENT COMPANY</p>
+                  <p className="text-cyan-400 font-semibold text-xs">Dozier Holdings Group</p>
                 </div>
-                {/* Text */}
-                <div className="flex flex-col">
-                  <div className="text-2xl font-black text-white tracking-tight drop-shadow-lg">
-                    ATHLYNX
-                  </div>
-                  <div className="text-[10px] font-semibold text-blue-100 tracking-wider uppercase">
-                    The Athlete's Playbook
-                  </div>
-                </div>
-                {/* Yellow Dot */}
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full shadow-lg animate-pulse"></div>
               </div>
+              <div className="text-right mr-4">
+                <p className="text-white font-bold text-sm">ATHLYNX</p>
+                <p className="text-cyan-400 text-[10px] tracking-wider">THE ATHLETE'S PLAYBOOK</p>
+              </div>
+              {loading ? (
+                <div className="w-24 h-10 bg-slate-700 animate-pulse rounded-lg"></div>
+              ) : user ? (
+                <Link href="/dashboard">
+                  <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-green-500/30 transition-all">
+                    Dashboard
+                  </button>
+                </Link>
+              ) : (
+                <LoginButton className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-6 py-2 rounded-lg shadow-lg shadow-cyan-500/30 transition-all animate-pulse" />
+              )}
             </div>
           </div>
-
-          {/* CENTER: Parent Company Badge */}
-          <div className="flex items-center gap-2">
-            <Badge className="bg-white/10 text-white border-white/20 backdrop-blur-sm">
-              <Users className="h-3 w-3 mr-1" />
-              PARENT COMPANY: Dozier Holdings Group
-            </Badge>
-          </div>
-
-          {/* RIGHT: Founders and Portal Login Buttons */}
-          <div className="flex items-center gap-3">
-            {/* Founders Button - Cyan */}
-            <Button 
-              className="relative overflow-hidden bg-gradient-to-br from-cyan-500 via-blue-500 to-cyan-600 text-white border-2 border-cyan-300 hover:border-cyan-200 shadow-2xl hover:shadow-cyan-400/60 transition-all duration-300 hover:scale-110 font-bold tracking-wide group"
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                <Users className="h-4 w-4" />
-                Founders
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-            </Button>
-
-            {/* Portal Login Button - Purple/Blue */}
-            <Button 
-              className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white border-2 border-purple-300 hover:border-purple-200 shadow-2xl hover:shadow-purple-400/60 transition-all duration-300 hover:scale-110 font-bold tracking-wide group"
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Portal Login
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-            </Button>
-          </div>
         </div>
-      </header>
+      </nav>
 
-      {/* Blue Banner - LIVE PLATFORM */}
-      <div className="bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 text-white py-3 shadow-lg">
-        <div className="container text-center">
-          <div className="flex items-center justify-center gap-3 text-sm font-bold tracking-wide">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
-            <span>LIVE PLATFORM • HIPAA-compliant • Protecting our precious cargo</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Yellow Warning Banner */}
-      <div className="bg-gradient-to-r from-yellow-50 via-yellow-100 to-yellow-50 border-y border-yellow-300 py-3">
-        <div className="container text-center">
-          <div className="flex items-center justify-center gap-2 text-sm font-semibold text-yellow-900">
-            <span className="text-xl">⚠️</span>
-            <span>SITE UPDATING LIVE DAILY - Please be patient with us while we add future updates and apps!</span>
-            <span className="text-xl">⚠️</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="container py-12 space-y-12">
+      <div className="relative w-full max-w-[640px] mx-auto px-4 pt-16 sm:pt-20 pb-8 space-y-6 sm:space-y-8">
         
-        {/* VIP Code Section */}
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 rounded-3xl p-8 shadow-2xl border-2 border-cyan-500/30">
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 mx-auto">
-                <img 
-                  src="/athlynx-logo.png" 
-                  alt="ATHLYNX" 
-                  className="w-full h-full object-contain drop-shadow-2xl"
-                />
-              </div>
-              <h2 className="text-3xl font-black text-white">
-                🔐 HAVE A VIP CODE?
-              </h2>
-              <p className="text-cyan-400 font-semibold">
-                TAP HERE TO ENTER
-              </p>
+        {/* Crab Logo at Top */}
+        <div className="flex justify-center">
+          <div className="relative">
+            <div className="absolute inset-0 bg-cyan-400 blur-3xl opacity-30 animate-pulse"></div>
+            <img 
+              src="/images/dhg-crab-shield-new.jpeg" 
+              alt="DHG Crab" 
+              className="relative w-24 h-24 rounded-full shadow-2xl border-4 border-cyan-400/50"
+            />
+          </div>
+        </div>
+
+        {/* Dozier Holdings Group Badge */}
+        <div className="flex justify-center">
+          <div className="inline-flex items-center gap-3 bg-slate-900/80 backdrop-blur-md border-2 border-cyan-500/50 rounded-full px-6 py-3 shadow-2xl">
+            <div className="text-left">
+              <p className="text-gray-400 text-xs uppercase tracking-wide">PARENT COMPANY</p>
+              <p className="text-cyan-400 font-bold text-sm">Dozier Holdings Group</p>
             </div>
           </div>
         </div>
 
-        {/* Heavyweight Champion Section */}
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 rounded-3xl p-12 shadow-2xl border-2 border-yellow-500/50">
-            <div className="text-center space-y-8">
-              {/* Champion Badge */}
-              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-slate-900 px-8 py-4 rounded-full shadow-2xl font-black text-xl">
-                <span>🏆</span>
-                <span>HEAVYWEIGHT CHAMPION OF THE WORLD</span>
-                <span>🏆</span>
-              </div>
-
-              {/* DHG Crab Shield */}
-              <div className="flex justify-center">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-cyan-400 blur-3xl opacity-40 animate-pulse"></div>
-                  <img 
-                    src="/images/dhg-crab-shield-new.jpeg" 
-                    alt="DHG Crab Shield" 
-                    className="relative w-48 h-48 rounded-2xl shadow-2xl border-4 border-cyan-400/50 object-contain"
-                  />
-                </div>
-              </div>
-
-              {/* Parent Company Badge */}
-              <div className="inline-flex items-center gap-3 bg-slate-800/80 backdrop-blur-md border-2 border-cyan-500/50 rounded-2xl px-8 py-4 shadow-2xl">
-                <div className="text-center">
-                  <p className="text-gray-400 text-xs uppercase tracking-wide">PARENT COMPANY</p>
-                  <p className="text-cyan-400 font-bold text-2xl">Dozier Holdings Group</p>
-                </div>
-              </div>
-
-              {/* DHG Title */}
-              <h3 className="text-4xl font-black text-white">
-                DOZIER HOLDINGS GROUP
-              </h3>
-              <p className="text-2xl font-bold text-yellow-400">
-                THE UNDEFEATED CHAMPION
-              </p>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
-                <div className="bg-slate-800/60 backdrop-blur-sm border-2 border-cyan-500/30 rounded-2xl p-6">
-                  <div className="text-4xl font-black text-cyan-400">∞</div>
-                  <div className="text-sm text-gray-400 mt-2">UNDEFEATED</div>
-                </div>
-                <div className="bg-slate-800/60 backdrop-blur-sm border-2 border-cyan-500/30 rounded-2xl p-6">
-                  <div className="text-4xl font-black text-cyan-400">🥊</div>
-                  <div className="text-sm text-gray-400 mt-2">KNOCKOUTS</div>
-                </div>
-                <div className="bg-slate-800/60 backdrop-blur-sm border-2 border-cyan-500/30 rounded-2xl p-6">
-                  <div className="text-4xl font-black text-cyan-400">👑</div>
-                  <div className="text-sm text-gray-400 mt-2">CHAMPION</div>
-                </div>
-              </div>
+        {/* App Icons Row - NIL Portal, Messenger, Diamond Grind, Warriors Playbook */}
+        <div className="flex justify-center gap-2 sm:gap-3 flex-wrap px-2">
+          <Link href="/nil-portal">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/nil-portal-icon-final.jpeg" 
+                alt="NIL Portal" 
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">NIL Portal</p>
             </div>
+          </Link>
+          <Link href="/messages">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-blue-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/messenger-icon-final.jpeg" 
+                alt="NIL Messenger" 
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Messenger</p>
+            </div>
+          </Link>
+          <Link href="/diamond-grind">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/diamond-grind-app-icon.png" 
+                alt="Diamond Grind" 
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Diamond Grind</p>
+            </div>
+          </Link>
+          <Link href="/warriors-playbook">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-cyan-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/warriors-playbook-icon.png" 
+                alt="Warriors Playbook" 
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Warriors Playbook</p>
+            </div>
+          </Link>
+          <Link href="/transfer-portal">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/transfer-portal-app-icon.png" 
+                alt="Transfer Portal" 
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Transfer Portal</p>
+            </div>
+          </Link>
+          <Link href="/faith">
+            <div className="relative group cursor-pointer">
+              <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <img 
+                src="/faith-app-icon.png" 
+                alt="Faith" 
+                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl shadow-2xl transform group-hover:scale-110 transition-transform"
+              />
+              <p className="text-[10px] text-center text-gray-400 mt-1 group-hover:text-cyan-400">Faith</p>
+            </div>
+          </Link>
+        </div>
+
+        {/* THE FUTURE OF ATHLETE SUCCESS */}
+        <div className="text-center">
+          <p className="text-cyan-400 text-sm md:text-base uppercase tracking-[0.3em] font-bold drop-shadow-lg">
+            THE FUTURE OF ATHLETE SUCCESS
+          </p>
+        </div>
+
+        {/* ATHLYNX Branding */}
+        <div className="text-center space-y-2 sm:space-y-3">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl font-black tracking-tight text-white drop-shadow-2xl">
+            ATHLYNX
+          </h1>
+          <h2 className="text-lg sm:text-xl md:text-3xl font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-cyan-400 drop-shadow-lg px-2">
+            THE ATHLETE'S PLAYBOOK
+          </h2>
+          <p className="sr-only">Complete athlete ecosystem for NIL deals, training, recruiting, and professional connections. Join 10,000 founding members.</p>
+        </div>
+
+        {/* VIP Early Access Badge - Blue Theme */}
+        <div className="flex justify-center px-4">
+          <div className="bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 rounded-full px-6 sm:px-10 py-3 sm:py-5 shadow-2xl transform hover:scale-105 transition-transform">
+            <p className="text-white font-black text-center">
+              <span className="text-base sm:text-xl">VIP EARLY ACCESS</span><br/>
+              <span className="text-2xl sm:text-3xl">6 MONTHS FREE</span>
+            </p>
           </div>
         </div>
 
-        {/* THE COMPLETE ATHLETE ECOSYSTEM */}
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="text-center space-y-4">
-            <p className="text-sm text-blue-600 font-semibold uppercase tracking-wider">
-              THE FUTURE OF ATHLETE SUCCESS
-            </p>
-            <h2 className="text-5xl font-black text-slate-900">
-              ATHLYNX
-            </h2>
-            <p className="text-2xl font-bold text-cyan-600 uppercase tracking-wider">
-              THE ATHLETE'S PLAYBOOK
-            </p>
+        {/* Countdown Timer */}
+        <div className="space-y-4">
+          <p className="text-center text-gray-400 text-sm uppercase tracking-widest font-bold">LAUNCHING IN</p>
+          <div className="flex justify-center gap-1.5 sm:gap-2">
+            {[
+              { value: timeLeft.days, label: "DAYS" },
+              { value: timeLeft.hours, label: "HRS" },
+              { value: timeLeft.minutes, label: "MIN" },
+              { value: timeLeft.seconds, label: "SEC" },
+            ].map(({ value, label }) => (
+              <div
+                key={label}
+                className="bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-500/50 rounded-xl sm:rounded-2xl px-2 sm:px-4 py-2 sm:py-4 min-w-[60px] sm:min-w-[75px] text-center shadow-xl"
+              >
+                <div className="text-cyan-400 text-2xl sm:text-4xl font-black drop-shadow-lg">{String(value).padStart(2, "0")}</div>
+                <div className="text-gray-500 text-[10px] sm:text-xs mt-1 font-bold tracking-wider">{label}</div>
+              </div>
+            ))}
           </div>
+          <p className="text-center text-cyan-400 text-lg font-black tracking-wider drop-shadow-lg">FEBRUARY 1, 2026</p>
+        </div>
 
-          {/* 10 App Icons Grid */}
-          <div className="bg-white rounded-3xl p-8 shadow-2xl border-2 border-gray-200">
-            <h3 className="text-3xl font-black text-center text-slate-900 mb-8">
-              THE COMPLETE ATHLETE ECOSYSTEM
-            </h3>
-            <p className="text-center text-blue-600 font-semibold mb-8">
-              10 Powerful Apps. One Platform. Unlimited Potential.
-            </p>
-            
-            {/* App Icons Grid - 5x2 */}
-            <div className="grid grid-cols-5 gap-6">
-              {/* Row 1 */}
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-20 h-20 bg-slate-800 rounded-2xl shadow-xl flex items-center justify-center">
-                  <span className="text-3xl">📱</span>
-                </div>
-                <p className="text-xs font-bold text-slate-700">Portal</p>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-20 h-20 bg-slate-800 rounded-2xl shadow-xl flex items-center justify-center">
-                  <span className="text-3xl">💬</span>
-                </div>
-                <p className="text-xs font-bold text-slate-700">Messenger</p>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-20 h-20 bg-cyan-500 rounded-2xl shadow-xl flex items-center justify-center">
-                  <span className="text-3xl">💎</span>
-                </div>
-                <p className="text-xs font-bold text-slate-700">Diamond Grind</p>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-20 h-20 bg-slate-800 rounded-2xl shadow-xl flex items-center justify-center">
-                  <span className="text-3xl">⚔️</span>
-                </div>
-                <p className="text-xs font-bold text-slate-700">Warriors Playbook</p>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-20 h-20 bg-slate-800 rounded-2xl shadow-xl flex items-center justify-center">
-                  <span className="text-3xl">🔄</span>
-                </div>
-                <p className="text-xs font-bold text-slate-700">Transfer Portal</p>
-              </div>
-
-              {/* Row 2 */}
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-20 h-20 bg-slate-800 rounded-2xl shadow-xl flex items-center justify-center">
-                  <span className="text-3xl">✝️</span>
-                </div>
-                <p className="text-xs font-bold text-slate-700">Faith</p>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-20 h-20 bg-slate-800 rounded-2xl shadow-xl flex items-center justify-center">
-                  <span className="text-3xl">🏦</span>
-                </div>
-                <p className="text-xs font-bold text-slate-700">NIL Vault</p>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-20 h-20 bg-slate-800 rounded-2xl shadow-xl flex items-center justify-center">
-                  <span className="text-3xl">🤖</span>
-                </div>
-                <p className="text-xs font-bold text-slate-700">AI Sales</p>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-20 h-20 bg-slate-800 rounded-2xl shadow-xl flex items-center justify-center">
-                  <span className="text-3xl">🎯</span>
-                </div>
-                <p className="text-xs font-bold text-slate-700">AI Recruiter</p>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-20 h-20 bg-slate-800 rounded-2xl shadow-xl flex items-center justify-center">
-                  <span className="text-3xl">📝</span>
-                </div>
-                <p className="text-xs font-bold text-slate-700">AI Content</p>
-              </div>
-            </div>
-          </div>
-
-          {/* VIP Early Access - 6 MONTHS FREE */}
-          <div className="bg-gradient-to-br from-blue-600 via-cyan-500 to-blue-700 rounded-3xl p-12 shadow-2xl text-center space-y-6">
-            <div className="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
-              <span className="text-2xl">🎯</span>
-              <span className="text-white font-bold text-lg">VIP EARLY ACCESS</span>
-            </div>
-            
-            <div className="bg-white/10 backdrop-blur-md border-2 border-white/30 rounded-2xl px-12 py-6 inline-block">
-              <p className="text-6xl font-black text-white">6 MONTHS FREE</p>
-            </div>
-
-            {/* Countdown Timer */}
-            <div className="space-y-4">
-              <p className="text-white font-semibold text-lg">LAUNCHING IN</p>
-              <div className="flex justify-center gap-4">
-                <div className="bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-400/50 rounded-xl px-6 py-4 min-w-[80px]">
-                  <div className="text-4xl font-black text-cyan-400">26</div>
-                  <div className="text-xs text-gray-300 uppercase">Days</div>
-                </div>
-                <div className="bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-400/50 rounded-xl px-6 py-4 min-w-[80px]">
-                  <div className="text-4xl font-black text-cyan-400">19</div>
-                  <div className="text-xs text-gray-300 uppercase">Hrs</div>
-                </div>
-                <div className="bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-400/50 rounded-xl px-6 py-4 min-w-[80px]">
-                  <div className="text-4xl font-black text-cyan-400">38</div>
-                  <div className="text-xs text-gray-300 uppercase">Mins</div>
-                </div>
-                <div className="bg-slate-900/80 backdrop-blur-sm border-2 border-cyan-400/50 rounded-xl px-6 py-4 min-w-[80px]">
-                  <div className="text-4xl font-black text-cyan-400">40</div>
-                  <div className="text-xs text-gray-300 uppercase">Sec</div>
-                </div>
-              </div>
-              <p className="text-white font-bold text-xl">FEBRUARY 1, 2026</p>
-            </div>
-          </div>
-
-          {/* Signup Form */}
-          <div className="bg-gradient-to-br from-red-900 via-red-800 to-red-900 rounded-3xl p-8 shadow-2xl border-2 border-red-500/50">
-            <div className="text-center space-y-6">
-              <h3 className="text-3xl font-black text-white">
-                FOUNDING MEMBER SPOTS
-              </h3>
-              <p className="text-5xl font-black text-red-400">
-                LIMITED TO 10,000
-              </p>
-              
-              {/* Progress Bar */}
-              <div className="bg-white/20 rounded-full h-4 overflow-hidden">
-                <div className="bg-gradient-to-r from-cyan-400 to-blue-500 h-full w-1/3"></div>
-              </div>
-
-              {/* Form */}
-              <div className="bg-slate-900/60 backdrop-blur-md rounded-2xl p-8 space-y-6">
-                <div className="space-y-4">
-                  <div className="text-left">
-                    <label className="text-white font-semibold text-sm block mb-2">
-                      FULL NAME *
-                    </label>
-                    <input 
-                      type="text" 
-                      placeholder="Your full name"
-                      className="w-full bg-slate-800/60 border-2 border-cyan-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-cyan-400 focus:outline-none"
-                    />
-                  </div>
-
-                  <div className="text-left">
-                    <label className="text-white font-semibold text-sm block mb-2">
-                      EMAIL ADDRESS *
-                    </label>
-                    <input 
-                      type="email" 
-                      placeholder="your@email.com"
-                      className="w-full bg-slate-800/60 border-2 border-cyan-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-cyan-400 focus:outline-none"
-                    />
-                  </div>
-
-                  <div className="text-left">
-                    <label className="text-white font-semibold text-sm block mb-2">
-                      PHONE NUMBER *
-                    </label>
-                    <input 
-                      type="tel" 
-                      placeholder="Phone Number (Required)"
-                      className="w-full bg-slate-800/60 border-2 border-cyan-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-cyan-400 focus:outline-none"
-                    />
-                  </div>
-
-                  <div className="text-left">
-                    <label className="text-white font-semibold text-sm block mb-2">
-                      I AM A...
-                    </label>
-                    <div className="flex gap-3">
-                      <button className="bg-slate-800/60 border-2 border-cyan-500/30 hover:border-cyan-400 rounded-lg px-6 py-2 text-white font-semibold transition-all">
-                        Athlete
-                      </button>
-                      <button className="bg-slate-800/60 border-2 border-cyan-500/30 hover:border-cyan-400 rounded-lg px-6 py-2 text-white font-semibold transition-all">
-                        Parent
-                      </button>
-                      <button className="bg-slate-800/60 border-2 border-cyan-500/30 hover:border-cyan-400 rounded-lg px-6 py-2 text-white font-semibold transition-all">
-                        Coach
-                      </button>
-                      <button className="bg-slate-800/60 border-2 border-cyan-500/30 hover:border-cyan-400 rounded-lg px-6 py-2 text-white font-semibold transition-all">
-                        Brand
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="text-left">
-                    <label className="text-white font-semibold text-sm block mb-2">
-                      PRIMARY SPORT
-                    </label>
-                    <div className="grid grid-cols-3 gap-3">
-                      <button className="bg-slate-800/60 border-2 border-cyan-500/30 hover:border-cyan-400 rounded-lg px-4 py-2 text-white font-semibold transition-all">
-                        Baseball
-                      </button>
-                      <button className="bg-slate-800/60 border-2 border-cyan-500/30 hover:border-cyan-400 rounded-lg px-4 py-2 text-white font-semibold transition-all">
-                        Football
-                      </button>
-                      <button className="bg-slate-800/60 border-2 border-cyan-500/30 hover:border-cyan-400 rounded-lg px-4 py-2 text-white font-semibold transition-all">
-                        Basketball
-                      </button>
-                      <button className="bg-slate-800/60 border-2 border-cyan-500/30 hover:border-cyan-400 rounded-lg px-4 py-2 text-white font-semibold transition-all">
-                        Soccer
-                      </button>
-                      <button className="bg-slate-800/60 border-2 border-cyan-500/30 hover:border-cyan-400 rounded-lg px-4 py-2 text-white font-semibold transition-all">
-                        Track & Field
-                      </button>
-                      <button className="bg-slate-800/60 border-2 border-cyan-500/30 hover:border-cyan-400 rounded-lg px-4 py-2 text-white font-semibold transition-all">
-                        Volleyball
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Submit Button */}
-                <Button className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-black text-lg py-6 rounded-xl shadow-2xl shadow-cyan-500/30 transition-all">
-                  ⚡ CLAIM MY VIP SPOT
-                </Button>
-
-                <p className="text-gray-400 text-xs text-center">
-                  No credit card required. By signing up, you agree to receive updates about ATHLYNX.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Join Athletes Section */}
-          <div className="text-center space-y-4">
-            <p className="text-gray-600 font-semibold">
-              Join athletes from 500+ schools already on the waitlist
-            </p>
-            <div className="flex justify-center gap-4 text-sm font-bold text-blue-600">
-              <span>SEC</span>
-              <span>•</span>
-              <span>ACC</span>
-              <span>•</span>
-              <span>Big Ten</span>
-              <span>•</span>
-              <span>Big 12</span>
-              <span>•</span>
-              <span>Pac-12</span>
-            </div>
-          </div>
-
-          {/* Already a VIP Member */}
-          <div className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 rounded-3xl p-8 shadow-2xl border-2 border-cyan-500/30 text-center space-y-4">
-            <h3 className="text-2xl font-black text-white">
-              ALREADY A VIP MEMBER?
-            </h3>
-            <p className="text-gray-400">
-              Enter your access code to unlock all 6 apps.
-            </p>
-            <Button className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-bold px-8 py-4 rounded-xl shadow-2xl">
-              🔐 ENTER ACCESS CODE
-            </Button>
-          </div>
-
-          {/* Preview the App */}
-          <div className="text-center">
-            <Link href="/home">
-              <a className="text-blue-600 hover:text-blue-700 font-bold underline">
-                Preview the App →
-              </a>
-            </Link>
-          </div>
-
-          {/* Quick Links */}
-          <div className="flex justify-center gap-8 text-sm text-gray-600">
-            <span>✓ Social Network</span>
-            <span>✓ NIL Deals</span>
-            <span>✓ Messaging</span>
-            <span>✓ Analytics</span>
-            <span>✓ Compliance</span>
+        {/* Founding Member Section */}
+        <div className="bg-gradient-to-r from-red-900/60 to-orange-900/60 backdrop-blur-md border-2 border-red-500/50 rounded-3xl p-6 space-y-4 shadow-2xl">
+          <p className="text-white font-black text-center text-xl">FOUNDING MEMBER SPOTS</p>
+          <p className="text-red-400 font-black text-3xl text-center drop-shadow-lg">LIMITED TO 10,000</p>
+          <div className="w-full bg-slate-900/60 rounded-full h-4 overflow-hidden border border-red-500/50">
+            <div className="bg-gradient-to-r from-cyan-500 via-blue-500 to-red-500 h-full w-[35%] animate-pulse shadow-lg"></div>
           </div>
         </div>
+
+        {/* Signup Form - Blue Theme */}
+        <div className="bg-slate-900/80 backdrop-blur-xl border-2 border-cyan-500/50 rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-4 sm:space-y-5 shadow-2xl">
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Email */}
+            <div>
+              <label className="block text-gray-300 text-xs uppercase tracking-widest mb-2 font-bold">
+                EMAIL ADDRESS <span className="text-red-400">*</span>
+              </label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@email.com"
+                disabled={signupMutation.isPending}
+                className="w-full bg-slate-800/70 border-2 border-slate-600 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 outline-none transition disabled:opacity-50"
+              />
+            </div>
+
+            {/* Phone */}
+            <div>
+              <label className="block text-gray-300 text-xs uppercase tracking-widest mb-2 font-bold">
+                PHONE (OPTIONAL)
+              </label>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Phone (Optional)"
+                disabled={signupMutation.isPending}
+                className="w-full bg-slate-800/70 border-2 border-slate-600 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 outline-none transition disabled:opacity-50"
+              />
+            </div>
+
+            {/* Role Selection */}
+            <div>
+              <label className="block text-gray-300 text-xs uppercase tracking-widest mb-2 font-bold">
+                I AM A...
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {roles.map((r) => (
+                  <button
+                    key={r}
+                    type="button"
+                    onClick={() => setRole(r)}
+                    disabled={signupMutation.isPending}
+                    className={`px-5 py-3 rounded-full text-sm font-bold transition-all disabled:opacity-50 ${
+                      role === r
+                        ? "bg-cyan-500 border-2 border-cyan-400 text-white shadow-lg scale-105"
+                        : "bg-slate-800/70 border-2 border-slate-600 text-gray-300 hover:border-cyan-400 hover:text-cyan-400"
+                    }`}
+                  >
+                    {r}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Sport Selection */}
+            <div>
+              <label className="block text-gray-300 text-xs uppercase tracking-widest mb-2 font-bold">
+                PRIMARY SPORT
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {sports.map((s) => (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => setSport(s)}
+                    disabled={signupMutation.isPending}
+                    className={`px-5 py-3 rounded-full text-sm font-bold transition-all disabled:opacity-50 ${
+                      sport === s
+                        ? "bg-cyan-500 border-2 border-cyan-400 text-white shadow-lg scale-105"
+                        : "bg-slate-800/70 border-2 border-slate-600 text-gray-300 hover:border-cyan-400 hover:text-cyan-400"
+                    }`}
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Submit Button - Blue Theme */}
+            <button
+              type="submit"
+              disabled={signupMutation.isPending}
+              className="w-full bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 text-white font-black text-xl uppercase tracking-wider py-5 rounded-full shadow-2xl hover:shadow-cyan-500/50 hover:scale-105 transition-all transform disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {signupMutation.isPending ? "PROCESSING..." : "CLAIM MY VIP SPOT"}
+            </button>
+
+            {/* No credit card text */}
+            <p className="text-center text-gray-400 text-sm">
+              No credit card required. By signing up, you agree to receive updates about ATHLYNX.
+            </p>
+          </form>
+        </div>
+
+        {/* Social Proof */}
+        <div className="text-center space-y-3">
+          <p className="text-gray-400 text-sm">Join athletes from 500+ schools already on the waitlist</p>
+          <p className="text-cyan-400 font-bold">
+            SEC • ACC • Big Ten • Big 12 • Pac-12
+          </p>
+        </div>
+
+        {/* Preview the App Link */}
+        <div className="text-center">
+          <button 
+            onClick={() => setLocation('/home')}
+            className="text-cyan-400 hover:text-cyan-300 font-bold underline underline-offset-4 transition-colors"
+          >
+            Preview the App →
+          </button>
+        </div>
+
+
+
+        {/* Feature Checkmarks - Blue Theme */}
+        <div className="flex flex-wrap justify-center gap-3 text-sm">
+          {[
+            "Social Network",
+            "NIL Deals",
+            "Messaging",
+            "Analytics",
+            "Compliance"
+          ].map((feature) => (
+            <div key={feature} className="text-white font-bold bg-slate-800/60 backdrop-blur-sm px-4 py-2 rounded-full border border-cyan-500/40 shadow-lg flex items-center gap-2">
+              <span className="text-cyan-400"></span> {feature}
+            </div>
+          ))}
+        </div>
+
       </div>
+      
+      {/* Unified Footer */}
+      <UnifiedFooter />
+      
+      {/* Email Login Modal - triggered by OAuth failure or manual click */}
 
-      {/* Footer */}
-      <footer className="bg-slate-950 text-white py-12">
-        <div className="container">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            {/* Company */}
-            <div>
-              <h4 className="font-bold text-lg mb-4">COMPANY</h4>
-              <div className="space-y-2 text-sm text-gray-400">
-                <div>About Us</div>
-                <div>Careers</div>
-                <div>Press</div>
-                <div>Contact</div>
-              </div>
-            </div>
-
-            {/* Platform */}
-            <div>
-              <h4 className="font-bold text-lg mb-4">PLATFORM</h4>
-              <div className="space-y-2 text-sm text-gray-400">
-                <div>VIP Access</div>
-                <div>Athlete Dashboard</div>
-                <div>Diamond Grind</div>
-                <div>Messenger</div>
-              </div>
-            </div>
-
-            {/* Apps */}
-            <div>
-              <h4 className="font-bold text-lg mb-4">APPS</h4>
-              <div className="space-y-2 text-sm text-gray-400">
-                <div>NIL Portal</div>
-                <div>Diamond Grind</div>
-                <div>All Apps</div>
-                <div>Quick Links Hub</div>
-              </div>
-            </div>
-
-            {/* Resources */}
-            <div>
-              <h4 className="font-bold text-lg mb-4">RESOURCES</h4>
-              <div className="space-y-2 text-sm text-gray-400">
-                <div>Founder Story</div>
-                <div>Pricing</div>
-                <div>Investor Hub</div>
-                <div>Legal & Compliance</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex justify-center gap-6 mb-8">
-            <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-cyan-500 transition-colors cursor-pointer">
-              <span>📷</span>
-            </div>
-            <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-cyan-500 transition-colors cursor-pointer">
-              <span>🐦</span>
-            </div>
-            <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-cyan-500 transition-colors cursor-pointer">
-              <span>📘</span>
-            </div>
-            <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-cyan-500 transition-colors cursor-pointer">
-              <span>💼</span>
-            </div>
-            <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-cyan-500 transition-colors cursor-pointer">
-              <span>🎵</span>
-            </div>
-          </div>
-
-          {/* DHG Branding */}
-          <div className="text-center space-y-4">
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-8 h-8 bg-cyan-500 rounded-full"></div>
-              <span className="text-cyan-400 font-bold">Dozier Holdings Group</span>
-            </div>
-            <p className="text-gray-500 text-sm">
-              © 2026 ATHLYNX / Dozier Holdings Group, LLC. All Rights Reserved.
-            </p>
-            <p className="text-cyan-400 font-bold text-sm">
-              BUILT WITH ❤️ FOR ATHLETES, BY ATHLETES
-            </p>
-          </div>
-
-          {/* Legal Links */}
-          <div className="flex justify-center gap-6 mt-8 text-xs text-gray-500">
-            <span>Privacy Policy</span>
-            <span>•</span>
-            <span>Terms of Service</span>
-            <span>•</span>
-            <span>HIPAA Compliance</span>
-          </div>
-
-          {/* Security & Compliance */}
-          <div className="mt-12 bg-slate-900/50 rounded-2xl p-6 border border-cyan-500/20">
-            <h4 className="text-cyan-400 font-bold mb-4 flex items-center gap-2">
-              <span>🔒</span>
-              SECURITY & LEGAL COMPLIANCE
-            </h4>
-            <div className="grid md:grid-cols-2 gap-4 text-xs text-gray-400">
-              <div>
-                <strong className="text-white">HIPAA Compliance:</strong> All athlete health data, medical records, and personal information are protected.
-              </div>
-              <div>
-                <strong className="text-white">Data Collection:</strong> We aggregate publicly available information from authorized sources. All data collection, storage, and processing comply with applicable laws.
-              </div>
-              <div>
-                <strong className="text-white">AI Transparency:</strong> Our platform utilizes AI tools and automated agents for content generation, data analysis, and personalized recommendations.
-              </div>
-              <div>
-                <strong className="text-white">Premium Cargo Protection:</strong> Student-athletes are our most valuable asset. We employ 24/7 AI monitoring, HIPAA-compliant data handling, and zero-tolerance for exploitation.
-              </div>
-            </div>
-          </div>
+      
+      {/* Auth Error Toast */}
+      {authError && (
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-red-500/90 text-white px-6 py-3 rounded-lg shadow-xl z-50 animate-bounce">
+          {authError}
+          <button onClick={() => setAuthError(null)} className="ml-4 font-bold">×</button>
         </div>
-      </footer>
+      )}
     </div>
   );
 }
