@@ -6,7 +6,7 @@ export default function Home() {
   const { user, loading } = useAuth();
   
   const apps = [
-    { name: "Portal", icon: "/portal-app-icon.png", href: "/nil-portal" },
+    { name: "Portal", icon: "/nil-portal-app-icon.jpeg", href: "/nil-portal" },
     { name: "Messenger", icon: "/messenger-icon-final.jpeg", href: "/messages" },
     { name: "Diamond Grind", icon: "/diamond-grind-app-icon.png", href: "/diamond-grind" },
     { name: "Warriors Playbook", icon: "/warriors-playbook-icon.png", href: "/warriors-playbook" },
